@@ -1,14 +1,14 @@
-# Shopinit - A Revolutionary Marketplace
+# Shopinit - Revolutionary Marketplace for Every Race !
 
-Welcome to **Shopinit**, the ultimate online marketplace where anyone, regardless of race, identity, or background, can buy and sell products freely and anonymously. From unique, rare items to everyday goods, Shopinit provides a platform for seamless transactions in a diverse and inclusive community.
+Welcome to **Shopinit**, the ultimate online marketplace where anyone, regardless of race, skin color, face shape, or background, can buy and sell any kind of products freely and anonymously, you wont be jailed _trust me_. From unique, rare items to everyday goods, Shopinit provides a platform for seamless transactions in a diverse and inclusive community.
 
 ## Features
 
-- **Freedom to Sell Anything**: From brand-new items to pre-loved goods, sellers can list products across a variety of categories.
+- **Freedom to Sell Anything**: From brand-new items to pre-loved goods, to any kind of meds and even guns. sellers can list products across a variety of categories.
 - **True Anonymity**: Sellers and buyers can interact without revealing their identities, ensuring privacy and security.
-- **Rare and Unique Finds**: Discover items you won’t find in the traditional market.
+- **Rare and Unique Finds**: Discover items you won’t find in the traditional market, maybe because they are illegal _blinks_.
 - **User-Friendly Interface**: Designed for ease of use, making buying and selling simple for everyone.
-- **Inclusive Community**: Open to all, fostering a marketplace for everyone.
+- **Inclusive Community**: Open to all, fostering a marketplace for everyone except people with woke mentality \*\*please step out of my website, its for straight people only, not for curved people.
 
 ## Functionality
 
