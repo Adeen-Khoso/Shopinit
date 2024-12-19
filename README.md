@@ -1,3 +1,3 @@
 # Shopinit
 
-Market place for every nigga out there!
+Illegal guns for niggas out there? or drugs for minors? Find all in one place !
