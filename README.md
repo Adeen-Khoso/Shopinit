@@ -1,2 +1,3 @@
 # Shopinit
-Market place for everyone
+
+Market place for every nigga out there!
