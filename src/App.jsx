@@ -1,7 +1,16 @@
+import { createBrowserRouter, RouterProvider } from "react-router";
+import Home from "./pages/Home";
+
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+  ]);
   return (
     <>
-      <h1 className="text-3xl ">Shopinit e-commerce store</h1>
+      <RouterProvider router={router} />
     </>
   );
 }
