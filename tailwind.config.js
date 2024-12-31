@@ -2,6 +2,12 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    colors: {
+      primary_bg: "#FBEAEB",
+      secondary_bg: "#FFF5F5",
+      primary: "#2F3C7E",
+      jett_black: "1B1B1B",
+    },
     extend: {},
   },
   plugins: [],
