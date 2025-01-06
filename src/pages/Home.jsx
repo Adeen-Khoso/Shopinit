@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <h1 className=" ">this is home page</h1>
-      <Button variant="primary" size="default" url="/">
+      <Button variant="primary" url="/">
         Join
       </Button>
     </>
