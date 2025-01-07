@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",          // Allows React JSX/TSX
+    "strict": true,              // Enables strict type checking
+    "module": "ESNext",          // Supports modern JavaScript modules
+    "moduleResolution": "Node", // Resolves modules like Node.js
+    "target": "ESNext",          // Target modern JS
+    "esModuleInterop": true,     // Simplifies module imports
+    "skipLibCheck": true,        // Skips type checking for node_modules
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],             // Scans the src folder for files
+  "exclude": ["./node_modules"]     // Ignores node_modules
+}
