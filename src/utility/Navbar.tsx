@@ -51,21 +51,21 @@ export const Navbar2 = (props: Navbar2Props) => {
               ))}
             </div>
             <button
-              className="-mr-2 flex size-12 flex-col items-center justify-center"
+              className="-mr-2 flex size-12 flex-col items-center justify-center "
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
             >
               <motion.span
-                className="my-[3px] h-0.5 w-6 bg-black"
+                className="my-[3px] h-0.5 w-6 bg-jett_black"
                 animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
                 variants={topLineVariants}
               />
               <motion.span
-                className="my-[3px] h-0.5 w-6 bg-black"
+                className="my-[3px] h-0.5 w-6 bg-jett_black"
                 animate={isMobileMenuOpen ? "open" : "closed"}
                 variants={middleLineVariants}
               />
               <motion.span
-                className="my-[3px] h-0.5 w-6 bg-black"
+                className="my-[3px] h-0.5 w-6 bg-jett_black"
                 animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
                 variants={bottomLineVariants}
               />

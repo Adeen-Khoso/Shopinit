@@ -17,33 +17,34 @@ h1,
 h2,
 h3 {
   font-family: "Young Serif", serif;
-  font-size: 56px;
+  /* font-size: 56px; */
 }
-h2 {
+/* h2 {
   font-size: 48px;
 }
 h3 {
   font-size: 40px;
 }
+  */
 h4,
 h5,
 h6 {
-  font-size: 32px;
+  /* font-size: 32px; */
   letter-spacing: -4%;
 }
-h5 {
+/* h5 {
   font-size: 24px;
   letter-spacing: 0%;
-}
+} */
 h6 {
-  font-size: 20px;
+  /* font-size: 20px; */
   letter-spacing: -3%;
 }
-p {
+/* p {
   font-size: 16px;
-}
+}  */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   h1 {
     font-size: 40px;
   }
@@ -62,4 +63,4 @@ p {
   h6 {
     font-size: 18px;
   }
-}
+} */

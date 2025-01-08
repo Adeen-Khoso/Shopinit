@@ -58,7 +58,7 @@ export const Testimonial33 = (props: Testimonial33Props) => {
       ref={sectionRef}
       className="overflow-hidden px-[5%] py-12 md:py-16 lg:py-20"
     >
-      <div className="container grid min-h-svh auto-cols-fr grid-cols-1 overflow-hidden border border-border-primary lg:h-[90vh] lg:min-h-[auto] lg:grid-cols-[0.75fr_1fr] lg:overflow-visible">
+      <div className=" bg-secondary_bg container grid min-h-svh auto-cols-fr grid-cols-1 overflow-hidden border border-border-primary lg:h-[90vh] lg:min-h-[auto] lg:grid-cols-[0.75fr_1fr] lg:overflow-visible">
         <div className="flex flex-col justify-center p-8 md:p-12">
           <div>
             <h2 className="rb-5 mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">
@@ -106,7 +106,7 @@ export const Testimonial33 = (props: Testimonial33Props) => {
 };
 
 const TestimonialCard = (testimonial: Testimonial) => (
-  <div className="flex w-full flex-col items-start justify-between border border-border-primary p-6 md:p-8">
+  <div className=" bg-primary_bg flex w-full flex-col items-start justify-between border border-border-primary p-6 md:p-8">
     <div className="rb-5 mb-5 md:mb-6">
       <div className="rb-6 mb-6 flex">
         {Array(testimonial.numberOfStars)
@@ -124,7 +124,7 @@ const TestimonialCard = (testimonial: Testimonial) => (
         className="mb-4 size-12 min-h-12 min-w-12 rounded-full object-cover md:mb-0 md:mr-4"
       />
       <div>
-        <p className="font-semibold">{testimonial.name}</p>
+        <p className=" text-primary font-semibold">{testimonial.name}</p>
         <p>
           <span>{testimonial.position}</span>, <span>{testimonial.companyName}</span>
         </p>
