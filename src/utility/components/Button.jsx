@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { cn } from "./utils";
 
-const Button = ({
+export const Button = ({
   variant = "light",
   url = "/",
   size = "default",
@@ -21,5 +21,3 @@ const Button = ({
     </Link>
   );
 };
-
-export default Button;

@@ -58,7 +58,7 @@ export const Testimonial33 = (props: Testimonial33Props) => {
       ref={sectionRef}
       className="overflow-hidden px-[5%] py-12 md:py-16 lg:py-20"
     >
-      <div className=" bg-secondary_bg container grid min-h-svh auto-cols-fr grid-cols-1 overflow-hidden border border-border-primary lg:h-[90vh] lg:min-h-[auto] lg:grid-cols-[0.75fr_1fr] lg:overflow-visible">
+      <div id="reviews" className=" bg-secondary_bg container grid min-h-svh auto-cols-fr grid-cols-1 overflow-hidden border border-border-primary lg:h-[90vh] lg:min-h-[auto] lg:grid-cols-[0.75fr_1fr] lg:overflow-visible">
         <div className="flex flex-col justify-center p-8 md:p-12">
           <div>
             <h2 className="rb-5 mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">
