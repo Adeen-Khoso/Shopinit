@@ -72,7 +72,7 @@ export const Navbar2 = (props: Navbar2Props) => {
   const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
-    <nav
+    <nav        
       className={cn(
         "flex items-center fixed left-0 w-full z-10 transition-all duration-300 ease-in-out",
         showNavbar

@@ -60,7 +60,7 @@ export const Layout408 = (props: Layout408Props) => {
     <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20">
-          <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
+          <p className="mb-3 font-normal md:mb-4">{tagline}</p>
           <h1 className="mb-5 text-5xl font-bold md:mb-6 md:text-7xl lg:text-8xl">{heading}</h1>
           <p className="md:text-md">{description}</p>
         </div>
@@ -139,8 +139,8 @@ const FeatureSectionContent = ({
 );
 
 export const Layout408Defaults: Props = {
-  tagline: "Tagline",
-  heading: "Short heading goes here",
+  tagline: "Discover",
+  heading: "Empowering your marketplace",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   featureSections: [
     {
