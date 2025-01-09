@@ -17,7 +17,11 @@ export default {
       white: "#FFFFFF",
       grey: "#F2F2F2",
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        default: "Work Sans serif",
+      },
+    },
   },
   plugins: [],
 };

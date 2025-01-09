@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 import { useEffect } from "react";
-import {  cn, useMediaQuery } from "@relume_io/relume-ui";
+import { cn, useMediaQuery } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxChevronDown } from "react-icons/rx";
-import {HashLink} from "react-router-hash-link"
+import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router";
-import logoImage from "../../assets/logo.png"
+import logoImage from "../../assets/logo.png";
 import { Button } from "@relume_io/relume-ui";
-
 
 type ImageProps = {
   url?: string;
@@ -30,45 +29,40 @@ type Props = {
   buttons: ButtonProps[];
 };
 
-export type Navbar2Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
+export type Navbar2Props = React.ComponentPropsWithoutRef<"section"> &
+  Partial<Props>;
 
 export const Navbar2 = (props: Navbar2Props) => {
-
-  const [showNavbar, setShowNavbar] = useState(true); // Track navbar visibility
-  const [lastScrollY, setLastScrollY] = useState(0); // Last scroll position
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
 
   useEffect(() => {
     const handleScroll = () => {
-      // Get current scroll position
       const currentScrollY = window.scrollY;
 
-      // Determine if the user is scrolling up or down
       if (currentScrollY > lastScrollY) {
         setScrollDirection("down");
-      } else if (currentScrollY < lastScrollY) {
+      } else {
         setScrollDirection("up");
       }
 
-      // Update navbar visibility based on scroll direction
       if (scrollDirection === "down" && currentScrollY > 50) {
-        setShowNavbar(false); // Hide navbar when scrolling down
+        setShowNavbar(false);
       } else if (scrollDirection === "up") {
-        setShowNavbar(true); // Show navbar when scrolling up
+        setShowNavbar(true);
+      }
+
+      if (currentScrollY === 0) {
+        setShowNavbar(true);
       }
 
       setLastScrollY(currentScrollY);
     };
 
-    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener when the component is unmounted
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY, scrollDirection]); // Re-run the effect when scroll direction or position changes
-
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY, scrollDirection]);
 
   const { logo, navLinks, buttons } = {
     ...Navbar2Defaults,
@@ -78,16 +72,17 @@ export const Navbar2 = (props: Navbar2Props) => {
   const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
-    
-        <nav
+    <nav
       className={cn(
-        "flex items-center fixed top-0 left-0 w-full z-10 transition-transform duration-300 ease-in-out", 
-        showNavbar ? "transform-none" : "-translate-y-full", // Conditionally apply transform
-        "border-b border-border-primary bg-primary_bg lg:min-h-18 lg:px-[5%] mb-18"
+        "flex items-center fixed left-0 w-full z-10 transition-all duration-300 ease-in-out",
+        showNavbar
+          ? lastScrollY === 0
+            ? "top-10"
+            : "top-0"
+          : "top-10 -translate-y-[calc(100%+40px)]",
+        "border-b border-border-primary bg-primary_bg lg:min-h-18 lg:px-[5%]"
       )}
     >
-
-
       <div className="  mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           <a href={logo.url}>
@@ -96,7 +91,12 @@ export const Navbar2 = (props: Navbar2Props) => {
           <div className="flex items-center gap-4 lg:hidden">
             <div>
               {buttons.map((button, index) => (
-                <Button key={index} className={cn("w-full px-4 py-1 bg-primary !important ",{...button})}>
+                <Button
+                  key={index}
+                  className={cn("w-full px-4 py-1 bg-primary !important ", {
+                    ...button,
+                  })}
+                >
                   {button.title}
                 </Button>
               ))}
@@ -143,7 +143,10 @@ export const Navbar2 = (props: Navbar2Props) => {
               {navLink.subMenuLinks && navLink.subMenuLinks.length > 0 ? (
                 <SubMenu navLink={navLink} isMobile={isMobile} />
               ) : (
-                <Link to={navLink.url} className="block py-3 text-md lg:px-4 lg:py-2 lg:text-base hover:text-neutral-dark">
+                <Link
+                  to={navLink.url}
+                  className="block py-3 text-md lg:px-4 lg:py-2 lg:text-base hover:text-neutral-dark"
+                >
                   {navLink.title}
                 </Link>
               )}
@@ -152,7 +155,11 @@ export const Navbar2 = (props: Navbar2Props) => {
         </motion.div>
         <div className="hidden justify-self-end lg:block">
           {buttons.map((button, index) => (
-            <Button key={index} className="px-6 py-2 bg-primary text-white hover:bg-hov_primary" {...button}>
+            <Button
+              key={index}
+              className="px-6 py-2 bg-primary text-white hover:bg-hov_primary"
+              {...button}
+            >
               {button.title}
             </Button>
           ))}
@@ -162,7 +169,13 @@ export const Navbar2 = (props: Navbar2Props) => {
   );
 };
 
-const SubMenu = ({ navLink, isMobile }: { navLink: NavLink; isMobile: boolean }) => {
+const SubMenu = ({
+  navLink,
+  isMobile,
+}: {
+  navLink: NavLink;
+  isMobile: boolean;
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
@@ -183,7 +196,6 @@ const SubMenu = ({ navLink, isMobile }: { navLink: NavLink; isMobile: boolean })
           }}
           transition={{ duration: 0.3 }}
         >
-          
           <RxChevronDown />
         </motion.span>
       </button>
@@ -216,7 +228,6 @@ const SubMenu = ({ navLink, isMobile }: { navLink: NavLink; isMobile: boolean })
               >
                 {subMenuLink.title}
               </HashLink>
-
             ))}
           </motion.nav>
         </AnimatePresence>
@@ -226,30 +237,30 @@ const SubMenu = ({ navLink, isMobile }: { navLink: NavLink; isMobile: boolean })
 };
 
 export const Navbar2Defaults: Props = {
-    logo: {
-      url: "/",
-      src: logoImage,
-      alt: "logo",
+  logo: {
+    url: "/",
+    src: logoImage,
+    alt: "logo",
+  },
+  navLinks: [
+    { title: "Shop Now", url: "/home" },
+    { title: "About Us", url: "/about" },
+    { title: "Profile", url: "/services" },
+    {
+      title: "More",
+      url: "/more",
+      subMenuLinks: [
+        { title: "Contact", url: "/#footer" },
+        { title: "Reviews", url: "/#reviews" },
+      ],
     },
-    navLinks: [
-      { title: "Shop Now", url: "/home" },
-      { title: "About Us", url: "/about" },
-      { title: "Profile", url: "/services" },
-      {
-        title: "More",
-        url: "/more",
-        subMenuLinks: [
-          { title: "Contact", url: "/#footer" },
-          { title: "Reviews", url: "/#reviews" },
-        ],
-      },
-    ],
-    buttons: [
-      {
-        title: "Cart (0)",
-        size: "sm",
-      },
-    ],
+  ],
+  buttons: [
+    {
+      title: "Cart (0)",
+      size: "sm",
+    },
+  ],
 };
 
 const topLineVariants = {
