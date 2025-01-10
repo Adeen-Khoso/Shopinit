@@ -1,11 +1,16 @@
 "use client";
 
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
+import { Button, cn, useMediaQuery } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { MotionValue, useMotionValue, motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 import { RxChevronRight } from "react-icons/rx";
 import clsx from "clsx";
+// import sellerImg from "../../assets/cta_imgs/sellerCardImg (2).jpg";
+import sellerImg from "../../assets/cta_imgs/sellerCardImg.jpg";
+import buyersImg from "../../assets/cta_imgs/buyersCard1.png";
+import SeamlessImg from "../../assets/cta_imgs/card3Img.jpg";
+
 
 type ImageProps = {
   src: string;
@@ -110,7 +115,7 @@ const FeatureSectionContent = ({
   <React.Fragment>
     <div
       className={clsx(
-        "order-first flex flex-col justify-center p-6 md:p-8 lg:p-12",
+        "order-first flex flex-col justify-center p-6 md:p-8 lg:p-12 bg-secondary_bg",
         isEven ? "md:order-first" : "md:order-last",
       )}
     >
@@ -121,7 +126,7 @@ const FeatureSectionContent = ({
       <p>{featureSection.description}</p>
       <div className="mt-6 flex items-center gap-x-4 md:mt-8">
         {featureSection.buttons.map((button, index) => (
-          <Button key={index} {...button}>
+          <Button key={index} className={cn("", button.variant === "secondary" ? " bg-primary text-white" : "text-prim")} {...button}>
             {button.title}
           </Button>
         ))}
@@ -129,7 +134,7 @@ const FeatureSectionContent = ({
     </div>
     <div
       className={clsx(
-        "order-last flex flex-col items-center justify-center",
+        "order-last  flex flex-col items-center justify-center ",
         isEven ? "md:order-last" : "md:order-first",
       )}
     >
@@ -149,7 +154,7 @@ export const Layout408Defaults: Props = {
       description:
         "Break the barriers of traditional selling. List your products, set your terms, and let the world be your marketplace. Total control, endless opportunities.",
       buttons: [
-        { title: "Sell", variant: "secondary"  },
+        { title: "Sell", variant: "secondary" },
         {
           title: "Buy",
           variant: "link",
@@ -158,45 +163,45 @@ export const Layout408Defaults: Props = {
         },
       ],
       image: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: sellerImg,
         alt: "Relume placeholder image 1",
       },
     },
     {
-      tagline: "Tagline",
-      heading: "Medium length section heading goes here",
+      tagline: "Uncover",
+      heading: "Uncover Unique Finds with Ease",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+        "From essentials to the exceptional, find exactly what you’re looking for—or stumble upon something extraordinary. Explore a marketplace tailored to your freedom.",
       buttons: [
-        { title: "Button", variant: "secondary" },
+        { title: "Buy", variant: "secondary" },
         {
-          title: "Button",
+          title: "Sell",
           variant: "link",
           size: "link",
           iconRight: <RxChevronRight />,
         },
       ],
       image: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: buyersImg,
         alt: "Relume placeholder image 2",
       },
     },
     {
-      tagline: "Tagline",
-      heading: "Medium length section heading goes here",
+      tagline: "Simplify",
+      heading: "Freedom to Live, Freedom to Trade",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+        "Say goodbye to the complexities. Enjoy seamless buying and selling with platform designed for your ease. Freedom starts here, it goes for black people too.",
       buttons: [
-        { title: "Button", variant: "secondary" },
+        { title: "Buy", variant: "secondary" },
         {
-          title: "Button",
+          title: "Sell",
           variant: "link",
           size: "link",
           iconRight: <RxChevronRight />,
         },
       ],
       image: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: SeamlessImg,
         alt: "Relume placeholder image 3",
       },
     },

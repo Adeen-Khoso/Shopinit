@@ -11,7 +11,6 @@ import HeroImage8 from "../../assets/hero_section_imgs/freepik__candid-image-pho
 import HeroImage9 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13752.jpeg";
 import HeroImage10 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13753.jpeg";
 import HeroImage11 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13754.jpeg";
-import HeroImage12 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13755.jpeg";
 
 type ImageProps = {
   src: string;
