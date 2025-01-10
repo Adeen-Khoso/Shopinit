@@ -36,7 +36,7 @@ export const Banner13 = (props: Banner13Props) => {
           <motion.h1
             key={index}
             style={index % 2 === 0 ? { x: xPartOne } : { x: xPartTwo }}
-            className={clsx("text-[6rem] font-bold leading-[1.2]", {
+            className={clsx(" text-10xl md:text-[6rem] font-bold leading-[1.2]", {
               "self-end": index % 2 !== 0,
             })}
           >
