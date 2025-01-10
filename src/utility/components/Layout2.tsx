@@ -57,7 +57,7 @@ export const Layout408 = (props: Layout408Props) => {
   const scales = calculateScales(featureSections.length, scrollYProgress);
 
   return (
-    <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="explore" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20">
           <p className="mb-3 font-normal md:mb-4">{tagline}</p>
@@ -141,17 +141,17 @@ const FeatureSectionContent = ({
 export const Layout408Defaults: Props = {
   tagline: "Discover",
   heading: "Empowering your marketplace",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  description: "Seamless transactions for buyers and sellers alike.",
   featureSections: [
     {
-      tagline: "Tagline",
-      heading: "Medium length section heading goes here",
+      tagline: "Empower",
+      heading: "Sell Anything, Anytime From Anywhere",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+        "Break the barriers of traditional selling. List your products, set your terms, and let the world be your marketplace. Total control, endless opportunities.",
       buttons: [
-        { title: "Button", variant: "secondary" },
+        { title: "Sell", variant: "secondary"  },
         {
-          title: "Button",
+          title: "Buy",
           variant: "link",
           size: "link",
           iconRight: <RxChevronRight />,

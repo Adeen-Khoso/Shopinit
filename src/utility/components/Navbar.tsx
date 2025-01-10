@@ -143,12 +143,12 @@ export const Navbar2 = (props: Navbar2Props) => {
               {navLink.subMenuLinks && navLink.subMenuLinks.length > 0 ? (
                 <SubMenu navLink={navLink} isMobile={isMobile} />
               ) : (
-                <Link
+                <HashLink
                   to={navLink.url}
                   className="block py-3 text-md lg:px-4 lg:py-2 lg:text-base hover:text-neutral-dark"
                 >
                   {navLink.title}
-                </Link>
+                </HashLink>
               )}
             </div>
           ))}
@@ -227,7 +227,7 @@ const SubMenu = ({
                 className="block py-3 text-center lg:px-4 lg:py-2 lg:text-left hover:text-neutral-dark"
               >
                 {subMenuLink.title}
-              </HashLink>
+              </HashLink> 
             ))}
           </motion.nav>
         </AnimatePresence>
@@ -244,7 +244,7 @@ export const Navbar2Defaults: Props = {
   },
   navLinks: [
     { title: "Shop Now", url: "/home" },
-    { title: "About Us", url: "/about" },
+    { title: "About Us", url: "/#explore" },
     { title: "Profile", url: "/services" },
     {
       title: "More",
