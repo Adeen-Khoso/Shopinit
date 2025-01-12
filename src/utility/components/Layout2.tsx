@@ -125,7 +125,7 @@ const FeatureSectionContent = ({
       <p>{featureSection.description}</p>
       <div className="mt-6 flex items-center gap-x-4 md:mt-8">
         {featureSection.buttons.map((button, index) => (
-          <Button key={index} className={cn("", button.variant === "secondary" ? " bg-primary text-white" : "text-prim")} {...button}>
+          <Button key={index} className={cn("", button.variant === "secondary" ? " bg-primary text-white hover:bg-hov_primary" : "text-primary hover:text-opacity-80")} {...button}>
             {button.title}
           </Button>
         ))}
