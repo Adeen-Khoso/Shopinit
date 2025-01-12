@@ -71,7 +71,7 @@ export const Layout408 = (props: Layout408Props) => {
         </div>
         <div ref={containerRef} className="sticky top-0 grid grid-cols-1 gap-6 md:gap-0">
           {featureSections.map((featureSection, index) => (
-            <FeatureSection key={index} {...featureSection} scale={scales[index]} index={index} />
+            <FeatureSection key={index}  {...featureSection} scale={scales[index]} index={index} />
           ))}
         </div>
       </div>
@@ -98,7 +98,7 @@ const FeatureSection = ({
         </div>
       ) : (
         <motion.div
-          className="static grid grid-cols-1 content-center overflow-hidden border border-border-primary bg-neutral-white md:sticky md:top-[10%] md:mb-[10vh] md:h-[80vh] md:grid-cols-2"
+          className="static grid grid-cols-1 content-center overflow-hidden border border-border-primary bg-secondary_bg md:sticky md:top-[10%] md:mb-[10vh] md:h-[80vh] md:grid-cols-2"
           style={{ scale }}
         >
           <FeatureSectionContent isEven={isEven} {...featureSection} />
@@ -112,7 +112,7 @@ const FeatureSectionContent = ({
   isEven,
   ...featureSection
 }: FeatureSectionProps & { isEven: boolean }) => (
-  <React.Fragment>
+  <React.Fragment >
     <div
       className={clsx(
         "order-first flex flex-col justify-center p-6 md:p-8 lg:p-12 bg-secondary_bg",
