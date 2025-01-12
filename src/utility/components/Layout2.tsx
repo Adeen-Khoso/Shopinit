@@ -61,7 +61,7 @@ export const Layout408 = (props: Layout408Props) => {
   const scales = calculateScales(featureSections.length, scrollYProgress);
 
   return (
-    <section id="explore" className="px-[5%] py-16 md:py-24 lg:py-28">
+    <section id="explore" className="px-[5%] py-16 md:py-24 md:-mb-[25vh] lg:py-28">
       <div className="container">
         <div className="mx-auto mb-12 w-full max-w-lg text-center md:mb-18 lg:mb-20">
           <p className="mb-3 font-normal md:mb-4">{tagline}</p>
@@ -92,12 +92,12 @@ const FeatureSection = ({
   return (
     <React.Fragment>
       {isMobile ? (
-        <div className="static grid grid-cols-1 content-center overflow-hidden border border-border-primary bg-neutral-white">
+        <div className="static grid grid-cols-1 content-center overflow-hidden border border-border-primary bg-secondary_bg ">
           <FeatureSectionContent isEven={isEven} {...featureSection} />
         </div>
       ) : (
         <motion.div
-          className="static grid grid-cols-1 content-center overflow-hidden border border-border-primary bg-secondary_bg md:sticky md:top-[10%] md:mb-[10vh] md:h-[75vh] 2xl:h-[60vh] md:grid-cols-2"
+          className="static grid grid-cols-1 content-center overflow-hidden border border-border-primary bg-secondary_bg md:sticky md:top-[10%] md:mb-[25vh] md:h-[75vh] 2xl:h-[60vh] md:grid-cols-2"
           style={{ scale }}
         >
           <FeatureSectionContent isEven={isEven} {...featureSection} />

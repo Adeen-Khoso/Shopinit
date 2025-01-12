@@ -19,11 +19,11 @@ export const Banner13 = (props: Banner13Props) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"],
+    offset: ["start center", "end center"],
   });
 
-  const xPartOne = useTransform(scrollYProgress, [0, 1], ["-17%", "-5%"]);
-  const xPartTwo = useTransform(scrollYProgress, [0, 1], ["15%", "-5%"]);
+  const xPartOne = useTransform(scrollYProgress, [0, 0.7], ["-25%", "-5%"]);
+  const xPartTwo = useTransform(scrollYProgress, [0, 1], ["40%", "-5%"]);
 
   return (
     <section
@@ -36,7 +36,7 @@ export const Banner13 = (props: Banner13Props) => {
           <motion.h1
             key={index}
             style={index % 2 === 0 ? { x: xPartOne } : { x: xPartTwo }}
-            className={clsx(" text-10xl md:text-[6rem] font-bold leading-[1.2]", {
+            className={clsx(" text-10xl md:text-[4.5rem] xl:text-[5rem] font-bold leading-[1.2]", {
               "self-end": index % 2 !== 0,
             })}
           >
@@ -49,6 +49,5 @@ export const Banner13 = (props: Banner13Props) => {
 };
 
 export const Banner13Defaults: Props = {
-//   headings: ["Freedom, Freedom, Freedom, Freedom", "To live, To change, To grow, To be"],
-  headings: ["Unbound. Unseen. Unlimited", "Live, Breathe, Be."],
+  headings: [" Unseen, Unlimited, Unbound.", "Live, Breathe, Be."],
 };
