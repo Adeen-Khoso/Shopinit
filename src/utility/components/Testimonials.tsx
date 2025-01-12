@@ -134,12 +134,12 @@ const TestimonialCard = (testimonial: Testimonial) => (
 );
 
 export const Testimonial33Defaults: Props = {
-  heading: "Customer testimonials",
+  heading: "Customer Testimonials",
   description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+    "Real Stories, Real Impact – Hear from Those Who’ve Experienced the Difference. See How We Redefine Possibilities.",
   buttons: [
-    { title: "Button", variant: "secondary" },
-    { title: "Button", variant: "link", size: "link", iconRight: <RxChevronRight /> },
+    { title: "Shop", variant: "secondary" },
+    { title: "Contact", variant: "link", size: "link", iconRight: <RxChevronRight /> },
   ],
   leftTestimonials: [
     {
@@ -149,8 +149,8 @@ export const Testimonial33Defaults: Props = {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 1",
       },
-      name: "Name Surname",
-      position: "Position",
+      name: "Sarah Malik",
+      position: "Seller",
       companyName: "Company name",
       numberOfStars: 5,
     },
