@@ -6,9 +6,8 @@ import { MotionValue, useMotionValue, motion, useScroll, useTransform } from "fr
 import React, { useRef } from "react";
 import { RxChevronRight } from "react-icons/rx";
 import clsx from "clsx";
-// import sellerImg from "../../assets/cta_imgs/sellerCardImg (2).jpg";
-import sellerImg from "../../assets/cta_imgs/sellerCardImg.jpg";
-import buyersImg from "../../assets/cta_imgs/buyersCard1.png";
+import sellerImg from "../../assets/cta_imgs/sellerImg.jpg";
+import buyersImg from "../../assets/cta_imgs/buyersImg.png";
 import SeamlessImg from "../../assets/cta_imgs/card3Img.jpg";
 
 
@@ -98,7 +97,7 @@ const FeatureSection = ({
         </div>
       ) : (
         <motion.div
-          className="static grid grid-cols-1 content-center overflow-hidden border border-border-primary bg-secondary_bg md:sticky md:top-[10%] md:mb-[10vh] md:h-[80vh] md:grid-cols-2"
+          className="static grid grid-cols-1 content-center overflow-hidden border border-border-primary bg-secondary_bg md:sticky md:top-[10%] md:mb-[10vh] md:h-[75vh] 2xl:h-[60vh] md:grid-cols-2"
           style={{ scale }}
         >
           <FeatureSectionContent isEven={isEven} {...featureSection} />
@@ -134,11 +133,11 @@ const FeatureSectionContent = ({
     </div>
     <div
       className={clsx(
-        "order-last  flex flex-col items-center justify-center ",
+        "order-last  flex flex-col items-center justify-center md:-mr-3",
         isEven ? "md:order-last" : "md:order-first",
       )}
     >
-      <img src={featureSection.image.src} alt={featureSection.image.alt} />
+      <img src={featureSection.image.src} alt={featureSection.image.alt}  />
     </div>
   </React.Fragment>
 );
