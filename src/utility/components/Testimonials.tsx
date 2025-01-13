@@ -51,17 +51,17 @@ export const Testimonial33 = (props: Testimonial33Props) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"],
+    offset: ["start center", "end start"],
   });
 
   const isMobile = useMediaQuery("(max-width: 767px)");
 
   const leftCards = isMobile
-    ? useTransform(scrollYProgress, [0, 1], ["20vh", "-70vh"])
-    : useTransform(scrollYProgress, [0, 1], ["-10rem", "5rem"]);
+    ? useTransform(scrollYProgress, [0, 0.6], ["20vh", "-70vh"])
+    : useTransform(scrollYProgress, [0, 0.5], ["-10rem", "5rem"]);
   const rightCards = isMobile
-    ? useTransform(scrollYProgress, [0, 1], ["20vh", "-70vh"])
-    : useTransform(scrollYProgress, [0, 1], ["10rem", "-5rem"]);
+    ? useTransform(scrollYProgress, [0, 0.6], ["20vh", "-70vh"])
+    : useTransform(scrollYProgress, [0, 0.5], ["10rem", "-5rem"]);
 
   return (
     <section
@@ -123,7 +123,7 @@ const TestimonialCard = (testimonial: Testimonial) => (
         {Array(testimonial.numberOfStars)
           .fill(null)
           .map((_, starIndex) => (
-            <BiSolidStar key={starIndex} className="mr-1 size-6" />
+            <BiSolidStar key={starIndex} className="mr-1 size-6 text-primary" />
           ))}
       </div>
       <blockquote className="md:text-md">{testimonial.quote}</blockquote>
