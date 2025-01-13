@@ -144,124 +144,124 @@ export const Testimonial33Defaults: Props = {
   leftTestimonials: [
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'Its been so aestheticalyly pleasing to work and do business on Shopinit, they are true example of Quality first company.',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 1",
       },
-      name: "Sarah Malik",
+      name: "Sarah Memon",
       position: "Seller",
-      companyName: "Company name",
+      companyName: "Shopinit",
       numberOfStars: 5,
     },
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'I found everything I needed here, and the process was so simple. This is my go-to platform now!',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 2",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
-      numberOfStars: 5,
+      name: "Ahmed Raza",
+      position: "Buyer",
+      companyName: "Shopinit",
+      numberOfStars: 4,
     },
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'Selling on this platform has been the best decision. It’s intuitive, and my sales have skyrocketed!',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 3",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
+      name: "Emily Smith",
+      position: "Seller",
+      companyName: "Shopinit",
       numberOfStars: 5,
     },
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'The variety here is unmatched. I love how unique the items are and how easy it is to find what I need.',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 4",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
+      name: "Junaid Khan",
+      position: "Buyer",
+      companyName: "Shopinit",
       numberOfStars: 5,
     },
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'I enjoy selling here because of the freedom it gives me to set my own terms and prices. Great experience so far!',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 5",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
-      numberOfStars: 5,
+      name: "Sanjay Choudhary",
+      position: "Seller",
+      companyName: "Shopinit",
+      numberOfStars: 4,
     },
   ],
   rightTestimonials: [
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'Shopping here feels different. The quality of items and the customer service make it my favorite platform.',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 6",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
+      name: "Daniel Lee",
+      position: "Buyer",
+      companyName: "Shopinit",
       numberOfStars: 5,
     },
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'As a seller, I feel valued. The tools they provide make it simple to manage my products and communicate with buyers.',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 7",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
+      name: "Ayesha Rizvi",
+      position: "Seller",
+      companyName: "Shopinit",
       numberOfStars: 5,
     },
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'The ease of browsing and purchasing items here is what keeps me coming back. It’s a platform like no other.',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 8",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
-      numberOfStars: 5,
+      name: "Ethan Collins",
+      position: "Buyer",
+      companyName: "Shopinit",
+      numberOfStars: 4,
     },
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'This platform has empowered me as a seller. It feels great to connect with a community that values creativity.',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 9",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
+      name: "Amara Sheikh",
+      position: "Seller",
+      companyName: "Shopinit",
       numberOfStars: 5,
     },
     {
       quote:
-        '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare."',
+        'The unique items and the hassle-free process make this my top choice for shopping. Highly recommended!',
       avatar: {
         src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
         alt: "Testimonial avatar 10",
       },
-      name: "Name Surname",
-      position: "Position",
-      companyName: "Company name",
+      name: "William Green",
+      position: "Buyer",
+      companyName: "Shopinit",
       numberOfStars: 5,
     },
   ],
