@@ -22,7 +22,7 @@ export const Banner13 = (props: Banner13Props) => {
     offset: ["start center", "end center"],
   });
 
-  const xPartOne = useTransform(scrollYProgress, [0, 0.7], ["-45%", "-5%"]);
+  const xPartOne = useTransform(scrollYProgress, [0, 0.7], ["-45%", "-2%"]);
   const xPartTwo = useTransform(scrollYProgress, [0, 1.2], ["40%", "-0%"]);
 
   return (

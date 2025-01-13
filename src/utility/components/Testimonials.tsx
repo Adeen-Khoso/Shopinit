@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
+import { Button, cn, useMediaQuery } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
@@ -17,8 +17,6 @@ import j from "../../assets/testimonials_imgs/j.jpg";
 import k from "../../assets/testimonials_imgs/k.jpg";
 import l from "../../assets/testimonials_imgs/l.jpg";
 import m from "../../assets/testimonials_imgs/m.jpg";
-
-
 
 type ImageProps = {
   src: string;
@@ -81,7 +79,7 @@ export const Testimonial33 = (props: Testimonial33Props) => {
           </div>
           <div className="mt-6 flex flex-wrap items-center gap-4 md:mt-8">
             {buttons.map((button, index) => (
-              <Button key={index} {...button}>
+              <Button key={index}  className={cn("", button.variant === "secondary" ? " bg-primary text-white hover:bg-hov_primary" : "text-primary hover:text-opacity-80")}{...button}>
                 {button.title}
               </Button>
             ))}
