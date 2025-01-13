@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import clsx from "clsx";
+import { useMediaQuery } from "@relume_io/relume-ui";
 
 type Props = {
   headings: string[];
@@ -17,13 +18,27 @@ export const Banner13 = (props: Banner13Props) => {
   };
 
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
+  const isMobile = useMediaQuery("(max-width: 767px)");
+
+  const { scrollYProgress } = isMobile
+  ? useScroll({
+    target: sectionRef,
+    offset: ["start end", "end center"],
+  })
+  : useScroll({
     target: sectionRef,
     offset: ["start center", "end center"],
   });
 
-  const xPartOne = useTransform(scrollYProgress, [0, 0.7], ["-45%", "-2%"]);
-  const xPartTwo = useTransform(scrollYProgress, [0, 1.2], ["40%", "-0%"]);
+
+
+  const xPartOne = isMobile
+  ? useTransform(scrollYProgress, [0,1], ["-45%", "-2%"])
+  : useTransform(scrollYProgress, [0, 0.7], ["-45%", "-2%"]);
+  
+  const xPartTwo = isMobile 
+  ? useTransform(scrollYProgress, [0, 1], ["40%", "0%"])
+  : useTransform(scrollYProgress, [0, 1.2], ["40%", "-0%"]);
 
   return (
     <section
