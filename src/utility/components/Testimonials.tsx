@@ -7,6 +7,19 @@ import { useRef } from "react";
 import { BiSolidStar } from "react-icons/bi";
 import { RxChevronRight } from "react-icons/rx";
 
+import a from "../../assets/testimonials_imgs/a.jpg";
+import b from "../../assets/testimonials_imgs/b.jpg";
+import c from "../../assets/testimonials_imgs/c.jpg";
+import d from "../../assets/testimonials_imgs/d.jpg";
+import e from "../../assets/testimonials_imgs/e.jpg";
+import f from "../../assets/testimonials_imgs/f.jpg";
+import j from "../../assets/testimonials_imgs/j.jpg";
+import k from "../../assets/testimonials_imgs/k.jpg";
+import l from "../../assets/testimonials_imgs/l.jpg";
+import m from "../../assets/testimonials_imgs/m.jpg";
+
+
+
 type ImageProps = {
   src: string;
   alt?: string;
@@ -146,7 +159,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'Its been so aestheticalyly pleasing to work and do business on Shopinit, they are true example of Quality first company.',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: k,
         alt: "Testimonial avatar 1",
       },
       name: "Sarah Memon",
@@ -158,7 +171,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'I found everything I needed here, and the process was so simple. This is my go-to platform now!',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src:l,
         alt: "Testimonial avatar 2",
       },
       name: "Ahmed Raza",
@@ -170,7 +183,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'Selling on this platform has been the best decision. It’s intuitive, and my sales have skyrocketed!',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: m,
         alt: "Testimonial avatar 3",
       },
       name: "Emily Smith",
@@ -182,7 +195,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'The variety here is unmatched. I love how unique the items are and how easy it is to find what I need.',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: d,
         alt: "Testimonial avatar 4",
       },
       name: "Junaid Khan",
@@ -194,7 +207,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'I enjoy selling here because of the freedom it gives me to set my own terms and prices. Great experience so far!',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: e,
         alt: "Testimonial avatar 5",
       },
       name: "Sanjay Choudhary",
@@ -208,7 +221,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'Shopping here feels different. The quality of items and the customer service make it my favorite platform.',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: f,
         alt: "Testimonial avatar 6",
       },
       name: "Daniel Lee",
@@ -220,7 +233,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'As a seller, I feel valued. The tools they provide make it simple to manage my products and communicate with buyers.',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: a,
         alt: "Testimonial avatar 7",
       },
       name: "Ayesha Rizvi",
@@ -232,7 +245,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'The ease of browsing and purchasing items here is what keeps me coming back. It’s a platform like no other.',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: b,
         alt: "Testimonial avatar 8",
       },
       name: "Ethan Collins",
@@ -244,7 +257,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'This platform has empowered me as a seller. It feels great to connect with a community that values creativity.',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: c,
         alt: "Testimonial avatar 9",
       },
       name: "Amara Sheikh",
@@ -256,7 +269,7 @@ export const Testimonial33Defaults: Props = {
       quote:
         'The unique items and the hassle-free process make this my top choice for shopping. Highly recommended!',
       avatar: {
-        src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
+        src: j,
         alt: "Testimonial avatar 10",
       },
       name: "William Green",
