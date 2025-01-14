@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
+import { Button, cn, useMediaQuery } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { RxChevronRight } from "react-icons/rx";
 import { MotionStyle, MotionValue, motion, useScroll, useTransform } from "framer-motion";
@@ -54,7 +54,7 @@ export const Layout416 = (props: Layout416Props) => {
               <p className="md:text-md">{description}</p>
               <div className="mt-6 flex items-center gap-x-4 md:mt-8">
                 {buttons.map((button, index) => (
-                  <Button key={index} {...button}>
+                  <Button key={index} className={cn("", button.variant === "secondary" ? " bg-primary text-white hover:bg-hov_primary" : " hidden ")} {...button}>
                     {button.title}
                   </Button>
                 ))}
@@ -132,12 +132,13 @@ const FeatureSection = ({
 };
 
 export const Layout416Defaults: Props = {
-  tagline: "Tagline",
-  heading: "Medium length section heading goes here",
+  tagline: "Effortless",
+  heading: "How It All Works ?",
+  // heading: "Start Your Business In Minutes !",
   description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+    "Like Magic, Seamlessly buy or sell in just a few clicks. No hoops, no hassle—just an intuitive platform designed for speed and simplicity. Start earning, start growing.",
   buttons: [
-    { title: "Button", variant: "secondary" },
+    { title: "Sell Now", variant: "secondary" },
     {
       title: "Button",
       variant: "link",
