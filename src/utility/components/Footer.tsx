@@ -1,10 +1,13 @@
-import { FaXTwitter } from "react-icons/fa6";
+import { FaThreads, FaXTwitter } from "react-icons/fa6";
 import {
+  BiLogoDiscord,
   BiLogoFacebookCircle,
   BiLogoInstagram,
   BiLogoLinkedinSquare,
   BiLogoYoutube,
 } from "react-icons/bi";
+import logoImage from "../../assets/logo.png";
+
 
 type ImageProps = {
   url?: string;
@@ -50,8 +53,8 @@ export const Footer4 = (props: Footer4Props) => {
     <footer id="footer" className="px-[5%] py-12 md:py-18 lg:py-20">
       <div className="container">
         <div className="grid grid-cols-1 items-center justify-center justify-items-center gap-x-[4vw] gap-y-12 pb-12 md:pb-18 lg:grid-cols-[0.25fr_1fr_0.25fr] lg:justify-between lg:gap-y-4 lg:pb-20">
-          <a href={logo.url} className="lg:justify-self-start">
-            <img src={logo.src} alt={logo.alt} className="inline-block" />
+          <a href={logo.url} className="lg:justify-self-start ">
+            <img src={logo.src} alt={logo.alt} className="inline-block h-9" />
           </a>
           {columnLinks.map((column, index) => (
             <ul
@@ -91,32 +94,32 @@ export const Footer4 = (props: Footer4Props) => {
 
 export const Footer4Defaults: Props = {
   logo: {
-    url: "#",
-    src: "https://d22po4pjz3o32e.cloudfront.net/logo-image.svg",
+    url: "/",
+    src: logoImage,
     alt: "Logo image",
   },
   columnLinks: [
     {
       links: [
-        { title: "Link One", url: "#" },
-        { title: "Link Two", url: "#" },
-        { title: "Link Three", url: "#" },
-        { title: "Link Four", url: "#" },
-        { title: "Link Five", url: "#" },
+        { title: "Shop", url: "#" },
+        { title: "Sell", url: "#" },
+        { title: "Cart", url: "#" },
+        { title: "Contact Us", url: "#" },
+        { title: "Explore", url: "#" },
       ],
     },
   ],
   socialMediaLinks: [
-    { url: "#", icon: <BiLogoFacebookCircle className="size-6" /> },
-    { url: "#", icon: <BiLogoInstagram className="size-6" /> },
-    { url: "#", icon: <FaXTwitter className="size-6 p-0.5" /> },
-    { url: "#", icon: <BiLogoLinkedinSquare className="size-6" /> },
-    { url: "#", icon: <BiLogoYoutube className="size-6" /> },
+    { url: "https://discordapp.com/users/894871903796363286", icon: <BiLogoDiscord className="size-6 text-primary" /> },
+    { url: "https://www.instagram.com/adeenn.khoso", icon: <BiLogoInstagram className="size-6 text-primary" /> },
+    { url: "https://www.linkedin.com/in/adeen-khoso/", icon: <BiLogoLinkedinSquare className="size-6 text-primary" /> },
+    { url: "#", icon: <FaThreads className="size-6 p-0.5 text-primary" /> },
+    { url: "#", icon: <BiLogoYoutube className="size-6 text-primary" /> },
   ],
-  footerText: "© 2024 Relume. All rights reserved.",
+  footerText: "© 2025. All rights reserved. Dev. by Adeen K.",
   footerLinks: [
     { title: "Privacy Policy", url: "#" },
     { title: "Terms of Service", url: "#" },
-    { title: "Cookies Settings", url: "#" },
+    { title: "Developer", url:"https://www.instagram.com/adeenn.khoso" },
   ],
 };
