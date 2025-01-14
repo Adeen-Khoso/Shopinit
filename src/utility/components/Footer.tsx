@@ -63,7 +63,7 @@ export const Footer4 = (props: Footer4Props) => {
               className="grid grid-flow-row grid-cols-1 items-start justify-center justify-items-center gap-6 md:grid-flow-col md:grid-cols-[max-content] md:justify-center md:justify-items-start"
             >
               {column.links.map((link, linkIndex) => (
-                <li key={linkIndex} className="font-semibold">
+                <li key={linkIndex} className="font-medium hover:opacity-80">
                   <Link to={link.url}>{link.title}</Link>
                 </li>
               ))}
@@ -72,7 +72,7 @@ export const Footer4 = (props: Footer4Props) => {
           ))}
           <div className="flex items-start justify-start justify-items-center gap-x-3 lg:justify-self-end">
             {socialMediaLinks.map((link, index) => (
-              <Link key={index} to={link.url}>
+              <Link key={index} to={link.url} >
                 {link.icon}
               </Link>
             ))}
@@ -112,11 +112,11 @@ export const Footer4Defaults: Props = {
     },
   ],
   socialMediaLinks: [
-    { url: "https://discordapp.com/users/894871903796363286", icon: <BiLogoDiscord className="size-6 text-primary" /> },
-    { url: "https://www.instagram.com/adeenn.khoso", icon: <BiLogoInstagram className="size-6 text-primary" /> },
-    { url: "https://www.linkedin.com/in/adeen-khoso/", icon: <BiLogoLinkedinSquare className="size-6 text-primary" /> },
-    { url: "#", icon: <FaThreads className="size-6 p-0.5 text-primary" /> },
-    { url: "#", icon: <BiLogoYoutube className="size-6 text-primary" /> },
+    { url: "https://discordapp.com/users/894871903796363286", icon: <BiLogoDiscord className="size-6 text-primary hover:opacity-85" /> },
+    { url: "https://www.instagram.com/adeenn.khoso", icon: <BiLogoInstagram className="size-6 text-primary hover:opacity-85" /> },
+    { url: "https://www.linkedin.com/in/adeen-khoso/", icon: <BiLogoLinkedinSquare className="size-6 text-primary hover:opacity-85" /> },
+    { url: "#", icon: <FaThreads className="size-6 p-0.5 text-primary hover:opacity-85" /> },
+    { url: "#", icon: <BiLogoYoutube className="size-6 text-primary hover:opacity-85" /> },
   ],
   footerText: "© 2025. All rights reserved. Dev. by Adeen K.",
   footerLinks: [
