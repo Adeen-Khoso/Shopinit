@@ -72,15 +72,15 @@ h6 {
   }
 } */
 
-.cursor-dot {
+/* .cursor-dot {
   width: 5px;
   height: 5px;
   background-color: white;
 }
 
 .cursor-outline {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   border: 2px solid grey;
 }
 
@@ -93,4 +93,44 @@ h6 {
   border-radius: 50%;
   z-index: 1000;
   pointer-events: none;
+} */
+
+.cursor-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #2f3c7e;
+}
+
+.cursor-outline {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #2f3c7e2c;
+  box-shadow: rgba(47, 60, 126, 0.4) 0px 40px 90px 30px;
+  transform: translate(-50%, -50%);
+  transition: all 0.7s ease-out;
+}
+
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.cursor-hover {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1001;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s ease-in-out;
 }
