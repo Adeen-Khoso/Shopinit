@@ -5,6 +5,9 @@ import { Button, cn, useMediaQuery } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { RxChevronRight } from "react-icons/rx";
 import { MotionStyle, MotionValue, motion, useScroll, useTransform } from "framer-motion";
+import { PiSpeedometerFill } from "react-icons/pi";
+import { GiRoyalLove } from "react-icons/gi";
+import { RiMoneyEuroCircleFill } from "react-icons/ri";
 
 type ImageProps = {
   src: string;
@@ -112,7 +115,7 @@ const FeatureSection = ({
 
   return (
     <motion.div
-      className="absolute mx-6 flex flex-col justify-between border border-border-primary bg-background-primary p-8 md:ml-0"
+      className="absolute mx-6 flex flex-col justify-between border border-border-primary bg-secondary_bg p-8 md:ml-0"
       style={
         {
           rotate: index === totalSections - 1 ? "6deg" : rotate,
@@ -123,7 +126,7 @@ const FeatureSection = ({
       }
     >
       <div className="rb-6 mb-6 md:mb-8">
-        <img src={section.icon.src} alt={section.icon.alt} className="size-12" />
+        { section.title == "Join the Club" ? <GiRoyalLove className="size-12 text-primary" /> : section.title == "Snap, Price, List" ? <PiSpeedometerFill className="size-12 text-primary"/> :<RiMoneyEuroCircleFill className="size-12 text-primary"/> } 
       </div>
       <h3 className="mb-3 text-xl font-bold md:mb-4 md:text-2xl">{section.title}</h3>
       <p>{section.description}</p>
