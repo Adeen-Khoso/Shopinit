@@ -134,7 +134,6 @@ const FeatureSection = ({
 export const Layout416Defaults: Props = {
   tagline: "Effortless",
   heading: "How It All Works ?",
-  // heading: "Start Your Business In Minutes !",
   description:
     "Like Magic, Seamlessly buy or sell in just a few clicks. No hoops, no hassle—just an intuitive platform designed for speed and simplicity. Start earning, start growing.",
   buttons: [
@@ -152,27 +151,27 @@ export const Layout416Defaults: Props = {
         src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
         alt: "Relume logo 1",
       },
-      title: "Subheading one",
+      title: "Join the Club",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+        "Sign up in seconds and unlock a premium selling experience. Set up your profile, and you’re ready to roll—no delays, no confusion. ",
     },
     {
       icon: {
         src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
         alt: "Relume logo 2",
       },
-      title: "Subheading two",
+      title: "Snap, Price, List",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+        "Got a product? Snap some photos, name your price, and let us handle the rest. Listing here feels faster than texting your bestie!",
     },
     {
       icon: {
         src: "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
         alt: "Relume logo 3",
       },
-      title: "Subheading three",
+      title: "Sell, Earn, Repeat",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.",
+        "Your products go live in an instant, connecting you to eager buyers. Sales roll in, and earnings are just a click away. It's selling made sensational.",
     },
   ],
 };
