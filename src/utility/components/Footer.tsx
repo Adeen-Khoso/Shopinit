@@ -7,6 +7,7 @@ import {
   BiLogoYoutube,
 } from "react-icons/bi";
 import logoImage from "../../assets/logo.png";
+import { Link } from "react-router";
 
 
 type ImageProps = {
@@ -63,16 +64,17 @@ export const Footer4 = (props: Footer4Props) => {
             >
               {column.links.map((link, linkIndex) => (
                 <li key={linkIndex} className="font-semibold">
-                  <a href={link.url}>{link.title}</a>
+                  <Link to={link.url}>{link.title}</Link>
                 </li>
               ))}
             </ul>
+          
           ))}
           <div className="flex items-start justify-start justify-items-center gap-x-3 lg:justify-self-end">
             {socialMediaLinks.map((link, index) => (
-              <a key={index} href={link.url}>
+              <Link key={index} to={link.url}>
                 {link.icon}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -82,7 +84,7 @@ export const Footer4 = (props: Footer4Props) => {
           <ul className="grid grid-flow-row grid-cols-[max-content] items-center justify-center justify-items-center gap-y-4 text-sm md:grid-flow-col md:gap-x-6 md:gap-y-0">
             {footerLinks.map((link, index) => (
               <li key={index} className="underline decoration-black underline-offset-1 ">
-                <a href={link.url}>{link.title}</a>
+                <Link to={link.url}>{link.title}</Link>
               </li>
             ))}
           </ul>
