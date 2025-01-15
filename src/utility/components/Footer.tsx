@@ -103,7 +103,7 @@ export const Footer4Defaults: Props = {
   columnLinks: [
     {
       links: [
-        { title: "Shop", url: "#" },
+        { title: "Shop", url: "/products" },
         { title: "Sell", url: "#" },
         { title: "Cart", url: "#" },
         { title: "Contact Us", url: "#" },

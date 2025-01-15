@@ -243,7 +243,7 @@ export const Navbar2Defaults: Props = {
     alt: "logo",
   },
   navLinks: [
-    { title: "Shop Now", url: "/home" },
+    { title: "Shop Now", url: "/products" },
     { title: "About Us", url: "/#explore" },
     { title: "Profile", url: "/services" },
     {
