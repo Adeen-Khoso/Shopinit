@@ -160,7 +160,7 @@ export const Testimonial33Defaults: Props = {
         src: k,
         alt: "Testimonial avatar 1",
       },
-      name: "Sarah Memon",
+      name: "Syed Sara",
       position: "Seller",
       companyName: "Shopinit",
       numberOfStars: 5,
