@@ -88,7 +88,7 @@ const productData = {
 export const Product8Defaults: Props = {
   tagline: "Tagline",
   heading: "Products",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elite.",
   button: {
     variant: "secondary",
     size: "primary",
