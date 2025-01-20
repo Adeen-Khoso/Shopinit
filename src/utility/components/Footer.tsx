@@ -1,7 +1,6 @@
 import { FaThreads, FaXTwitter } from "react-icons/fa6";
 import {
   BiLogoDiscord,
-  BiLogoFacebookCircle,
   BiLogoInstagram,
   BiLogoLinkedinSquare,
   BiLogoYoutube,
