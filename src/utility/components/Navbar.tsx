@@ -60,6 +60,7 @@ export const Navbar2 = (props: Navbar2Props) => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, scrollDirection]);
 
