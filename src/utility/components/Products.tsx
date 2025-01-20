@@ -1,5 +1,5 @@
 import type { ButtonProps } from "@relume_io/relume-ui";
-import { Button } from "@relume_io/relume-ui";
+import { Button, cn } from "@relume_io/relume-ui";
 
 type ImageProps = {
   src: string;
@@ -39,7 +39,7 @@ export const Product8 = (props: Product8Props) => {
             <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl">{heading}</h1>
             <p className="md:text-md">{description}</p>
           </div>
-          <Button {...button} className="hidden md:flex">
+          <Button {...button}  className={cn("hidden md:flex", button.variant === "secondary" ? " bg-primary text-white hover:bg-hov_primary" : "text-primary hover:text-opacity-80")}>
             {button.title}
           </Button>
         </div>
@@ -86,13 +86,13 @@ const productData = {
 };
 
 export const Product8Defaults: Props = {
-  tagline: "Tagline",
+  tagline: "Discover",
   heading: "Products",
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elitas de cospum.",
+  description: "Browse through our curated selection of top-quality products.",
   button: {
     variant: "secondary",
     size: "primary",
-    title: "View all",
+    title: "Categories",
   },
   products: [productData, productData, productData, productData, productData, productData],
 };

@@ -7,7 +7,6 @@ import type { ButtonProps } from "@relume_io/relume-ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxChevronDown } from "react-icons/rx";
 import { HashLink } from "react-router-hash-link";
-import { Link } from "react-router";
 import logoImage from "../../assets/logo.png";
 import { Button } from "@relume_io/relume-ui";
 
