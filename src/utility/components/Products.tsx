@@ -75,7 +75,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ url, image, title, price, var
 
 const productData = {
   url: "#",
-  
   image: {
     src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
     alt: "Relume placeholder image",
