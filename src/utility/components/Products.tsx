@@ -69,6 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ url, image, title, price, var
       <Button {...button} className="mt-3 w-full md:mt-4">
         {button.title}
       </Button>
+      
     </div>
   );
 };
