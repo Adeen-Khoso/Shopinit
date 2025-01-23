@@ -30,7 +30,7 @@ export const Product8 = (props: Product8Props) => {
   const { tagline, heading, description, button, products } = {
     ...Product8Defaults,
     ...props,
-  }
+  };
   return (
     <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
