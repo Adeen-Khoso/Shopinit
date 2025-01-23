@@ -34,7 +34,6 @@ export const Product8 = (props: Product8Props) => {
   return (
     <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
-        
         <div className="mb-12 grid grid-cols-1 items-end gap-12 md:mb-18 md:grid-cols-[1fr_max-content] lg:mb-20 lg:gap-20">
           <div className="max-w-lg">
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
