@@ -1,5 +1,6 @@
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { Button, cn } from "@relume_io/relume-ui";
+import { RxChevronDown } from "react-icons/rx";
 
 type ImageProps = {
   src: string;
@@ -41,6 +42,7 @@ export const Product8 = (props: Product8Props) => {
           </div>
           <Button {...button}  className={cn("hidden md:flex", button.variant === "secondary" ? " bg-primary text-white hover:bg-hov_primary" : "text-primary hover:text-opacity-80")}>
             {button.title}
+            <RxChevronDown />
           </Button>
         </div>
         <div className="grid grid-cols-1 justify-items-start gap-x-5 gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
