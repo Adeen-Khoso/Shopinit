@@ -37,6 +37,7 @@ export const Product8 = (props: Product8Props) => {
         <div className="mb-12 grid grid-cols-1 items-end gap-12 md:mb-18 md:grid-cols-[1fr_max-content] lg:mb-20 lg:gap-20">
           <div className="max-w-lg">
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
+            
             <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl">{heading}</h1>
             <p className="md:text-md">{description}</p>
           </div>
