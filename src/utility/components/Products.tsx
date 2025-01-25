@@ -63,6 +63,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ url, image, title, price, var
       </a>
       <a href={url} className="flex justify-between md:text-md">
         <div className="mr-4">
+          
           <h4 className="font-semibold">{title}</h4>
           <div className="text-sm">{variant}</div>
         </div>
