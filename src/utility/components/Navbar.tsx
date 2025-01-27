@@ -200,6 +200,7 @@ const SubMenu = ({
         </motion.span>
       </button>
       {isDropdownOpen && (
+        
         <AnimatePresence>
           <motion.nav
             animate={isDropdownOpen ? "open" : "close"}
