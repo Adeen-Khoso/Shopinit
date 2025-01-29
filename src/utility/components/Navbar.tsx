@@ -206,6 +206,7 @@ const SubMenu = ({
             initial="close"
             exit="close"
             variants={{
+              
               open: {
                 visibility: "visible",
                 opacity: "var(--opacity-open, 100%)",
