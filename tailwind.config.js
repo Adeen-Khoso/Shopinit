@@ -19,7 +19,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        default: "Work Sans serif",
+        default: ["Work Sans", "sans-serif"],
       },
     },
   },
