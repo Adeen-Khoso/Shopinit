@@ -95,6 +95,14 @@ h6 {
   pointer-events: none;
 } */
 
+@media (max-width: 767px) {
+  .cursor-dot {
+    display: none;
+  }
+  .cursor-outline {
+    display: none;
+  }
+}
 .cursor-dot {
   width: 5px;
   height: 5px;
