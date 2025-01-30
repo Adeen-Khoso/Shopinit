@@ -12,6 +12,7 @@ import { Button } from "@relume_io/relume-ui";
 import { CiSearch, CiUser } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { Link } from "react-router";
+import SearchBox from "../SearchBox";
 
 type ImageProps = {
   url?: string;
@@ -33,12 +34,13 @@ type Props = {
 
 export type Navbar2Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
-
+  
 export const Navbar2 = (props: Navbar2Props) => {
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
-
+  
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -94,7 +96,7 @@ export const Navbar2 = (props: Navbar2Props) => {
           <div className="flex items-center gap-7 lg:hidden">
             <div className="flex gap-3">
 
-              <Link to={'/'}><CiSearch className=" text-primary size-6 hover:size-7 hover:text-hov_primary" strokeWidth={0.5} /></Link>
+              <Link to={'/'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
               <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
               <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
 
@@ -152,13 +154,9 @@ export const Navbar2 = (props: Navbar2Props) => {
           ))}
         </motion.div>
         <div className="hidden flex-row justify-self-end lg:flex lg:gap-5">
-
-          <div onClick={()=>{alert("testing")}} className="overflow-hidden size-6 hover:w-[200px] shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex group items-center hover:duration-600 duration-1000">
-            <div className="flex items-center justify-center fill-secondary_bg">
-              <Link to={'/'}><CiSearch className=" text-primary size-6 hover:size-7 hover:text-hov_primary" strokeWidth={0.5} /></Link>
-            </div>
-            <input id="input" type="text" placeholder="Search" className=" bg-secondary_bg outline-none rounded-lg text-xs font-default bg-transparent w-full text-jett_black font-normal p-4" />
-          </div>
+        <button onClick={() => setIsSearchOpen(true)} >
+          <Link to={'/'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+      </button>
 
           <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
           <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
