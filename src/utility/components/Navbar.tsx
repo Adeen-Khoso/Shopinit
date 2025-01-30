@@ -10,6 +10,15 @@ import { HashLink } from "react-router-hash-link";
 import logoImage from "../../assets/logo.png";
 import { Button } from "@relume_io/relume-ui";
 
+import { IoSearchOutline } from "react-icons/io5";
+import { CiSearch, CiUser } from "react-icons/ci";
+import { LuUser } from "react-icons/lu";
+import { FiShoppingBag } from "react-icons/fi";
+import { CiShoppingCart } from "react-icons/ci";
+import { FaSearch } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
+import { Link } from "react-router";
+
 type ImageProps = {
   url?: string;
   src: string;
@@ -88,9 +97,9 @@ export const Navbar2 = (props: Navbar2Props) => {
           <a href={logo.url}>
             <img className="w-20" src={logo.src} alt={logo.alt} />
           </a>
-          <div className="flex items-center gap-4 lg:hidden">
-            <div>
-              {buttons.map((button, index) => (
+          <div className="flex items-center gap-7 lg:hidden">
+            <div className="flex gap-3">
+              {/* {buttons.map((button, index) => (
                 <Button
                   key={index}
                   className={cn("w-full px-4 py-1 bg-primary !important ", {
@@ -99,7 +108,12 @@ export const Navbar2 = (props: Navbar2Props) => {
                 >
                   {button.title}
                 </Button>
-              ))}
+              ))} */}
+
+              <Link to={'/'}><CiSearch className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5} /></Link>
+              <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+              <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+
             </div>
             <button
               className="-mr-2 flex size-12 flex-col items-center justify-center "
@@ -153,8 +167,8 @@ export const Navbar2 = (props: Navbar2Props) => {
             </div>
           ))}
         </motion.div>
-        <div className="hidden justify-self-end lg:block">
-          {buttons.map((button, index) => (
+        <div className="hidden flex-row justify-self-end lg:flex lg:gap-5">
+          {/* {buttons.map((button, index) => (
             <Button
               key={index}
               className="px-6 py-2 bg-primary text-white hover:bg-hov_primary"
@@ -162,7 +176,12 @@ export const Navbar2 = (props: Navbar2Props) => {
             >
               {button.title}
             </Button>
-          ))}
+          ))} */}
+
+          <Link to={'/'}><CiSearch className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5} /></Link>
+          <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+          <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+
         </div>
       </div>
     </nav>
@@ -218,7 +237,7 @@ const SubMenu = ({
               },
             }}
             transition={{ duration: 0.2 }}
-            className=" bg-secondary_bg lg:absolute lg:z-50 lg:border lg:border-border-primary lg:p-2 lg:[--y-close:25%]"
+            className=" bg-secondary_bg rounded-lg lg:absolute lg:z-50 lg:border lg:border-border-primary lg:p-2 lg:[--y-close:25%]"
           >
             {navLink.subMenuLinks?.map((subMenuLink, index) => (
               <HashLink
