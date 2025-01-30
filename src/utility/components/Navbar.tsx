@@ -94,13 +94,7 @@ export const Navbar2 = (props: Navbar2Props) => {
           <div className="flex items-center gap-7 lg:hidden">
             <div className="flex gap-3">
 
-            <div onClick={()=>{alert("testing")}} className="overflow-hidden size-6 hover:w-[200px] shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex group items-center hover:duration-600 duration-1000">
-            <div className="flex items-center justify-center fill-secondary_bg">
               <Link to={'/'}><CiSearch className=" text-primary size-6 hover:size-7 hover:text-hov_primary" strokeWidth={0.5} /></Link>
-            </div>
-            <input id="input" type="text" placeholder="Search" className=" bg-secondary_bg outline-none rounded-lg text-xs font-default bg-transparent w-full text-jett_black font-normal p-4" />
-          </div>
-              
               <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
               <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
 
