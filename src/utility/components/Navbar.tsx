@@ -50,7 +50,7 @@ export const Navbar2 = (props: Navbar2Props) => {
     }else{
       document.body.style.position = ''; 
       document.body.style.top = ''; 
-      document.body.style.width = ''; 
+      document.body.style.width = '';
       document.body.style.overflow = ''
     }
   },[isSearchOpen]);
