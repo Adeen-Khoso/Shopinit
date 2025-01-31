@@ -76,6 +76,9 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
 
+  const setSearchOpen = ()=>{
+    setIsSearchOpen(true)
+  }
   return (
     <nav        
       className={cn(
@@ -88,6 +91,8 @@ export const Navbar2 = (props: Navbar2Props) => {
         "border-b border-border-primary bg-primary_bg lg:min-h-18 lg:px-[5%]"
       )}
     >
+      <SearchBox isSearchOpen={ isSearchOpen } setIsSearchOpen= {setIsSearchOpen }/>
+
       <div className="  mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
           <a href={logo.url}>
@@ -96,7 +101,9 @@ export const Navbar2 = (props: Navbar2Props) => {
           <div className="flex items-center gap-7 lg:hidden">
             <div className="flex gap-3">
 
-              <Link to={'/'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+              <button onClick={() => setSearchOpen()} >
+                <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+              </button>
               <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
               <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
 
@@ -153,14 +160,17 @@ export const Navbar2 = (props: Navbar2Props) => {
             </div>
           ))}
         </motion.div>
+
+
         <div className="hidden flex-row justify-self-end lg:flex lg:gap-5">
-          <button onClick={() => setIsSearchOpen(true)} >
-            <Link to={'/'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+          <button onClick={() => setSearchOpen()} >
+            <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
           </button>
 
           <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
           <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
         </div>
+
       </div>
     </nav>
   );
