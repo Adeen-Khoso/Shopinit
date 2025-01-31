@@ -40,6 +40,21 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
+
+  useEffect(() => {
+    if(isSearchOpen){
+      document.body.style.position = 'fixed'; 
+      document.body.style.top = '0'; 
+      document.body.style.width = '100%'; 
+      document.body.style.overflow = 'hidden'
+    }else{
+      document.body.style.position = ''; 
+      document.body.style.top = ''; 
+      document.body.style.width = ''; 
+      document.body.style.overflow = ''
+    }
+  },[isSearchOpen]);
+  console.log(isSearchOpen)
   
   useEffect(() => {
     const handleScroll = () => {

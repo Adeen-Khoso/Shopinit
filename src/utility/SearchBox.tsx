@@ -1,10 +1,8 @@
-
 interface SearchBoxProps {
   isSearchOpen: Boolean;
-  setIsSearchOpen: React.Dispatch<React.SetStateAction<boolean>>; // Declare that the `first` prop should be a string
+  setIsSearchOpen: React.Dispatch<React.SetStateAction<boolean>>; 
 }
-import React, { useState } from "react";
-import { CiSearch } from "react-icons/ci";
+import React, { useEffect, useState } from "react";
 
 const SearchBox: React.FC<SearchBoxProps> = ({isSearchOpen, setIsSearchOpen}) => {
 
@@ -16,7 +14,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({isSearchOpen, setIsSearchOpen}) =>
           isSearchOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Close Button */}
+
         <button
           className="absolute top-4 right-4 text-xl"
           onClick={() => setIsSearchOpen(false)}
