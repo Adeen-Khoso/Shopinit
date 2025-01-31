@@ -154,9 +154,9 @@ export const Navbar2 = (props: Navbar2Props) => {
           ))}
         </motion.div>
         <div className="hidden flex-row justify-self-end lg:flex lg:gap-5">
-        <button onClick={() => setIsSearchOpen(true)} >
-          <Link to={'/'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
-      </button>
+          <button onClick={() => setIsSearchOpen(true)} >
+            <Link to={'/'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+          </button>
 
           <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
           <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>

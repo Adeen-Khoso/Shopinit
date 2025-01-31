@@ -4,7 +4,7 @@ import { Navbar2 } from "../utility/components/Navbar";
 const Cart = () => {
   return (
     <>
-      <Navbar2 />
+      <div></div>
     </>
   );
 };
