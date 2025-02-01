@@ -7,10 +7,10 @@ import React, { useEffect, useState } from "react";
 const SearchBox: React.FC<SearchBoxProps> = ({isSearchOpen, setIsSearchOpen}) => {
 
   return (
-    <div className="relative">
+    <div className="relative z-[1000] ">
       
       <div
-        className={`fixed top-0 right-0 w-[40%] h-full bg-white shadow-lg p-6 transform transition-transform duration-300 ${
+        className={` fixed top-0 right-0 w-[40%] h-full bg-white shadow-lg p-6 transform transition-transform duration-300 ${
           isSearchOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

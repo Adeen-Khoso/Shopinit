@@ -44,17 +44,18 @@ export const Navbar2 = (props: Navbar2Props) => {
   useEffect(() => {
     if(isSearchOpen){
       document.body.style.position = 'fixed'; 
+      document.body.classList.add("search-open");
       document.body.style.top = '0'; 
       document.body.style.width = '100%'; 
       document.body.style.overflow = 'hidden'
     }else{
       document.body.style.position = ''; 
+      document.body.classList.remove("search-open");
       document.body.style.top = ''; 
       document.body.style.width = '';
       document.body.style.overflow = ''
     }
   },[isSearchOpen]);
-  console.log(isSearchOpen)
   
   useEffect(() => {
     const handleScroll = () => {
@@ -95,6 +96,9 @@ export const Navbar2 = (props: Navbar2Props) => {
     setIsSearchOpen(true)
   }
   return (
+    <>
+    <SearchBox isSearchOpen={ isSearchOpen } setIsSearchOpen= {setIsSearchOpen }/>
+    
     <nav        
       className={cn(
         "flex items-center fixed left-0 w-full z-10 transition-all duration-300 ease-in-out",
@@ -106,7 +110,6 @@ export const Navbar2 = (props: Navbar2Props) => {
         "border-b border-border-primary bg-primary_bg lg:min-h-18 lg:px-[5%]"
       )}
     >
-      <SearchBox isSearchOpen={ isSearchOpen } setIsSearchOpen= {setIsSearchOpen }/>
 
       <div className="  mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
@@ -188,6 +191,7 @@ export const Navbar2 = (props: Navbar2Props) => {
 
       </div>
     </nav>
+    </>
   );
 };
 
