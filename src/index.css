@@ -94,7 +94,6 @@ body.search-open::before {
 }
 
 .navbar-hidden {
-  /* opacity: 0; */
   transform: translateY(-200%);
-  pointer-events: none; /* Prevent interaction when hidden */
+  pointer-events: none;
 }
