@@ -53,7 +53,6 @@ export const Navbar2 = (props: Navbar2Props) => {
       document.body.style.width = '100%'; 
       document.body.style.overflow = 'hidden';
       document.body.style.top = `-${position}px`;
-      
     }else{
       console.log(lastScrollY);
       document.body.style.position = ''; 

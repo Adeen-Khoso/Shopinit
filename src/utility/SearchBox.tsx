@@ -1,20 +1,30 @@
+import React from "react";
+
 interface SearchBoxProps {
-  isSearchOpen: Boolean;
-  setIsSearchOpen: React.Dispatch<React.SetStateAction<boolean>>; 
+  isSearchOpen: boolean;
+  setIsSearchOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-import React, { useEffect, useState } from "react";
 
-const SearchBox: React.FC<SearchBoxProps> = ({isSearchOpen, setIsSearchOpen}) => {
-
+const SearchBox: React.FC<SearchBoxProps> = ({ isSearchOpen, setIsSearchOpen }) => {
   return (
-    <div className="relative z-[1000]  ">
-      
+    <>
+      {/* Overlay (Click to Close) */}
+      {isSearchOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-[999]"
+          onClick={() => setIsSearchOpen(false)}
+          role="button"
+          aria-label="Close search box"
+        ></div>
+      )}
+
+      {/* Search Box */}
       <div
-        className={` fixed top-0 right-0 w-[40%] h-full bg-white shadow-lg p-6 transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 w-[40%] h-full bg-white shadow-lg p-6 transform transition-transform duration-300 z-[1000] ${
           isSearchOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        onClick={(e) => e.stopPropagation()} 
       >
-
         <button
           className="absolute top-4 right-4 text-xl"
           onClick={() => setIsSearchOpen(false)}
@@ -46,17 +56,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({isSearchOpen, setIsSearchOpen}) =>
           </ul>
         </div>
       </div>
-
-      {/* Overlay (Click to Close) */}
-      {/* {isSearchOpen && (
-        <div
-          className="fixed top-0 left-0 w-full h-full bg-black/50"
-          onClick={() => setIsSearchOpen(false)}
-          role="button"
-          aria-label="Close search box"
-        ></div>
-      )} */}
-    </div>
+    </>
   );
 };
 
