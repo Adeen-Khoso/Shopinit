@@ -20,7 +20,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isSearchOpen, setIsSearchOpen }) 
 
       {/* Search Box */}
       <div
-        className={`fixed top-0 right-0  w-[90%] md:w-[30%] h-full bg-secondary_bg shadow-lg py-9 px-10 transform transition-transform duration-700 z-[1000] ${
+        className={`fixed top-0 right-0 w-[90%] md:w-[30%] h-full bg-secondary_bg shadow-lg py-9 px-10 transform transition-transform duration-700 z-[1000] ${
           isSearchOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()} 
