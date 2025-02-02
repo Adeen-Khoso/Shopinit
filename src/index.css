@@ -28,11 +28,11 @@ h2,
 h3 {
   font-family: "Young Serif", serif;
 }
-/* h4,
+h4,
 h5,
 h6 {
   letter-spacing: 4%;
-} */
+}
 
 @media (max-width: 767px) {
   .cursor-dot {
