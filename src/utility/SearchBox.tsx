@@ -20,18 +20,26 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isSearchOpen, setIsSearchOpen }) 
 
       {/* Search Box */}
       <div
-        className={`fixed top-0 right-0 w-[40%] h-full bg-white shadow-lg p-6 transform transition-transform duration-300 z-[1000] ${
+        className={`fixed  top-0 right-0 w-[40%] h-full bg-white shadow-lg p-6 transform transition-transform duration-300 z-[1000] ${
           isSearchOpen ? "translate-x-0" : "translate-x-full"
         }`}
         onClick={(e) => e.stopPropagation()} 
       >
-        <button
-          className="absolute top-4 right-4 text-xl"
-          onClick={() => setIsSearchOpen(false)}
-          aria-label="Close search box"
-        >
-          ✖
-        </button>
+        <div className="flex">
+
+          <h4 className=" text-sm  font-bold">
+            Search Shopinit
+          </h4>
+
+          <button
+            className="absolute top-4 right-4 text-xl"
+            onClick={() => setIsSearchOpen(false)}
+            aria-label="Close search box"
+          >
+            ✖
+          </button>
+
+        </div>
 
         {/* Search Input & Button */}
         <div className="mt-10">
