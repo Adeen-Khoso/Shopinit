@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 const SearchBox: React.FC<SearchBoxProps> = ({isSearchOpen, setIsSearchOpen}) => {
 
   return (
-    <div className="relative z-[1000] ">
+    <div className="relative z-[1000]  ">
       
       <div
         className={` fixed top-0 right-0 w-[40%] h-full bg-white shadow-lg p-6 transform transition-transform duration-300 ${
@@ -48,14 +48,14 @@ const SearchBox: React.FC<SearchBoxProps> = ({isSearchOpen, setIsSearchOpen}) =>
       </div>
 
       {/* Overlay (Click to Close) */}
-      {isSearchOpen && (
+      {/* {isSearchOpen && (
         <div
           className="fixed top-0 left-0 w-full h-full bg-black/50"
           onClick={() => setIsSearchOpen(false)}
           role="button"
           aria-label="Close search box"
         ></div>
-      )}
+      )} */}
     </div>
   );
 };

@@ -63,7 +63,7 @@ h6 {
   left: 0;
   transform: translate(-50%, -50%);
   border-radius: 50%;
-  z-index: 1000;
+  z-index: 1100;
   pointer-events: none;
 }
 
@@ -75,7 +75,7 @@ h6 {
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 1001;
+  z-index: 1100;
   transform: translate(-50%, -50%);
   opacity: 0; /* Initially hidden */
   transition: opacity 0.5s ease-in-out;
