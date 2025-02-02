@@ -39,21 +39,34 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [position, setPosition] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
-
+  
+  const setSearchOpen = ()=>{
+    setIsSearchOpen(true)
+    setPosition(window.scrollY); 
+  }
   useEffect(() => {
     if(isSearchOpen){
       document.body.style.position = 'fixed'; 
       document.body.classList.add("search-open");
-      document.body.style.top = '0'; 
       document.body.style.width = '100%'; 
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'hidden';
+      document.body.style.top = `-${position}px`;
+      
     }else{
+      console.log(lastScrollY);
       document.body.style.position = ''; 
       document.body.classList.remove("search-open");
-      document.body.style.top = ''; 
+      document.body.style.top = ``; 
       document.body.style.width = '';
       document.body.style.overflow = ''
+
+      const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, position);
+      void document.documentElement.offsetWidth;
+      document.documentElement.style.scrollBehavior = originalScrollBehavior;
     }
   },[isSearchOpen]);
   
@@ -92,18 +105,16 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
 
-  const setSearchOpen = ()=>{
-    setIsSearchOpen(true)
-  }
   return (
     <>
     <SearchBox isSearchOpen={ isSearchOpen } setIsSearchOpen= {setIsSearchOpen }/>
     
-    <nav        
+    <nav  
+      id="nav"      
       className={cn(
-        "flex items-center fixed left-0 w-full z-10 transition-all duration-300 ease-in-out",
+        ` items-center fixed left-0 w-full z-10 transition-all duration-700 ease-in-out ${isSearchOpen?  "navbar-hidden"  : 'flex'}`,
         showNavbar
-          ? lastScrollY === 0
+          ? lastScrollY == 0
             ? "top-10"
             : "top-0"
           : "top-10 -translate-y-[calc(100%+40px)]",

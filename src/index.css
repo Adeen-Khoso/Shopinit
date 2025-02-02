@@ -92,3 +92,9 @@ body.search-open::before {
   background: rgba(0, 0, 0, 0.6);
   z-index: 500;
 }
+
+.navbar-hidden {
+  /* opacity: 0; */
+  transform: translateY(-200%);
+  pointer-events: none; /* Prevent interaction when hidden */
+}
