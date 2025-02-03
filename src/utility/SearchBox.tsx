@@ -46,7 +46,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ isSearchOpen, setIsSearchOpen }) 
           <input
             type="text"
             placeholder="Search"
-            className="w-full py-5 border-b text-lg focus:outline-none mb-3 bg-secondary_bg "
+            className="w-full py-5 border-b text-lg focus:outline-none mb-3 bg-secondary_bg rounded-none"
           />
           <button className="mt-3 w-full p-3 bg-primary text-white hover:bg-hov_primary ">
             Search
