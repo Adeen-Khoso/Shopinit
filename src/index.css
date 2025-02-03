@@ -9,8 +9,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "Work sans", serif; */
-  font-family: "Poppins", serif;
+  font-family: "Work sans", serif;
+  /* font-family: "Poppins", serif; */
   font-weight: 400;
   font-style: normal;
   color: #1b1b1b;
@@ -31,7 +31,7 @@ h3 {
 h4,
 h5,
 h6 {
-  letter-spacing: 4%;
+  letter-spacing: -4%;
 }
 
 @media (max-width: 767px) {
