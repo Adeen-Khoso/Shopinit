@@ -40,8 +40,13 @@ export const Header78 = (props: Header78Props) => {
           <p className="md:text-md">{description}</p>
           <div className="mt-6 flex items-center justify-center gap-x-4 md:mt-8">
             {buttons.map((button, index) => (
-              <Button className={cn("", button.title === "Sell" ? " bg-secondary_bg hover:bg-white" : "bg-primary text-white hover:bg-hov_primary")} key={index} {...button}>
-                <Link to={'/products'}>
+              <Button className={cn("", button.title === "Sell" ? " bg-secondary_bg hover:bg-white" : "bg-primary text-white hover:bg-hov_primary")} key={index} {...button} 
+              onClick={(e) => {
+                e.preventDefault();
+                const linkElement = e.currentTarget.firstChild as HTMLElement;
+                linkElement?.click();
+              }}>
+                <Link className="" to={button.title== "Shop" ? '/products' : '/sell'}>
                   {button.title }
                 </Link>
               </Button>
