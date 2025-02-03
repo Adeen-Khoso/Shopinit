@@ -24,7 +24,7 @@ export const Banner14 = (props: Banner14Props) => {
   const headingTranslate = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"]);
 
   return (
-    <section id="relume" ref={sectionRef} className=" flex items-center justify-center h-10 bg-primary text-white overflow-hidden">
+    <section id="relume" ref={sectionRef} className=" flex items-center justify-center h-10 bg-primary text-white overflow-hidden mb-16 md:mb-18">
       <div className="flex whitespace-nowrap border-b border-t w-full border-border-primary">
         <div className="flex w-full items-center justify-center overflow-hidden whitespace-nowrap py-4">
           {Array(1)
@@ -53,6 +53,5 @@ export const Banner14 = (props: Banner14Props) => {
 export const Banner14Defaults: Props = {
   headings: [
     "Every Purchase Supports Charity, Welfare and Community.",
-    // "Every Purchase Supports Charity, Welfare and Community.",
   ],
 };
