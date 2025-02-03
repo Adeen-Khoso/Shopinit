@@ -9,7 +9,6 @@ const MainLayout = () => {
   return (
     <>
       <Cursor />
-      {/* <Banner14 headings={["Every support "]} /> */}
       <Banner14 />
       <Navbar2 />
       <Outlet />

@@ -32,18 +32,17 @@ export const Banner14 = (props: Banner14Props) => {
             .map((_, index) => (
               <motion.div
                 key={index}
-                className=" grid auto-cols-max grid-flow-col grid-cols-[max-content] gap-12 "
+                className=" grid auto-cols-max grid-flow-col grid-cols-[max-content]  "
                 style={{ x: headingTranslate }}
               >
                 {headings.map((heading, headingIndex) => {
                   return (
-                    <h5 key={headingIndex} className="text-xs md:text-sm">
+                    <h5 key={headingIndex} className=" pl-3 text-xs md:text-sm">
                       {heading}
                     </h5>
                   );
                 })}
               </motion.div>
-
             ))}
         </div>
       </div>
@@ -54,5 +53,6 @@ export const Banner14 = (props: Banner14Props) => {
 export const Banner14Defaults: Props = {
   headings: [
     "Every Purchase Supports Charity, Welfare and Community.",
+    // "Every Purchase Supports Charity, Welfare and Community.",
   ],
 };
