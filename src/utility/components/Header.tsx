@@ -11,6 +11,7 @@ import HeroImage8 from "../../assets/hero_section_imgs/freepik__candid-image-pho
 import HeroImage9 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13752.jpeg";
 import HeroImage10 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13753.jpeg";
 import HeroImage11 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13754.jpeg";
+import { Link } from "react-router";
 
 type ImageProps = {
   src: string;
@@ -40,7 +41,9 @@ export const Header78 = (props: Header78Props) => {
           <div className="mt-6 flex items-center justify-center gap-x-4 md:mt-8">
             {buttons.map((button, index) => (
               <Button className={cn("", button.title === "Sell" ? " bg-secondary_bg hover:bg-white" : "bg-primary text-white hover:bg-hov_primary")} key={index} {...button}>
-                {button.title }
+                <Link to={'/products'}>
+                  {button.title }
+                </Link>
               </Button>
             ))}
           </div>
