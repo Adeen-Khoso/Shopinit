@@ -37,7 +37,7 @@ export const Banner14 = (props: Banner14Props) => {
               >
                 {headings.map((heading, headingIndex) => {
                   return (
-                    <h5 key={headingIndex} className=" pl-3 text-xs md:text-sm">
+                    <h5 key={headingIndex} className=" pl-[14px] text-xs md:text-sm">
                       {heading}
                     </h5>
                   );
