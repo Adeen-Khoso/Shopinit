@@ -27,7 +27,6 @@ type Props = {
 
 export type Header78Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
 
-
 export const Header78 = (props: Header78Props) => {
   const { heading, description, buttons, images } = {
     ...Header78Defaults,
