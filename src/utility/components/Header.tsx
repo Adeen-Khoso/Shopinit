@@ -33,7 +33,7 @@ export const Header78 = (props: Header78Props) => {
     ...props,
   };
   return (
-    <section id="relume" className="px-[5%] py-16  md:pb-24 lg:pb-28">
+    <section id="relume" className="px-[5%] py-16 md:pb-24 lg:pb-28">
       <div className="container flex flex-col items-center">
         <div className="rb-12 mb-12 max-w-lg text-center md:mb-18 lg:mb-20">
           <h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">{heading}</h1>
