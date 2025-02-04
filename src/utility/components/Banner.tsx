@@ -5,6 +5,7 @@ import { useRef } from "react";
 
 type Props = {
   headings: string[];
+  
 };
 
 export type Banner14Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
