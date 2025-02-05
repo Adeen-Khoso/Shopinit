@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import MainLayout from "./layouts/MainLayout";
 import ProductPage from "./pages/ProductPage";
+import Login from "./pages/Login";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,7 +25,7 @@ function App() {
         },
         {
           path: "/login",
-          element: <Cart />,
+          element: <Login />,
         },
       ],
     },
