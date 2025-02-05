@@ -41,6 +41,7 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [position, setPosition] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
+  const [loggedIn, setLoggedIn] = useState(false);
   
   const setSearchOpen = ()=>{
     setIsSearchOpen(true)
@@ -195,7 +196,7 @@ export const Navbar2 = (props: Navbar2Props) => {
             <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
           </button>
 
-          <Link to={'/'}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+          <Link to={loggedIn ? "/profile" : "/login"}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
           <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
         </div>
 
