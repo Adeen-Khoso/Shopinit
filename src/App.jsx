@@ -23,11 +23,11 @@ function App() {
           path: "/cart",
           element: <Cart />,
         },
-        {
-          path: "/login",
-          element: <Login />,
-        },
       ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
   ]);
   return (
