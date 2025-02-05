@@ -22,6 +22,10 @@ function App() {
           path: "/cart",
           element: <Cart />,
         },
+        {
+          path: "/login",
+          element: <Cart />,
+        },
       ],
     },
   ]);
