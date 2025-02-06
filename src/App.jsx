@@ -3,9 +3,9 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import MainLayout from "./layouts/MainLayout";
 import ProductPage from "./pages/ProductPage";
+import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
-import AuthLayout from "./layouts/AuthLayout";
 
 function App() {
   const router = createBrowserRouter([
