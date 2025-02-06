@@ -3,7 +3,8 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import MainLayout from "./layouts/MainLayout";
 import ProductPage from "./pages/ProductPage";
-import Login from "./pages/Login";
+import Login from "./pages/Auth/Login";
+import SignUp from "./pages/Auth/SignUp";
 import AuthLayout from "./layouts/AuthLayout";
 
 function App() {
@@ -33,6 +34,10 @@ function App() {
         {
           path: "/login",
           element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <SignUp />,
         },
       ],
     },
