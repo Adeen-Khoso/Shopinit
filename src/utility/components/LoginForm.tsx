@@ -78,6 +78,7 @@ export const Login3 = (props: Login3Props) => {
               </Label>
               <Input
                 type="email"
+                className="rounded-none"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -95,6 +96,7 @@ export const Login3 = (props: Login3Props) => {
               </div>
               <Input
                 type="password"
+                className="rounded-none"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

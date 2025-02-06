@@ -77,6 +77,7 @@ export const Signup3 = (props: Signup3Props) => {
             <Input
               type="text"
               id="name"
+              className="rounded-none"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -88,6 +89,7 @@ export const Signup3 = (props: Signup3Props) => {
             </Label>
             <Input
               type="email"
+              className="rounded-none"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -100,6 +102,7 @@ export const Signup3 = (props: Signup3Props) => {
             </Label>
             <Input
               type="password"
+              className="rounded-none"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
