@@ -1,7 +1,12 @@
 import React from "react";
+import { Signup3 } from "../../utility/components/SignUpForm";
 
 const SignUp = () => {
-  return <div>SignUp</div>;
+  return (
+    <>
+      <Signup3 />
+    </>
+  );
 };
 
 export default SignUp;
