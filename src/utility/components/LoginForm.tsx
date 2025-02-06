@@ -144,7 +144,7 @@ export const Login3Defaults: Props = {
   signUpText: "Don't have an account?",
   signUpLink: {
     text: "Sign up",
-    url: "#",
+    url: "/signup",
   },
   title: "Log In",
   description: "Lorem ipsum dolor sit amet adipiscing elit.",
@@ -160,5 +160,5 @@ export const Login3Defaults: Props = {
     text: "Forgot your password?",
     url: "#",
   },
-  footerText: "© 2024 Relume",
+  footerText: "© 2025 Shopinit",
 };
