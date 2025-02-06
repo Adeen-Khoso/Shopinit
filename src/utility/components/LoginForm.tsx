@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, Input, Label } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { BiLogoGoogle } from "react-icons/bi";
+import logoImage from "../../assets/logo.png";
 
 type ImageProps = {
   url?: string;
@@ -60,10 +61,10 @@ export const Login3 = (props: Login3Props) => {
       <div className="relative flex min-h-svh flex-col justify-center overflow-auto py-24 lg:py-20">
         <div className="absolute left-0 right-0 top-0 flex h-16 items-center justify-center md:h-18">
           <a href={logo.url}>
-            <img src={logo.src} alt={logo.alt} />
+            <img className="w-20" src={logo.src} alt={logo.alt} />
           </a>
         </div>
-        <div className="mx-auto w-full max-w-sm border border-border-primary px-6 py-8 sm:px-8 md:p-12">
+        <div className="bg-secondary_bg mx-auto w-full max-w-sm border border-border-primary px-6 py-8 sm:px-8 md:p-12">
           <div className="mb-6 text-center md:mb-8">
             <h1 className="mb-3 text-4xl font-bold leading-[1.2] md:mb-4 md:text-5xl lg:text-6xl">
               {title}
@@ -106,6 +107,7 @@ export const Login3 = (props: Login3Props) => {
                 size={logInButton.size}
                 iconLeft={logInButton.iconLeft}
                 iconRight={logInButton.iconRight}
+                className="bg-primary hover:bg-hov_primary"
               >
                 {logInButton.title}
               </Button>
@@ -138,7 +140,7 @@ export const Login3 = (props: Login3Props) => {
 export const Login3Defaults: Props = {
   logo: {
     url: "/",
-    src: "https://d22po4pjz3o32e.cloudfront.net/logo-image.svg",
+    src: logoImage,
     alt: "Logo text",
   },
   signUpText: "Don't have an account?",
@@ -147,14 +149,14 @@ export const Login3Defaults: Props = {
     url: "/signup",
   },
   title: "Log In",
-  description: "Lorem ipsum dolor sit amet adipiscing elit.",
+  description: "Enter your email and password.",
   logInButton: {
     title: "Log in",
   },
   logInWithGoogleButton: {
     variant: "secondary",
     title: "Log in with Google",
-    iconLeft: <BiLogoGoogle className="size-6" />,
+    iconLeft: <BiLogoGoogle className="size-6 text-primary" />,
   },
   forgotPassword: {
     text: "Forgot your password?",
