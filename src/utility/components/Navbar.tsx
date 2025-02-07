@@ -41,7 +41,7 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [position, setPosition] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   
   const setSearchOpen = ()=>{
     setIsSearchOpen(true)
@@ -217,13 +217,16 @@ const SubMenu = ({
 
   return (
     <nav
-      onMouseEnter={() => !isMobile && setIsDropdownOpen(true)}
-      onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
+      // onMouseEnter={() => !isMobile && setIsDropdownOpen(true)}
+      // onMouseLeave={() => !isMobile && setIsDropdownOpen(false)}
     >
       <button
         className="hover:text-neutral-dark flex w-full items-center justify-center gap-4 py-3 text-center text-md lg:w-auto lg:flex-none lg:justify-start lg:gap-2 lg:px-4 lg:py-2 lg:text-base"
-        onClick={() => setIsDropdownOpen((prev) => !prev)}
+        // onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
+        <HashLink to={'#footer'}>
+        Contact
+        </HashLink>
         <span>{navLink.title}</span>
         <motion.span
           animate={isDropdownOpen ? "rotated" : "initial"}
@@ -233,7 +236,7 @@ const SubMenu = ({
           }}
           transition={{ duration: 0.3 }}
         >
-          <RxChevronDown />
+          {/* <RxChevronDown /> */}
         </motion.span>
       </button>
       {isDropdownOpen && (
@@ -281,10 +284,11 @@ export const Navbar2Defaults: Props = {
   },
   navLinks: [
     { title: "Shop Now", url: "/products" },
+    { title: "Sell Now", url: "/login" }, // hardcoded for now, later will be based on whether user is logged in or not and then be set to selling page accordinly
     { title: "About Us", url: "/#explore" },
-    { title: "Profile", url: "/services" },
     {
-      title: "More",
+      // title: "More",
+      title: "",
       url: "/more",
       subMenuLinks: [
         { title: "Contact", url: "/#footer" },

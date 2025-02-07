@@ -26,7 +26,7 @@ function App() {
           element: <Cart />,
         },
         {
-          path: "/userProfile",
+          path: "/profile",
           element: <UserProfile />,
         },
       ],
