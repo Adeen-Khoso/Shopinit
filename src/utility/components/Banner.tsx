@@ -27,7 +27,7 @@ export const Banner14 = (props: Banner14Props) => {
   return (
     <section id="relume" ref={sectionRef} className=" flex items-center justify-center h-10 bg-primary text-white overflow-hidden mb-16 md:mb-18">
       <div className="flex whitespace-nowrap border-b border-t w-full border-border-primary">
-        <div className="flex w-full items-center justify-center overflow-hidden whitespace-nowrap py-4">
+        <div className="flex w-screen md:w-full items-center justify-center overflow-hidden whitespace-nowrap py-4">
           {Array(1)
             .fill(0)
             .map((_, index) => (

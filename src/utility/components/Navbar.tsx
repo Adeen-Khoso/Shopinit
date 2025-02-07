@@ -42,11 +42,22 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [position, setPosition] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
   const [loggedIn, setLoggedIn] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 991px)");
   
   const setSearchOpen = ()=>{
     setIsSearchOpen(true)
     setPosition(window.scrollY); 
   }
+
+  useEffect(()=> {
+    if( isMobileMenuOpen ) {
+      document.body.style.position = 'fixed'; 
+    }else { 
+      document.body.style.position = ''; 
+    }
+  },[isMobileMenuOpen]);
+
   useEffect(() => {
     if(isSearchOpen){
       document.body.style.position = 'fixed'; 
@@ -55,10 +66,9 @@ export const Navbar2 = (props: Navbar2Props) => {
       document.body.style.overflow = 'hidden';
       document.body.style.top = `-${position}px`;
     }else{
-      console.log(lastScrollY);
       document.body.style.position = ''; 
       document.body.classList.remove("search-open");
-      document.body.style.top = ``; 
+      // document.body.style.top = ``; 
       document.body.style.width = '';
       document.body.style.overflow = ''
 
@@ -102,8 +112,6 @@ export const Navbar2 = (props: Navbar2Props) => {
     ...Navbar2Defaults,
     ...props,
   };
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isMobile = useMediaQuery("(max-width: 991px)");
 
   return (
     <>
