@@ -6,7 +6,7 @@ import ProductPage from "./pages/ProductPage";
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
-
+import UserProfile from "./pages/UserProfile";
 function App() {
   const router = createBrowserRouter([
     {
@@ -24,6 +24,10 @@ function App() {
         {
           path: "/cart",
           element: <Cart />,
+        },
+        {
+          path: "/userProfile",
+          element: <UserProfile />,
         },
       ],
     },
