@@ -180,7 +180,7 @@ export const Navbar2 = (props: Navbar2Props) => {
           initial="close"
           exit="close"
           transition={{ duration: 0.4 }}
-          className="overflow-hidden px-[5%] text-center lg:flex lg:items-center lg:justify-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
+          className="overflow-hidden px-[5%] bg-primary md:bg-primary_bg md:text-jett_black text-white text-start md:text-center lg:flex lg:items-center lg:justify-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
         >
           {navLinks.map((navLink, index) => (
             <div key={index} className="first:pt-4 lg:first:pt-0 ">
@@ -188,8 +188,9 @@ export const Navbar2 = (props: Navbar2Props) => {
                 <SubMenu navLink={navLink} isMobile={isMobile} />
               ) : (
                 <HashLink
+                  onClick={() => setIsMobileMenuOpen(false)}
                   to={navLink.url}
-                  className="block py-3 text-md lg:px-4 lg:py-2 lg:text-base hover:text-neutral-dark"
+                  className=" md:border-0 border-b border-white border-opacity-10 mb-3 md:mb-0 block py-3 text-md lg:px-4 lg:py-2 lg:text-base md:hover:text-neutral-dark"
                 >
                   {navLink.title}
                 </HashLink>
