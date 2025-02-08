@@ -1,16 +1,11 @@
 import { Button, cn } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
-import HeroImage1 from "../../assets/hero_section_imgs/4e77946d-d778-451e-ac17-f8df0af58e4b 1.png";
 import HeroImage2 from "../../assets/hero_section_imgs/THE_FOOTBALL_CORE_Product_picture_to_sell_in_website_with_pastel_col_370e9744-15c3-440b-8e5b-abce511a98a6.png";
 import HeroImage3 from "../../assets/hero_section_imgs/THE_FOOTBALL_CORE_Product_picture_to_sell_in_website_with_pastel_col_556a89f4-6f5c-4edd-a665-c444051cc9db.png";
 import HeroImage4 from "../../assets/hero_section_imgs/THE_FOOTBALL_CORE_Product_picture_to_sell_in_website_with_pastel_col_64473192-5bab-47ee-83ed-2addc5c5e654.png";
 import HeroImage5 from "../../assets/hero_section_imgs/THE_FOOTBALL_CORE_Product_picture_to_sell_in_website_with_pastel_col_b3043141-866e-472e-9b09-a66e8f37de85.png";
 import HeroImage6 from "../../assets/hero_section_imgs/THE_FOOTBALL_CORE_Product_picture_to_sell_in_website_with_pastel_col_f3c0f130-84d7-4b5e-bd88-f25e95dc9a9d.png";
-import HeroImage7 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13749.jpeg";
 import HeroImage8 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13750.jpeg";
-import HeroImage9 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13752.jpeg";
-import HeroImage10 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13753.jpeg";
-import HeroImage11 from "../../assets/hero_section_imgs/freepik__candid-image-photography-natural-textures-highly-r__13754.jpeg";
 import { Link } from "react-router";
 
 type ImageProps = {
@@ -33,7 +28,7 @@ export const Header78 = (props: Header78Props) => {
     ...props,
   };
   return (
-    <section id="relume" className="px-[5%] py-16 md:pb-24 lg:pb-28">
+    <section id="relume" className="relative px-[5%] py-16 md:pb-24 lg:pb-28">
       <div className="container flex flex-col items-center">
         <div className="rb-12 mb-12 max-w-lg text-center md:mb-18 lg:mb-20">
           <h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">{heading}</h1>
