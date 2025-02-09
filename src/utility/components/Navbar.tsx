@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RxChevronDown } from "react-icons/rx";
 import { HashLink } from "react-router-hash-link";
 import logoImage from "../../assets/logo.png";
-import { Button } from "@relume_io/relume-ui";
+// import { Button } from "@relume_io/relume-ui";
 import { CiSearch, CiUser } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { Link } from "react-router";
@@ -290,7 +290,7 @@ export const Navbar2Defaults: Props = {
   },
   navLinks: [
     { title: "Shop Now", url: "/products" },
-    { title: "Sell Now", url: "/login" }, // hardcoded for now, later will be based on whether user is logged in or not and then be set to selling page accordinly
+    { title: "Sell Now", url: "/login" }, // hardcoded for now, later will be based on whether user is logged in or not and then be set to selling page accordingly
     { title: "About Us", url: "/#explore" },
     {
       title: "Contact",
