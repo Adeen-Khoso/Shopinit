@@ -115,102 +115,102 @@ export const Navbar2 = (props: Navbar2Props) => {
 
   return (
     <>
-    <SearchBox isSearchOpen={ isSearchOpen } setIsSearchOpen= {setIsSearchOpen }/>
-    
-    <nav  
-      id="nav"      
-      className={cn(
-        ` items-center fixed left-0 w-full z-10 transition-all duration-700 ease-in-out ${isSearchOpen?  "navbar-hidden"  : 'flex'}`,
-        showNavbar
-          ? lastScrollY == 0
-            ? "top-10"
-            : "top-0"
-          : "top-10 -translate-y-[calc(100%+40px)]",
-        "border-b border-border-primary bg-primary_bg lg:min-h-18 lg:px-[5%]"
-      )}
-    >
+      <SearchBox isSearchOpen={ isSearchOpen } setIsSearchOpen= {setIsSearchOpen }/>
+      
+      <nav  
+        id="nav"      
+        className={cn(
+          ` items-center fixed left-0 w-full z-10 transition-all duration-700 ease-in-out ${isSearchOpen?  "navbar-hidden"  : 'flex'}`,
+          showNavbar
+            ? lastScrollY == 0
+              ? "top-10"
+              : "top-0"
+            : "top-10 -translate-y-[calc(100%+40px)]",
+          "border-b border-border-primary bg-primary_bg lg:min-h-18 lg:px-[5%]"
+        )}
+      >
 
-      <div className="  mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
-        <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-          <a href={logo.url}>
-            <img className="w-20" src={logo.src} alt={logo.alt} />
-          </a>
-          <div className="flex items-center gap-7 lg:hidden">
-            <div className="flex gap-3">
+        <div className="  mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
+          <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
+            <a href={logo.url}>
+              <img className="w-20" src={logo.src} alt={logo.alt} />
+            </a>
+            <div className="flex items-center gap-7 lg:hidden">
+              <div className="flex gap-3">
 
-              <button onClick={() => setSearchOpen()} >
-                <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+                <button onClick={() => setSearchOpen()} >
+                  <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+                </button>
+                <Link to={loggedIn ? "/profile" : "/login"}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+                <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+
+              </div>
+              <button
+                className="-mr-2 flex size-12 flex-col items-center justify-center "
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              >
+                <motion.span
+                  className="my-[3px] h-0.5 w-6 bg-jett_black"
+                  animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
+                  variants={topLineVariants}
+                />
+                <motion.span
+                  className="my-[3px] h-0.5 w-6 bg-jett_black"
+                  animate={isMobileMenuOpen ? "open" : "closed"}
+                  variants={middleLineVariants}
+                />
+                <motion.span
+                  className="my-[3px] h-0.5 w-6 bg-jett_black"
+                  animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
+                  variants={bottomLineVariants}
+                />
               </button>
-              <Link to={loggedIn ? "/profile" : "/login"}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
-              <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
-
             </div>
-            <button
-              className="-mr-2 flex size-12 flex-col items-center justify-center "
-              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-            >
-              <motion.span
-                className="my-[3px] h-0.5 w-6 bg-jett_black"
-                animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
-                variants={topLineVariants}
-              />
-              <motion.span
-                className="my-[3px] h-0.5 w-6 bg-jett_black"
-                animate={isMobileMenuOpen ? "open" : "closed"}
-                variants={middleLineVariants}
-              />
-              <motion.span
-                className="my-[3px] h-0.5 w-6 bg-jett_black"
-                animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
-                variants={bottomLineVariants}
-              />
-            </button>
           </div>
+          <motion.div
+            variants={{
+              open: {
+                height: "var(--height-open, 100dvh)",
+              },
+              close: {
+                height: "var(--height-closed, 0)",
+              },
+            }}
+            animate={isMobileMenuOpen ? "open" : "close"}
+            initial="close"
+            exit="close"
+            transition={{ duration: 0.4 }}
+            className="overflow-hidden px-[5%] bg-primary md:bg-primary_bg md:text-jett_black text-white text-start md:text-center lg:flex lg:items-center lg:justify-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
+          >
+            {navLinks.map((navLink, index) => (
+              <div key={index} className="first:pt-4 lg:first:pt-0 ">
+                {navLink.subMenuLinks && navLink.subMenuLinks.length > 0 ? (
+                  <SubMenu navLink={navLink} isMobile={isMobile} />
+                ) : (
+                  <HashLink
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    to={navLink.url}
+                    className=" md:border-0 border-b border-white border-opacity-10 mb-3 md:mb-0 block py-3 text-md lg:px-4 lg:py-2 lg:text-base md:hover:text-neutral-dark"
+                  >
+                    {navLink.title}
+                  </HashLink>
+                )}
+              </div>
+            ))}
+          </motion.div>
+
+
+          <div className="hidden flex-row justify-self-end lg:flex lg:gap-5">
+            <button onClick={() => setSearchOpen()} >
+              <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+            </button>
+
+            <Link to={loggedIn ? "/profile" : "/login"}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+            <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+          </div>
+
         </div>
-        <motion.div
-          variants={{
-            open: {
-              height: "var(--height-open, 100dvh)",
-            },
-            close: {
-              height: "var(--height-closed, 0)",
-            },
-          }}
-          animate={isMobileMenuOpen ? "open" : "close"}
-          initial="close"
-          exit="close"
-          transition={{ duration: 0.4 }}
-          className="overflow-hidden px-[5%] bg-primary md:bg-primary_bg md:text-jett_black text-white text-start md:text-center lg:flex lg:items-center lg:justify-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
-        >
-          {navLinks.map((navLink, index) => (
-            <div key={index} className="first:pt-4 lg:first:pt-0 ">
-              {navLink.subMenuLinks && navLink.subMenuLinks.length > 0 ? (
-                <SubMenu navLink={navLink} isMobile={isMobile} />
-              ) : (
-                <HashLink
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  to={navLink.url}
-                  className=" md:border-0 border-b border-white border-opacity-10 mb-3 md:mb-0 block py-3 text-md lg:px-4 lg:py-2 lg:text-base md:hover:text-neutral-dark"
-                >
-                  {navLink.title}
-                </HashLink>
-              )}
-            </div>
-          ))}
-        </motion.div>
-
-
-        <div className="hidden flex-row justify-self-end lg:flex lg:gap-5">
-          <button onClick={() => setSearchOpen()} >
-            <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
-          </button>
-
-          <Link to={loggedIn ? "/profile" : "/login"}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
-          <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
-        </div>
-
-      </div>
-    </nav>
+      </nav>
     </>
   );
 };
