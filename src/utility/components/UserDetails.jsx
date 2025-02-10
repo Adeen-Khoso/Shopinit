@@ -10,10 +10,14 @@ const UserDetails = ({
 }) => {
   return (
     <>
-      <div>
+      <div className="w-full bg-secondary_bg flex ">
         {/* user pfp */}
-        <div>
-          <img src={img} alt="" />
+        <div className="size-14 overflow-hidden rounded-full">
+          <img
+            className="w-full h-full object-cover"
+            src={img}
+            alt="User Profile"
+          />
         </div>
 
         {/* user data */}
