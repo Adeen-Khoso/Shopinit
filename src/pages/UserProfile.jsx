@@ -1,7 +1,12 @@
 import React from "react";
+import Gradient from "../utility/Gradient";
 
 const UserProfile = () => {
-  return <div>UserProfile</div>;
+  return (
+    <>
+      <Gradient />
+    </>
+  );
 };
 
 export default UserProfile;

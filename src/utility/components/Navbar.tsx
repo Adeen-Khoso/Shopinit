@@ -12,7 +12,7 @@ import logoImage from "../../assets/logo.png";
 import { CiSearch, CiUser } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { Link } from "react-router";
-import SearchBox from "../SearchBox";
+import SearchBox from "./SearchBox"
 
 type ImageProps = {
   url?: string;
