@@ -6,14 +6,14 @@ import blonde from "../../assets/blonde.jpg";
 const UserDetails = ({
   img = blonde,
   name = "Alexa Rawles",
-  bio = "Hey👋, This is Alexa here",
+  bio = "Hey👋, This is your fav blonde Alexa herself !  ",
 }) => {
   return (
     <>
-      <div className="w-[100vw] h-[16vh] md:h-[20vh] bg-secondary_bg border-b rounded-none border-opacity-5 flex justify-between items-center px-[5%] py-[7%] ">
+      <div className="w-[100vw] max-h-[40vh]  md:h-[20vh] border-b rounded-none border-opacity-5 flex flex-col gap-7 md:flex-row justify-center md:justify-between md:items-center p-[5%] ">
         {/* user data */}
-        <div className="flex gap-4 items-center">
-          <div className="size-14 overflow-hidden rounded-full">
+        <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
+          <div className=" size-14 overflow-hidden rounded-full">
             <img
               className="w-full h-full object-cover"
               src={img}
@@ -21,18 +21,20 @@ const UserDetails = ({
             />
           </div>
           <div className="flex flex-col">
-            <h4 className=" text-xl">{name}</h4>
-            <p className=" text-sm text-background-tertiary">{bio}</p>
+            <h4 className=" text-md md:text-xl">{name}</h4>
+            <p className=" text-xs md:text-sm text-background-tertiary">
+              {bio}
+            </p>
           </div>
         </div>
 
         {/* buttons */}
         <div className="flex flex-row items-center gap-4">
-          <Button className={cn(buttonStyles)}>button</Button>
+          <Button className={cn(buttonStyles)}>Edit</Button>
           <Button
             className={cn(buttonStyles, "bg-secondary_bg text-jett_black")}
           >
-            button
+            Bookmarks
           </Button>
         </div>
       </div>
