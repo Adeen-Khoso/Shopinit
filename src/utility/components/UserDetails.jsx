@@ -13,7 +13,7 @@ const UserDetails = ({
       <div className="w-[100vw] max-h-[40vh]  md:h-[20vh] border-b rounded-none border-opacity-5 flex flex-col gap-7 md:flex-row justify-center md:justify-between md:items-center p-[5%] ">
         {/* user data */}
         <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
-          <div className=" size-14 overflow-hidden rounded-full">
+          <div className=" size-16 md:size-14 overflow-hidden rounded-full">
             <img
               className="w-full h-full object-cover"
               src={img}
@@ -22,9 +22,7 @@ const UserDetails = ({
           </div>
           <div className="flex flex-col">
             <h4 className=" text-md md:text-xl">{name}</h4>
-            <p className=" text-xs md:text-sm text-background-tertiary">
-              {bio}
-            </p>
+            <p className=" text-sm text-background-tertiary">{bio}</p>
           </div>
         </div>
 
