@@ -16,6 +16,8 @@ export default {
       jett_black: "#1B1B1B",
       white: "#FFFFFF",
       grey: "#F2F2F2",
+      // dark_grey: "#cccccc",
+      dark_grey: "#b5b5b5",
     },
     extend: {
       fontFamily: {

@@ -9,8 +9,8 @@ const UserDetails = ({
   bio = "Hey👋, This is your fav blonde Alexa herself !  ",
 }) => {
   return (
-    <>
-      <div className="w-[100vw] max-h-[40vh]  md:h-[20vh] border-b rounded-none border-opacity-5 flex flex-col gap-7 md:flex-row justify-center md:justify-between md:items-center p-[5%] ">
+    <section>
+      <div className="w-[100vw] max-h-[40vh]  md:h-[20vh] flex flex-col gap-7 md:flex-row justify-center md:justify-between md:items-center p-[5%] ">
         {/* user data */}
         <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
           <div className=" size-16 md:size-14 overflow-hidden rounded-full">
@@ -36,7 +36,8 @@ const UserDetails = ({
           </Button>
         </div>
       </div>
-    </>
+      <div className="mx-auto mt-4 w-11/12 border-b border-dark_grey"></div>
+    </section>
   );
 };
 
