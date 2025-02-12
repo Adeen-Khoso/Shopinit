@@ -26,7 +26,7 @@ const UserDetails = ({
           </div>
         </div>
 
-        {/* buttons */}
+        {/* button div */}
         <div className="flex flex-row items-center gap-4">
           <Button className={cn(buttonStyles)}>Edit</Button>
           <Button
