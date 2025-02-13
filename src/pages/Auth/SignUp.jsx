@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Signup3 } from "../../utility/components/SignUpForm";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
 import { app } from "../../firebase";
-export const auth = getAuth(app);
 
 const SignUp = () => {
+  const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,6 +13,8 @@ const SignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        toast.success("Account created successfully !");
+
         console.log(user);
       })
       .catch((error) => {
