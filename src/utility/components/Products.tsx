@@ -44,7 +44,7 @@ export const Product8 = (props: Product8Props) => {
             {button.title}
           </Button>
         </div>
-        <div className="grid grid-cols-1 justify-items-start gap-x-5 gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
+        <div className="grid grid-cols-2 justify-items-start gap-x-5 gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
           {products.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
