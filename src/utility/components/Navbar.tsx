@@ -41,7 +41,7 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [position, setPosition] = useState(0);
   const [scrollDirection, setScrollDirection] = useState<"up" | "down">("down");
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
   

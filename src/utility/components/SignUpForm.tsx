@@ -26,7 +26,13 @@ type Props = {
   footerText: string;
 };
 
-export type Signup3Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
+export type Signup3Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props> & {
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  createUser: () => void;
+};
 
 export const Signup3 = (props: Signup3Props) => {
   const {
@@ -38,18 +44,20 @@ export const Signup3 = (props: Signup3Props) => {
     signUpButton,
     signUpWithGoogleButton,
     footerText,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    createUser  
   } = {
     ...Signup3Defaults,
     ...props,
   };
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log({ name, email, password });
+    createUser();
+    console.log({ email, password });
   };
 
   return (
@@ -70,7 +78,7 @@ export const Signup3 = (props: Signup3Props) => {
           <p className="md:text-md">{description}</p>
         </div>
         <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1">
+          {/* <div className="grid grid-cols-1">
             <Label htmlFor="name" className="mb-2">
               Name*
             </Label>
@@ -82,7 +90,7 @@ export const Signup3 = (props: Signup3Props) => {
               onChange={(e) => setName(e.target.value)}
               required
             />
-          </div>
+          </div> */}
           <div className="grid grid-cols-1">
             <Label htmlFor="email" className="mb-2">
               Email*
@@ -156,7 +164,7 @@ export const Signup3Defaults: Props = {
     url: "/login",
   },
   title: "Sign Up",
-  description: "Lorem ipsum dolor sit amet adipiscing elit.",
+  description: "Join us and create your account.",
   signUpButton: {
     title: "Sign up",
   },
