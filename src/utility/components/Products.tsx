@@ -1,5 +1,6 @@
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { Button, cn } from "@relume_io/relume-ui";
+import { useState } from "react";
 import { RxChevronDown } from "react-icons/rx";
 
 type ImageProps = {
@@ -31,20 +32,31 @@ export const Product8 = (props: Product8Props) => {
     ...Product8Defaults,
     ...props,
   };
+
+  const categories = [ 'All products','Electronics', 'Clothing', 'Furniture', 'Cars', 'Bikes'];
+  const [selectedCategory, setSelectedCategory] = useState('');
+  
   return (
     <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
       <div className="container">
         <div className="mb-12 grid grid-cols-1 items-end gap-12 md:mb-18 md:grid-cols-[1fr_max-content] lg:mb-20 lg:gap-20">
           <div className="max-w-lg">
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
-            <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl">{heading}</h1>
+            <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl">{selectedCategory === "All products" ? "Products" : selectedCategory}</h1>
             <p className="md:text-md">{description}</p>
           </div>
-          <Button {...button}  className={cn("hidden md:flex", button.variant === "primary" ? " bg-primary text-white hover:bg-hov_primary" :"text-primary hover:text-opacity-80")}>
+          <Button {...button}  className={cn(" md:flex", button.variant === "primary" ? " bg-primary text-white hover:bg-hov_primary" :"text-primary hover:text-opacity-80")}>
+
+            <select className=" outline-none focus:border-black focus:ring-0 rounded-none" onChange={(e) => setSelectedCategory(e.target.value)} >
+              {categories.map((category, index) => (
+                <option key={index} value={category}>{category}</option>
+              ))}
+            </select>
+        
             {button.title}
           </Button>
         </div>
-        <div className="grid grid-cols-2 justify-items-start gap-x-5 gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-16 lg:grid-cols-3 lg:gap-x-12">
+        <div className="grid grid-cols-2 justify-items-start gap-x-5 gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-16 lg:grid-cols-4 lg:gap-x-12">
           {products.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
@@ -93,7 +105,7 @@ export const Product8Defaults: Props = {
   button: {
     variant: "secondary",
     size: "primary",
-    title: "Categories",
+    title: "",
   },
   products: [productData, productData, productData, productData, productData, productData],
 };
