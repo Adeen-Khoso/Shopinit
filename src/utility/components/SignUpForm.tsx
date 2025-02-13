@@ -116,6 +116,10 @@ export const Signup3 = (props: Signup3Props) => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            {password && password.length < 6 && (
+            <span className="text-text-error text-sm">
+              Must be at least 6 characters.
+            </span>)}
           </div>
           <div className="grid grid-cols-1 gap-4">
             <Button
