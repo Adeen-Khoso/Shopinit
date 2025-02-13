@@ -117,7 +117,7 @@ export const Signup3 = (props: Signup3Props) => {
               required
             />
             {password && password.length < 6 && (
-            <span className="text-text-error text-sm">
+            <span className="text-system-error-red text-sm">
               Must be at least 6 characters.
             </span>)}
           </div>
