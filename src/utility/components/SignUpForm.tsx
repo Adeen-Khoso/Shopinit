@@ -112,8 +112,8 @@ export const Signup3 = (props: Signup3Props) => {
               required
             />
             {error && error.includes("email") && (
-            <span className="text-system-error-red text-sm">
-              {error.replace("auth/", "This is an ")}
+            <span className="text-system-error-red text-sm mt-1">
+              {error.replace("auth/invalid-email", "Invalid email, try again.")}
             </span>)}
             
           </div>
@@ -130,7 +130,7 @@ export const Signup3 = (props: Signup3Props) => {
               required
             />
             {password && password.length < 6 && (
-            <span className="text-system-error-red text-sm">
+            <span className="text-system-error-red text-sm mt-1">
               Must be at least 6 characters.
             </span>)}
           </div>

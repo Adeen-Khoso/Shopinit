@@ -7,6 +7,8 @@ const Login = () => {
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   const loginUser = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -15,9 +17,11 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setError(errorCode);
         console.log(errorCode, errorMessage);
       });
   };
+
   return (
     <>
       <Login3
@@ -26,6 +30,8 @@ const Login = () => {
         password={password}
         setPassword={setPassword}
         loginUser={loginUser}
+        error={error}
+        setError={setError}
       />
     </>
   );

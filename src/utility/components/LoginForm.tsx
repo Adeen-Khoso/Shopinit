@@ -30,7 +30,15 @@ type Props = {
   footerText: string;
 };
 
-export type Login3Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
+export type Login3Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>  & {
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  password: string;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  loginUser: () => void;
+  error:string;
+  setError: React.Dispatch<React.SetStateAction<string>>;
+};
 
 export const Login3 = (props: Login3Props) => {
   const {
@@ -43,16 +51,22 @@ export const Login3 = (props: Login3Props) => {
     logInWithGoogleButton,
     forgotPassword,
     footerText,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loginUser ,
+    error,
+    setError
   } = {
     ...Login3Defaults,
     ...props,
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    loginUser();
     console.log({ email, password });
   };
 
@@ -81,7 +95,11 @@ export const Login3 = (props: Login3Props) => {
                 className="rounded-none"
                 id="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                   setEmail(e.target.value);
+                   setError("");
+                  }
+                }
                 required
               />
             </div>
@@ -102,6 +120,11 @@ export const Login3 = (props: Login3Props) => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+              {error && (
+                <span className="text-system-error-red text-sm mt-1">
+                 {error.replace("auth/invalid-credential", "Invalid Credentials, try again ")}
+                </span>)
+              }
             </div>
             <div className="grid gap-4">
               <Button
