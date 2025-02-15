@@ -108,9 +108,9 @@ export const Login3 = (props: Login3Props) => {
                 <Label htmlFor="password" className="mb-2">
                   Password*
                 </Label>
-                <a href={forgotPassword.url} className="underline">
+                {/* <a href={forgotPassword.url} className="underline">
                   {forgotPassword.text}
-                </a>
+                </a> */}
               </div>
               <Input
                 type="password"
