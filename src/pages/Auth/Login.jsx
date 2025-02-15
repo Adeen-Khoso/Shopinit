@@ -7,7 +7,6 @@ const Login = () => {
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const loginUser = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
