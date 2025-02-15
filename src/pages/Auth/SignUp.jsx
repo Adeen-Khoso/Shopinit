@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Signup3 } from "../../utility/components/SignUpForm";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { app } from "../../firebase";
 
 const SignUp = () => {
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const createUser = () => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -21,6 +22,7 @@ const SignUp = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        setError(errorCode);
       });
   };
 
@@ -32,6 +34,8 @@ const SignUp = () => {
         password={password}
         setPassword={setPassword}
         createUser={createUser}
+        error={error}
+        setError={setError}
       />
     </>
   );

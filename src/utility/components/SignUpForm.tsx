@@ -32,6 +32,8 @@ export type Signup3Props = React.ComponentPropsWithoutRef<"section"> & Partial<P
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   createUser: () => void;
+  error:string;
+  setError: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const Signup3 = (props: Signup3Props) => {
@@ -48,7 +50,9 @@ export const Signup3 = (props: Signup3Props) => {
     setEmail,
     password,
     setPassword,
-    createUser  
+    createUser ,
+    error,
+    setError
   } = {
     ...Signup3Defaults,
     ...props,
@@ -100,9 +104,18 @@ export const Signup3 = (props: Signup3Props) => {
               className="rounded-none"
               id="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError("");
+                }
+              }
               required
             />
+            {error && error.includes("email") && (
+            <span className="text-system-error-red text-sm">
+              {error.replace("auth/", "This is an ")}
+            </span>)}
+            
           </div>
           <div className="grid grid-cols-1">
             <Label htmlFor="password" className="mb-2">
