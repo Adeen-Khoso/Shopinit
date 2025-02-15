@@ -67,7 +67,6 @@ export const Login3 = (props: Login3Props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     loginUser();
-    console.log({ email, password });
   };
 
   return (
@@ -117,7 +116,10 @@ export const Login3 = (props: Login3Props) => {
                 className="rounded-none"
                 id="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                  setError("");
+                }}
                 required
               />
               {error && (

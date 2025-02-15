@@ -7,7 +7,28 @@ import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import UserProfile from "./pages/UserProfile";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { app } from "./firebase";
+
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth(app);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("User is signed in", user);
+      } else {
+        setUser(null);
+        console.log("User is signed out");
+      }
+    });
+  }, []);
+
+  console.log(user);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -27,7 +48,7 @@ function App() {
         },
         {
           path: "/profile",
-          element: <UserProfile />,
+          element: user ? <UserProfile /> : <Login />,
         },
       ],
     },
