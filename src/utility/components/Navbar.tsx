@@ -295,6 +295,7 @@ export const Navbar2Defaults: Props = {
     {
       title: "Contact",
       url: "#footer",
+      
       // subMenuLinks: [
       //   { title: "Contact", url: "/#footer" },
       //   { title: "Reviews", url: "/#reviews" },
