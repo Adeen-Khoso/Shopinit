@@ -32,7 +32,7 @@ const UserDetails = ({
           <Button
             className={cn(buttonStyles, "bg-secondary_bg text-jett_black")}
           >
-            Bookmarks
+            Logout
           </Button>
         </div>
       </div>
