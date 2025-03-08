@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Login3 } from "../../utility/components/LoginForm";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const auth = getAuth(app);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +15,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log("success login user credential", userCredential);
+        navigate("/profile");
       })
       .catch((error) => {
         const errorCode = error.code;
