@@ -241,7 +241,7 @@ const SubMenu = ({
             initial: { rotate: 0 },
           }}
           transition={{ duration: 0.3 }}
-        >
+        > sell
           <RxChevronDown />
         </motion.span>
       </button>
@@ -290,7 +290,7 @@ export const Navbar2Defaults: Props = {
   },
   navLinks: [
     { title: "Shop Now", url: "/products" },
-    { title: "Sell Now", url: "/login" }, // hardcoded for now, later will be based on whether user is logged in or not and then be set to selling page accordingly
+    { title: "Sell Now", url: "/sell" }, // hardcoded for now, later will be based on whether user is logged in or not and then be set to selling page accordingly
     { title: "About Us", url: "/#explore" },
     {
       title: "Contact",

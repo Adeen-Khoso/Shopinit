@@ -7,6 +7,7 @@ import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/SignUp";
 import UserProfile from "./pages/UserProfile";
+import SellPage from "./pages/SellPage";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { app } from "./firebase";
@@ -48,11 +49,11 @@ function App() {
         },
         {
           path: "/profile",
-          element: user ? (
-            <UserProfile user={user} />
-          ) : (
-            <Navigate to="/login" replace />
-          ),
+          element: user ? <UserProfile /> : <Navigate to="/login" replace />,
+        },
+        {
+          path: "/sell",
+          element: user ? <SellPage /> : <Navigate to="/login" replace />,
         },
       ],
     },
