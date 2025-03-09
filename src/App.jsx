@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import MainLayout from "./layouts/MainLayout";
@@ -48,7 +48,11 @@ function App() {
         },
         {
           path: "/profile",
-          element: user ? <UserProfile user={user} /> : <Login />,
+          element: user ? (
+            <UserProfile user={user} />
+          ) : (
+            <Navigate to="/login" replace />
+          ),
         },
       ],
     },
