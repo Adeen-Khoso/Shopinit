@@ -3,7 +3,8 @@ import Gradient from "../utility/Gradient";
 import UserDetails from "../utility/components/UserDetails";
 import { Product8 } from "../utility/components/Products";
 
-const UserProfile = () => {
+const UserProfile = ({ user }) => {
+  console.log(user);
   const products = [];
 
   const productProps = {
@@ -20,7 +21,7 @@ const UserProfile = () => {
   return (
     <>
       <Gradient />
-      <UserDetails />
+      <UserDetails email={user.email} />
       <Product8 {...productProps} />
     </>
   );

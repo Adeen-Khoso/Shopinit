@@ -10,12 +10,12 @@ import UserProfile from "./pages/UserProfile";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { app } from "./firebase";
+export const auth = getAuth(app);
 
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const auth = getAuth(app);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
@@ -48,7 +48,7 @@ function App() {
         },
         {
           path: "/profile",
-          element: user ? <UserProfile /> : <Login />,
+          element: user ? <UserProfile user={user} /> : <Login />,
         },
       ],
     },

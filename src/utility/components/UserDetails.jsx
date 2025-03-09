@@ -2,11 +2,13 @@ import React from "react";
 import { Button, cn } from "@relume_io/relume-ui";
 const buttonStyles = "bg-primary text-white hover:bg-hov_primary";
 import blonde from "../../assets/blonde.jpg";
+import { auth } from "../../App";
+import { signOut } from "firebase/auth";
 
 const UserDetails = ({
   img = blonde,
   name = "Alexa Rawles",
-  bio = "Hey👋, This is your fav blonde Alexa herself !  ",
+  email = "Hey👋, This is your fav blonde Alexa herself !  ",
 }) => {
   return (
     <section>
@@ -22,7 +24,7 @@ const UserDetails = ({
           </div>
           <div className="flex flex-col">
             <h4 className=" text-md md:text-xl">{name}</h4>
-            <p className=" text-sm text-background-tertiary">{bio}</p>
+            <p className=" text-sm text-background-tertiary">{email}</p>
           </div>
         </div>
 
@@ -30,6 +32,7 @@ const UserDetails = ({
         <div className="flex flex-row items-center gap-4">
           <Button className={cn(buttonStyles)}>Edit</Button>
           <Button
+            onClick={() => signOut(auth)}
             className={cn(buttonStyles, "bg-secondary_bg text-jett_black")}
           >
             Logout
