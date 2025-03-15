@@ -12,6 +12,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { app } from "./firebase";
 export const auth = getAuth(app);
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,8 +28,6 @@ function App() {
       }
     });
   }, []);
-
-  console.log(user);
 
   const router = createBrowserRouter([
     {
@@ -74,7 +73,9 @@ function App() {
   ]);
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider user={user}>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }
