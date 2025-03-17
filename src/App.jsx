@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import { app } from "./firebase";
 export const auth = getAuth(app);
 import { AuthProvider } from "./context/AuthContext";
+import ProfileSetup from "./pages/ProfileSetup";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -48,11 +50,27 @@ function App() {
         },
         {
           path: "/profile",
-          element: user ? <UserProfile /> : <Navigate to="/login" replace />,
+          element: user ? (
+            user.name ? (
+              <UserProfile />
+            ) : (
+              <Navigate to="/profileSetup" replace />
+            )
+          ) : (
+            <Navigate to="/login" replace />
+          ),
         },
         {
           path: "/sell",
           element: user ? <SellPage /> : <Navigate to="/login" replace />,
+        },
+        {
+          path: "/profileSetup",
+          element: user ? <ProfileSetup /> : <Navigate to="/login" replace />,
+        },
+        {
+          path: "/editProfile",
+          element: user ? <EditProfile /> : <Navigate to="/login" replace />,
         },
       ],
     },
