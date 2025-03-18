@@ -15,14 +15,18 @@ export const auth = getAuth(app);
 import { AuthProvider } from "./context/AuthContext";
 import ProfileSetup from "./pages/ProfileSetup";
 import EditProfile from "./pages/EditProfile";
+import Loader from "./utility/Loader";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        setIsAuthLoading(false);
+
         console.log("User is signed in", user);
       } else {
         setUser(null);
@@ -31,6 +35,9 @@ function App() {
     });
   }, []);
 
+  if (isAuthLoading) {
+    return <Loader />;
+  }
   const router = createBrowserRouter([
     {
       path: "/",
