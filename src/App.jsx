@@ -30,6 +30,7 @@ function App() {
         console.log("User is signed in", user);
       } else {
         setUser(null);
+        setIsAuthLoading(false);
         console.log("User is signed out");
       }
     });
