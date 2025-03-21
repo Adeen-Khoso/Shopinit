@@ -88,7 +88,11 @@ function App() {
       children: [
         {
           path: "/login",
-          element: <Login />,
+          element: user ? (
+            <Navigate to="/" replace />
+          ) : (
+            <Navigate to="/login" replace />
+          ),
         },
         {
           path: "/signup",
