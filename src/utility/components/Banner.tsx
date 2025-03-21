@@ -53,6 +53,6 @@ export const Banner14 = (props: Banner14Props) => {
 
 export const Banner14Defaults: Props = {
   headings: [
-    "Every Purchase Supports Charity, Welfare and Community.",
+    "Every Purchase Supports Charity and Welfare.",
   ],
 };
