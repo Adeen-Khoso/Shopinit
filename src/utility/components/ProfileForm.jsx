@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import {
   FiEdit3,
   FiEdit2,
+  FiTrash,
   FiEdit,
   FiUploadCloud,
   FiUpload,
@@ -36,12 +37,17 @@ const ProfileForm = ({ onSave }) => {
     fileInputRef.current.click();
   };
 
+  const removeImg = () => {
+    setSelectedImage(null);
+    setUploaded(false);
+  };
+
   return (
     <>
       <Gradient />
 
       <div className="w-[100vw] max-h-[40vh] md:h-[20vh] flex flex-col gap-7 md:flex-row justify-center md:justify-between md:items-center p-[5%]">
-        <div className="flex flex-row md:flex-row gap-3 md:gap-4 items-center md:items-center">
+        <div className="flex justify-between flex-row md:flex-row gap-3 md:gap-4 items-center md:items-center">
           <div
             onClick={handleButtonClick}
             className=" cursor-pointer size-16 md:size-18 overflow-hidden rounded-full bg-primary hover:bg-hov_primary flex items-center justify-center relative"
@@ -66,21 +72,29 @@ const ProfileForm = ({ onSave }) => {
               <FiUploadCloud className=" text-primary_bg size-5" />
             )}
           </div>
-          <div className="flex flex-col">
+
+          <Button
+            onClick={handleButtonClick}
+            className=" text-text-primary bg-secondary_bg text-sm hover:bg-white  "
+          >
+            {uploaded ? "Change" : "Upload"}
+            <input
+              ref={fileInputRef}
+              type="file"
+              className=" hidden"
+              onChange={handleImageChange}
+            />
+            <FiUpload className=" " />
+          </Button>
+
+          {selectedImage ? (
             <Button
-              onClick={handleButtonClick}
-              className=" text-text-primary bg-secondary_bg text-sm hover:bg-white  "
+              onClick={removeImg}
+              className=" text-text-primary bg-secondary_bg text-sm hover:bg-white "
             >
-              Upload
-              <input
-                ref={fileInputRef}
-                type="file"
-                className=" hidden"
-                onChange={handleImageChange}
-              />
-              <FiUpload className=" size-3" />
+              Remove <FiTrash />
             </Button>
-          </div>
+          ) : null}
         </div>
 
         <div>done</div>
