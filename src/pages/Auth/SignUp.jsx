@@ -11,13 +11,29 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  toast.success("Account created successfully !", {
+    icon: "☑️",
+    style: {
+      borderRadius: "0px",
+      background: "white",
+      color: "#333",
+      borderWidth: "1px",
+    },
+  });
 
   const createUser = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         navigate("/login");
         const user = userCredential.user;
-        toast.success("Account created successfully !");
+        toast.success("Account created successfully !", {
+          icon: "☑️",
+          style: {
+            borderRadius: "0px",
+            background: "#FFF5F5",
+            color: "#333",
+          },
+        });
 
         console.log(user);
       })
