@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Signup3 } from "../../utility/components/SignUpForm";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { toast } from "react-toastify";
 import { app } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const navigate = useNavigate();

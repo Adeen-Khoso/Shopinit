@@ -61,7 +61,6 @@ export const Signup3 = (props: Signup3Props) => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     createUser();
-    console.log({ email, password });
   };
 
   return (
@@ -113,6 +112,7 @@ export const Signup3 = (props: Signup3Props) => {
             />
             {error && error.includes("email") && (
             <span className="text-system-error-red text-sm mt-1">
+              {error.replace('auth/email-already-in-use', "Email already in use, try again.")}
               {error.replace("auth/invalid-email", "Invalid email, try again.")}
             </span>)}
             

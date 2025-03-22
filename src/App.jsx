@@ -58,15 +58,7 @@ function App() {
         },
         {
           path: "/profile",
-          element: user ? (
-            user.name ? (
-              <UserProfile />
-            ) : (
-              <Navigate to="/profileSetup" replace />
-            )
-          ) : (
-            <Navigate to="/login" replace />
-          ),
+          element: user ? <UserProfile /> : <Navigate to="/login" replace />,
         },
         {
           path: "/sell",
@@ -88,11 +80,20 @@ function App() {
       children: [
         {
           path: "/login",
-          element: <Login />,
+          element: user ? <Navigate to="/" replace /> : <Login />,
         },
         {
           path: "/signup",
-          element: <SignUp />,
+          // element: <SignUp />,
+          element: user ? (
+            user.name ? (
+              <Navigate to="/" replace />
+            ) : (
+              <Navigate to="/profileSetup" replace />
+            )
+          ) : (
+            <SignUp />
+          ),
         },
       ],
     },

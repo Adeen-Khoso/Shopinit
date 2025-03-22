@@ -1,21 +1,12 @@
 import React from "react";
 import Cursor from "../utility/Cursor";
 import { Outlet } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 
 const AuthLayout = () => {
   return (
     <>
-      <ToastContainer
-        draggable
-        toastStyle={{
-          backgroundColor: "FFF5F5",
-          color: "#333",
-          borderRadius: "0px",
-          cursor: "pointer",
-          color: "#2F3C7E",
-        }}
-      />
+      <Toaster position="top-right" />
       <Cursor />
       <Outlet />
     </>

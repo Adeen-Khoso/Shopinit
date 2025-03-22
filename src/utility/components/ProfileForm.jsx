@@ -12,6 +12,7 @@ import {
 } from "react-icons/fi";
 import blonde from "../../assets/blonde.jpg";
 import { Button, cn } from "@relume_io/relume-ui";
+import toast from "react-hot-toast";
 
 const ProfileForm = ({ onSave }) => {
   // const { user } = useContext(AuthContext);
@@ -97,7 +98,6 @@ const ProfileForm = ({ onSave }) => {
           ) : null}
         </div>
       </div>
-
       {/* <form className="flex p-[5%]">hi </form> */}
     </>
   );
