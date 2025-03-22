@@ -14,6 +14,14 @@ const Login = () => {
   const loginUser = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        toast.success("Logged in successfully !", {
+          icon: "☑️",
+          style: {
+            borderRadius: "0px",
+            background: "#FFF5F5",
+            color: "#333",
+          },
+        });
         console.log("success login user credential", userCredential);
         navigate("/profile");
       })
