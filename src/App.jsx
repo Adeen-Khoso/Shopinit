@@ -84,16 +84,16 @@ function App() {
         },
         {
           path: "/signup",
-          // element: <SignUp />,
-          element: user ? (
-            user.name ? (
-              <Navigate to="/" replace />
-            ) : (
-              <Navigate to="/profileSetup" replace />
-            )
-          ) : (
-            <SignUp />
-          ),
+          element: <SignUp />,
+          // element: user ? (
+          //   user.name ? (
+          //     <Navigate to="/" replace />
+          //   ) : (
+          //     <Navigate to="/profileSetup" replace />
+          //   )
+          // ) : (
+          //   <SignUp />
+          // ),
         },
       ],
     },

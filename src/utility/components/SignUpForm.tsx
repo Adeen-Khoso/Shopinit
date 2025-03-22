@@ -63,6 +63,11 @@ export const Signup3 = (props: Signup3Props) => {
     createUser();
   };
 
+  const errorMessages : Record<string, string>  = {
+    "auth/email-already-in-use": "Email already in use, try again.",
+    "auth/invalid-email": "Invalid email format.",
+  };
+
   return (
     <section
       id="relume"
@@ -112,8 +117,7 @@ export const Signup3 = (props: Signup3Props) => {
             />
             {error && error.includes("email") && (
             <span className="text-system-error-red text-sm mt-1">
-              {error.replace('auth/email-already-in-use', "Email already in use, try again.")}
-              {error.replace("auth/invalid-email", "Invalid email, try again.")}
+              {errorMessages[error] || "Something went wrong. Try again."}
             </span>)}
             
           </div>
