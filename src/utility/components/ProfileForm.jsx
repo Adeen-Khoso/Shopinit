@@ -46,63 +46,59 @@ const ProfileForm = ({ onSave }) => {
     <>
       <Gradient />
 
-      <div className="w-[100vw] max-h-[40vh] md:h-[20vh] flex flex-col gap-7 md:flex-row justify-center md:justify-between md:items-center p-[5%]">
-        <div className="flex justify-between flex-row md:flex-row gap-3 md:gap-4 items-center">
-          <div
-            onClick={handleButtonClick}
-            className=" cursor-pointer size-16 md:size-18 overflow-hidden rounded-full bg-primary hover:bg-hov_primary flex items-center justify-center relative"
-          >
-            {selectedImage ? (
-              <>
-                <img
-                  className={cn(
-                    "w-full h-full object-cover",
-                    uploaded ? "brightness-100" : "brightness-50"
-                  )}
-                  src={selectedImage}
-                  alt="User Profile"
-                />
-                {!uploaded ? (
-                  <div className="absolute inset-0 flex items-center justify-center transition ">
-                    <FiEdit className="text-white size-6 hover:text-primary_bg " />
-                  </div>
-                ) : null}
-              </>
-            ) : (
-              <FiUploadCloud className=" text-primary_bg size-5" />
-            )}
-          </div>
-
-          <div className="flex gap-[6px] md:gap-3">
-            <Button
-              onClick={handleButtonClick}
-              className=" text-text-primary bg-secondary_bg text-xs md:text-sm hover:bg-white "
-            >
-              {uploaded ? "Change" : "Upload"}
-              <input
-                ref={fileInputRef}
-                type="file"
-                className=" hidden"
-                onChange={handleImageChange}
+      <div className="flex justify-between flex-row md:flex-row gap-3 md:gap-4 items-center p-[5%]">
+        <div
+          onClick={handleButtonClick}
+          className=" cursor-pointer size-16 md:size-18 overflow-hidden rounded-full bg-primary hover:bg-hov_primary flex items-center justify-center relative"
+        >
+          {selectedImage ? (
+            <>
+              <img
+                className={cn(
+                  "w-full h-full object-cover",
+                  uploaded ? "brightness-100" : "brightness-50"
+                )}
+                src={selectedImage}
+                alt="User Profile"
               />
-              <FiUpload className="w-2 md:w-3 text-primary" />
-            </Button>
-
-            {selectedImage ? (
-              <Button
-                onClick={removeImg}
-                className=" text-text-primary bg-secondary_bg text-xs md:text-sm hover:bg-white "
-              >
-                Remove <FiTrash className="w-2 md:w-3 text-primary" />
-              </Button>
-            ) : null}
-          </div>
+              {!uploaded ? (
+                <div className="absolute inset-0 flex items-center justify-center transition ">
+                  <FiEdit className="text-white size-6 hover:text-primary_bg " />
+                </div>
+              ) : null}
+            </>
+          ) : (
+            <FiUploadCloud className=" text-primary_bg size-5" />
+          )}
         </div>
 
-        <div>done</div>
+        <div className="flex gap-[6px] md:gap-3">
+          <Button
+            onClick={handleButtonClick}
+            className=" text-text-primary bg-secondary_bg text-xs md:text-sm hover:bg-white "
+          >
+            {uploaded ? "Change" : "Upload"}
+            <input
+              ref={fileInputRef}
+              type="file"
+              className=" hidden"
+              onChange={handleImageChange}
+            />
+            <FiUpload className="w-2 md:w-3 text-primary" />
+          </Button>
+
+          {selectedImage ? (
+            <Button
+              onClick={removeImg}
+              className=" text-text-primary bg-secondary_bg text-xs md:text-sm hover:bg-white "
+            >
+              Remove <FiTrash className="w-2 md:w-3 text-primary" />
+            </Button>
+          ) : null}
+        </div>
       </div>
 
-      <form className="grid grid-cols-1 gap-6" onSubmit={onSave}></form>
+      {/* <form className="flex p-[5%]">hi </form> */}
     </>
   );
 };
