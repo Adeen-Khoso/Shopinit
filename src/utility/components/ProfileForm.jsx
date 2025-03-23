@@ -11,7 +11,7 @@ import {
   FiUpload,
 } from "react-icons/fi";
 import blonde from "../../assets/blonde.jpg";
-import { Button, cn } from "@relume_io/relume-ui";
+import { Button, cn, Input, Label } from "@relume_io/relume-ui";
 import toast from "react-hot-toast";
 
 const ProfileForm = ({ onSave }) => {
@@ -99,7 +99,62 @@ const ProfileForm = ({ onSave }) => {
           ) : null}
         </div>
       </div>
-      {/* <form className="flex p-[5%]">hi </form> */}
+
+      <form
+        onSubmit={onSave}
+        className="flex flex-col mt-3 md:justify-between md:mt-0 gap-8 md:gap-14 px-[5%]"
+      >
+        <div className="flex flex-col justify-center md:justify-between md:-mt-4 md:flex-row gap-3 ">
+          <div className="grid grid-cols-1 md:w-[30%]">
+            <Label htmlFor="name" className="mb-2">
+              Name
+            </Label>
+            <Input
+              type="text"
+              id="name"
+              className="rounded-none "
+              placeholder="Your Name"
+              // value={name}
+              // onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="grid grid-cols-1 md:w-[30%]">
+            <Label htmlFor="name" className="mb-2">
+              Bio
+            </Label>
+            <Input
+              type="text"
+              id="name"
+              className="rounded-none"
+              placeholder="Your Bio"
+              // value={name}
+              // onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="grid grid-cols-1 md:w-[30%]">
+            <Label htmlFor="name" className="mb-2">
+              Pronouns
+            </Label>
+            <Input
+              type="text"
+              id="name"
+              className="rounded-none"
+              placeholder="He/Him"
+              // value={name}
+              // onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        <Button
+          className=" bg-primary hover:bg-hov_primary text-white md:w-32 "
+          type="submit"
+        >
+          Done
+        </Button>
+      </form>
     </>
   );
 };

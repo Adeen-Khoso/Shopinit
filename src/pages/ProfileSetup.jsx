@@ -6,8 +6,9 @@ import { AuthContext } from "../context/AuthContext";
 const ProfileSetup = () => {
   const { user } = useContext(AuthContext);
 
-  const onSave = () => {
+  const onSave = (event) => {
     console.log("New Profile saved");
+    event.preventDefault();
   };
 
   const hasShownToast = useRef(false);
