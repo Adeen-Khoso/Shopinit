@@ -1,33 +1,52 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Button, cn } from "@relume_io/relume-ui";
 const buttonStyles = "bg-primary text-white hover:bg-hov_primary";
 import blonde from "../../assets/blonde.jpg";
 import { auth } from "../../App";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
+import { FiUser } from "react-icons/fi";
 
-const UserDetails = ({
-  img = blonde,
-  name = "Alexa Rawles",
-  email = "Hey👋, This is your fav blonde Alexa herself !  ",
-}) => {
+const UserDetails = () => {
+  const { user } = useContext(AuthContext);
+  // const user = {
+  //   img: blonde,
+  //   name: "John Doe",
+  //   bio: "I am a software developer",
+  //   pronouns: "He/Him",
+  // };
   const navigate = useNavigate();
+
+  const name = user.name || "Unknown";
+  const bio = user.bio || "No bio yet.";
+  const pronouns = user.pronouns || "Unknown/Unknown";
+  const img = user.img || null;
 
   return (
     <section>
       <div className="w-[100vw] max-h-[40vh]  md:h-[20vh] flex flex-col gap-7 md:flex-row justify-center md:justify-between md:items-center p-[5%] ">
         {/* user data */}
         <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
-          <div className=" size-16 md:size-14 overflow-hidden rounded-full">
-            <img
-              className="w-full h-full object-cover"
-              src={img}
-              alt="User Profile"
-            />
+          <div className=" size-16 md:size-14 overflow-hidden rounded-full bg-primary hover:bg-hov_primary flex items-center justify-center relative">
+            {img ? (
+              <img
+                className="w-full h-full object-cover"
+                src={img}
+                alt="User Profile"
+              />
+            ) : (
+              <FiUser className=" text-primary_bg size-5" />
+            )}
           </div>
           <div className="flex flex-col">
-            <h4 className=" text-md md:text-xl">{name}</h4>
-            <p className=" text-sm text-background-tertiary">{email}</p>
+            <h4 className=" text-md md:text-xl flex items-center gap-3">
+              {name}
+              <span className="text-xs text-jett_black text-opacity-50 md:-mb-[2px]">
+                {pronouns}
+              </span>
+            </h4>
+            <p className=" text-sm text-background-tertiary">{bio}</p>
           </div>
         </div>
 
