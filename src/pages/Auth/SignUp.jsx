@@ -17,27 +17,18 @@ const SignUp = () => {
       .then((userCredential) => {
         navigate("/login");
         const user = userCredential.user;
-        toast.success("Account created successfully !", {
-          icon: "☑️",
+        toast.success("Account created Successfully !", {
           style: {
             borderRadius: "0px",
             background: "#FFF5F5",
-            color: "#333",
+            color: "#2F3C7E",
+            border: "1px solid #2F3C7E",
+          },
+          iconTheme: {
+            primary: "#2F3C7E",
+            secondary: "#FFFAEE",
           },
         });
-
-        // toast.success("Account created Successfully !", {
-        //   style: {
-        //     borderRadius: "0px",
-        //     background: "#FFF5F5",
-        //     color: "#2F3C7E",
-        //     border: "1px solid #2F3C7E",
-        //   },
-        //   iconTheme: {
-        //     primary: "#2F3C7E",
-        //     secondary: "#FFFAEE",
-        //   },
-        // });
 
         console.log(user);
       })
