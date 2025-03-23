@@ -4,12 +4,15 @@ const buttonStyles = "bg-primary text-white hover:bg-hov_primary";
 import blonde from "../../assets/blonde.jpg";
 import { auth } from "../../App";
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router";
 
 const UserDetails = ({
   img = blonde,
   name = "Alexa Rawles",
   email = "Hey👋, This is your fav blonde Alexa herself !  ",
 }) => {
+  const navigate = useNavigate();
+
   return (
     <section>
       <div className="w-[100vw] max-h-[40vh]  md:h-[20vh] flex flex-col gap-7 md:flex-row justify-center md:justify-between md:items-center p-[5%] ">
@@ -30,7 +33,12 @@ const UserDetails = ({
 
         {/* button div */}
         <div className="flex flex-row items-center gap-4">
-          <Button className={cn(buttonStyles)}>Edit</Button>
+          <Button
+            onClick={() => navigate("/editProfile")}
+            className={cn(buttonStyles)}
+          >
+            Edit
+          </Button>
           <Button
             onClick={() => signOut(auth)}
             className={cn(buttonStyles, "bg-secondary_bg text-jett_black")}

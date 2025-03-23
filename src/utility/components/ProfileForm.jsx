@@ -18,6 +18,9 @@ const ProfileForm = ({ onSave }) => {
   const { user } = useContext(AuthContext);
   // const user = {
   //   img: blonde,
+  //   name: "John Doe",
+  //   bio: "I am a software developer",
+  //   pronouns: "He/Him",
   // };
 
   const [name, setName] = useState(user.name || "");
