@@ -31,6 +31,7 @@ const ProfileForm = ({ onSave }) => {
       setUploaded(true);
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
+      event.target.value = "";
     }
   };
 
