@@ -80,20 +80,12 @@ function App() {
       children: [
         {
           path: "/login",
-          element: user ? <Navigate to="/" replace /> : <Login />,
+          element: user ? <Navigate to="/profile" replace /> : <Login />,
         },
         {
           path: "/signup",
           // element: <SignUp />,
-          element: user ? (
-            user.name ? (
-              <Navigate to="/" replace />
-            ) : (
-              <Navigate to="/profileSetup" replace />
-            )
-          ) : (
-            <SignUp />
-          ),
+          element: user ? <Navigate to="/profileSetup" replace /> : <SignUp />,
         },
       ],
     },

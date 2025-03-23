@@ -11,15 +11,6 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  toast.success("Account created successfully !", {
-    icon: "☑️",
-    style: {
-      borderRadius: "0px",
-      background: "white",
-      color: "#333",
-      borderWidth: "1px",
-    },
-  });
 
   const createUser = () => {
     createUserWithEmailAndPassword(auth, email, password)

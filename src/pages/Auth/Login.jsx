@@ -3,6 +3,7 @@ import { Login3 } from "../../utility/components/LoginForm";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
