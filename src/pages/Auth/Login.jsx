@@ -23,6 +23,19 @@ const Login = () => {
             color: "#333",
           },
         });
+
+        // toast.success("Logged in successfully !", {
+        //   style: {
+        //     borderRadius: "0px",
+        //     background: "#FFF5F5",
+        //     color: "#2F3C7E",
+        //     border: "1px solid #2F3C7E",
+        //   },
+        //   iconTheme: {
+        //     primary: "#2F3C7E",
+        //     secondary: "#FFFAEE",
+        //   },
+        // });
         console.log("success login user credential", userCredential);
         navigate("/profile");
       })

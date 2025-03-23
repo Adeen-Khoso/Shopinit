@@ -15,12 +15,27 @@ import { Button, cn, Input, Label } from "@relume_io/relume-ui";
 import toast from "react-hot-toast";
 
 const ProfileForm = ({ onSave }) => {
-  // const { user } = useContext(AuthContext);
-  const user = {
-    img: blonde,
-  };
+  const { user } = useContext(AuthContext);
+  // const user = {
+  //   img: blonde,
+  // };
 
+  const [name, setName] = useState(user.name || "");
+  const [bio, setBio] = useState(user.bio || "");
+  const [pronouns, setPronouns] = useState(user.pronouns || "");
   const [selectedImage, setSelectedImage] = useState(user.img || null);
+
+  const dataObj = {
+    name,
+    bio,
+    pronouns,
+    img: selectedImage,
+  };
+  console.log(dataObj);
+
+  const updateData = (event) => {
+    onSave(event, name, bio, pronouns, selectedImage);
+  };
 
   const fileInputRef = useRef(null);
   const [uploaded, setUploaded] = useState(false);
@@ -101,7 +116,7 @@ const ProfileForm = ({ onSave }) => {
       </div>
 
       <form
-        onSubmit={onSave}
+        onSubmit={updateData}
         className="flex flex-col mt-3 md:justify-between md:mt-0 gap-8 md:gap-14 px-[5%]"
       >
         <div className="flex flex-col justify-center md:justify-between md:-mt-4 md:flex-row gap-3 ">
@@ -114,8 +129,8 @@ const ProfileForm = ({ onSave }) => {
               id="name"
               className="rounded-none "
               placeholder="Your Name"
-              // value={name}
-              // onChange={(e) => setName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
@@ -128,8 +143,8 @@ const ProfileForm = ({ onSave }) => {
               id="name"
               className="rounded-none"
               placeholder="Your Bio"
-              // value={name}
-              // onChange={(e) => setName(e.target.value)}
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
               required
             />
           </div>
@@ -142,8 +157,8 @@ const ProfileForm = ({ onSave }) => {
               id="name"
               className="rounded-none"
               placeholder="He/Him"
-              // value={name}
-              // onChange={(e) => setName(e.target.value)}
+              value={pronouns}
+              onChange={(e) => setPronouns(e.target.value)}
               required
             />
           </div>
