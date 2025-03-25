@@ -7,6 +7,8 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import { FiUser } from "react-icons/fi";
+import { FaStar } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
 
 const UserDetails = () => {
   const { user } = useContext(AuthContext);
@@ -52,6 +54,12 @@ const UserDetails = () => {
 
         {/* button div */}
         <div className="flex flex-row items-center gap-4">
+          <Button
+            onClick={() => navigate("/bookmarks")}
+            className={cn(buttonStyles, " h-[49.333px]")}
+          >
+            <FaHeart className="size-3" />
+          </Button>
           <Button
             onClick={() => navigate("/editProfile")}
             className={cn(buttonStyles)}
