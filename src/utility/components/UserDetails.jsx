@@ -56,9 +56,12 @@ const UserDetails = () => {
         <div className="flex flex-row items-center gap-4">
           <Button
             onClick={() => navigate("/bookmarks")}
-            className={cn(buttonStyles, " h-[49.333px]")}
+            className={cn(buttonStyles, " h-[49.333px] relative group")}
           >
             <FaHeart className="size-3" />
+            <span className="absolute left-1/2 -translate-x-1/2 -top-6 opacity-0 group-hover:opacity-100 transition bg-jett_black bg-opacity-30 text-white text-[8px] px-1 py-1  whitespace-nowrap hidden md:block">
+              Bookmarks
+            </span>
           </Button>
           <Button
             onClick={() => navigate("/editProfile")}
