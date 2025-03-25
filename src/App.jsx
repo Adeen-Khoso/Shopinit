@@ -15,6 +15,7 @@ export const auth = getAuth(app);
 import { AuthProvider } from "./context/AuthContext";
 import ProfileSetup from "./pages/ProfileSetup";
 import EditProfile from "./pages/EditProfile";
+import Bookmarks from "./pages/Bookmarks";
 import Loader from "./utility/Loader";
 
 function App() {
@@ -71,6 +72,10 @@ function App() {
         {
           path: "/editProfile",
           element: user ? <EditProfile /> : <Navigate to="/login" replace />,
+        },
+        {
+          path: "/bookmarks",
+          element: user ? <Bookmarks /> : <Navigate to="/login" replace />,
         },
       ],
     },
