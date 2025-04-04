@@ -4,6 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Loader from "../../utility/Loader";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,10 +12,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(null);
 
   const loginUser = () => {
+    setLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        setLoading(false);
         toast.success("Logged in successfully !", {
           style: {
             borderRadius: "0px",
@@ -31,6 +35,7 @@ const Login = () => {
         navigate("/profile");
       })
       .catch((error) => {
+        setLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(errorCode);
@@ -40,15 +45,19 @@ const Login = () => {
 
   return (
     <>
-      <Login3
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        loginUser={loginUser}
-        error={error}
-        setError={setError}
-      />
+      {loading ? (
+        <Loader />
+      ) : (
+        <Login3
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          loginUser={loginUser}
+          error={error}
+          setError={setError}
+        />
+      )}
     </>
   );
 };
