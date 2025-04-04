@@ -21,7 +21,7 @@ const Bookmarks = () => {
           <FaHeart className=" text-primary size-12 " />
           <h1 className="text-3xl  text-jett_black">No Bookmarks added yet</h1>
           <p className="-mt-4">
-            Choose the favs and add products to Bookmarks from{" "}
+            Choose the favs and add products to Bookmarks from
             <Link
               to={"/products"}
               className=" underline text-primary cursor-pointer"

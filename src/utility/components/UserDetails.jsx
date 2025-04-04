@@ -71,7 +71,10 @@ const UserDetails = () => {
           </Button>
           <Button
             onClick={() => signOut(auth)}
-            className={cn(buttonStyles, "bg-secondary_bg text-jett_black")}
+            className={cn(
+              buttonStyles,
+              " hover:bg-primary_bg bg-secondary_bg text-jett_black"
+            )}
           >
             Logout
           </Button>
