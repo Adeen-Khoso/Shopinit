@@ -4,6 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Loader from "../../utility/Loader";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -11,8 +12,10 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(null);
 
   const createUser = () => {
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         navigate("/login");
@@ -30,27 +33,32 @@ const SignUp = () => {
           },
         });
 
-        console.log(user);
+        setIsLoading(false);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
         setError(errorCode);
+        setIsLoading(false);
       });
   };
 
   return (
     <>
-      <Signup3
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        createUser={createUser}
-        error={error}
-        setError={setError}
-      />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Signup3
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          createUser={createUser}
+          error={error}
+          setError={setError}
+        />
+      )}
     </>
   );
 };
