@@ -23,6 +23,7 @@ const UserProfile = () => {
     <>
       <Gradient />
       <UserDetails />
+
       <Product8 {...productProps} />
     </>
   );
