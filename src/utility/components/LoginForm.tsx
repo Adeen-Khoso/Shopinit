@@ -38,6 +38,7 @@ export type Login3Props = React.ComponentPropsWithoutRef<"section"> & Partial<Pr
   loginUser: () => void;
   error:string;
   setError: React.Dispatch<React.SetStateAction<string>>;
+  loginWithGoogle: () => void;
 };
 
 export const Login3 = (props: Login3Props) => {
@@ -57,7 +58,8 @@ export const Login3 = (props: Login3Props) => {
     setPassword,
     loginUser ,
     error,
-    setError
+    setError,
+    loginWithGoogle, 
   } = {
     ...Login3Defaults,
     ...props,
@@ -130,6 +132,7 @@ export const Login3 = (props: Login3Props) => {
             </div>
             <div className="grid gap-4">
               <Button
+                type="submit"
                 variant={logInButton.variant}
                 size={logInButton.size}
                 iconLeft={logInButton.iconLeft}
@@ -139,6 +142,8 @@ export const Login3 = (props: Login3Props) => {
                 {logInButton.title}
               </Button>
               <Button
+                onClick={loginWithGoogle}
+                type="button"
                 variant={logInWithGoogleButton.variant}
                 size={logInWithGoogleButton.size}
                 iconLeft={logInWithGoogleButton.iconLeft}

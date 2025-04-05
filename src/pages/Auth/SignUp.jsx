@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Signup3 } from "../../utility/components/SignUpForm";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import { app } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Loader from "../../utility/Loader";
+const provider = new GoogleAuthProvider();
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -44,6 +50,32 @@ const SignUp = () => {
       });
   };
 
+  const loginWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        toast.success(`Welcome to Shopinit, ${user.displayName}  !`, {
+          style: {
+            borderRadius: "0px",
+            background: "#FFF5F5",
+            color: "#2F3C7E",
+            border: "1px solid #2F3C7E",
+          },
+          iconTheme: {
+            primary: "#2F3C7E",
+            secondary: "#FFFAEE",
+          },
+        });
+        // the user data from here will be sent to backend and then be fetched from user profile.
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
+
   return (
     <>
       {isLoading ? (
@@ -57,6 +89,7 @@ const SignUp = () => {
           createUser={createUser}
           error={error}
           setError={setError}
+          loginWithGoogle={loginWithGoogle}
         />
       )}
     </>

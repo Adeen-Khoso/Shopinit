@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Login3 } from "../../utility/components/LoginForm";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { app } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Loader from "../../utility/Loader";
+
+const provider = new GoogleAuthProvider();
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,8 +38,6 @@ const Login = () => {
             secondary: "#FFFAEE",
           },
         });
-        console.log("success login user credential", userCredential);
-        navigate("/profile");
       })
       .catch((error) => {
         setLoading(false);
@@ -40,6 +45,32 @@ const Login = () => {
         const errorMessage = error.message;
         setError(errorCode);
         console.log(errorCode, errorMessage);
+      });
+  };
+
+  const loginWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        toast.success(`Welcome to Shopinit, ${user.displayName}  !`, {
+          style: {
+            borderRadius: "0px",
+            background: "#FFF5F5",
+            color: "#2F3C7E",
+            border: "1px solid #2F3C7E",
+          },
+          iconTheme: {
+            primary: "#2F3C7E",
+            secondary: "#FFFAEE",
+          },
+        });
+        // the user data from here will be sent to backend and then be fetched from user profile.
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
       });
   };
 
@@ -56,6 +87,7 @@ const Login = () => {
           loginUser={loginUser}
           error={error}
           setError={setError}
+          loginWithGoogle={loginWithGoogle}
         />
       )}
     </>

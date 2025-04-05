@@ -32,6 +32,7 @@ export type Signup3Props = React.ComponentPropsWithoutRef<"section"> & Partial<P
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   createUser: () => void;
+  loginWithGoogle: () => void;
   error:string;
   setError: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -52,7 +53,8 @@ export const Signup3 = (props: Signup3Props) => {
     setPassword,
     createUser ,
     error,
-    setError
+    setError,
+    loginWithGoogle,
   } = {
     ...Signup3Defaults,
     ...props,
@@ -140,6 +142,7 @@ export const Signup3 = (props: Signup3Props) => {
           </div>
           <div className="grid grid-cols-1 gap-4">
             <Button
+              type="submit"
               variant={signUpButton.variant}
               size={signUpButton.size}
               iconLeft={signUpButton.iconLeft}
@@ -149,6 +152,8 @@ export const Signup3 = (props: Signup3Props) => {
               {signUpButton.title}
             </Button>
             <Button
+              type="button"
+              onClick={loginWithGoogle}
               variant={signUpWithGoogleButton.variant}
               size={signUpWithGoogleButton.size}
               iconLeft={signUpWithGoogleButton.iconLeft}
