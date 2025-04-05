@@ -10,7 +10,6 @@ import { app } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Loader from "../../utility/Loader";
-
 const provider = new GoogleAuthProvider();
 
 const Login = () => {
@@ -49,8 +48,10 @@ const Login = () => {
   };
 
   const loginWithGoogle = () => {
+    setLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
+        setLoading(false);
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
@@ -69,6 +70,7 @@ const Login = () => {
         // the user data from here will be sent to backend and then be fetched from user profile.
       })
       .catch((error) => {
+        setLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
       });

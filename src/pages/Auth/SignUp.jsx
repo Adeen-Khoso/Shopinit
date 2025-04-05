@@ -51,8 +51,10 @@ const SignUp = () => {
   };
 
   const loginWithGoogle = () => {
+    setIsLoading(true);
     signInWithPopup(auth, provider)
       .then((result) => {
+        setIsLoading(false);
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
@@ -71,6 +73,7 @@ const SignUp = () => {
         // the user data from here will be sent to backend and then be fetched from user profile.
       })
       .catch((error) => {
+        setIsLoading(false);
         const errorCode = error.code;
         const errorMessage = error.message;
       });
