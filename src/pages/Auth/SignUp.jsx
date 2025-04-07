@@ -81,20 +81,17 @@ const SignUp = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Signup3
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          createUser={createUser}
-          error={error}
-          setError={setError}
-          loginWithGoogle={loginWithGoogle}
-        />
-      )}
+      {isLoading && <Loader />}
+      <Signup3
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        createUser={createUser}
+        error={error}
+        setError={setError}
+        loginWithGoogle={loginWithGoogle}
+      />
     </>
   );
 };

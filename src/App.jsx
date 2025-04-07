@@ -98,8 +98,8 @@ function App() {
   ]);
   return (
     <>
-      <Cursor />
       <AuthProvider user={user}>
+        <Cursor />
         <RouterProvider router={router} />
       </AuthProvider>
     </>

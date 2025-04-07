@@ -80,20 +80,17 @@ const Login = () => {
 
   return (
     <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Login3
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          loginUser={loginUser}
-          error={error}
-          setError={setError}
-          loginWithGoogle={loginWithGoogle}
-        />
-      )}
+      {loading && <Loader />}
+      <Login3
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        loginUser={loginUser}
+        error={error}
+        setError={setError}
+        loginWithGoogle={loginWithGoogle}
+      />
     </>
   );
 };
