@@ -12,6 +12,8 @@ import toast from "react-hot-toast";
 import Loader from "../../utility/Loader";
 const provider = new GoogleAuthProvider();
 
+// force push
+
 const Login = () => {
   const navigate = useNavigate();
   const auth = getAuth(app);
