@@ -17,6 +17,7 @@ import ProfileSetup from "./pages/ProfileSetup";
 import EditProfile from "./pages/EditProfile";
 import Bookmarks from "./pages/Bookmarks";
 import Loader from "./utility/Loader";
+import Cursor from "./utility/Cursor";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -97,6 +98,7 @@ function App() {
   ]);
   return (
     <>
+      <Cursor />
       <AuthProvider user={user}>
         <RouterProvider router={router} />
       </AuthProvider>

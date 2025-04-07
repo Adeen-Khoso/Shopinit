@@ -9,7 +9,7 @@ import { Toaster } from "react-hot-toast";
 const MainLayout = () => {
   return (
     <>
-      <Cursor />
+      {/* <Cursor /> */}
       <Toaster position="top-right" />
       <Banner14 />
       <Navbar2 />

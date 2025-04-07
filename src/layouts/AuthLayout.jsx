@@ -7,7 +7,7 @@ const AuthLayout = () => {
   return (
     <>
       <Toaster position="top-right" />
-      <Cursor />
+      {/* <Cursor /> */}
       <Outlet />
     </>
   );
