@@ -1,3 +1,4 @@
+// version two of the cursor component
 import React, { useEffect, useRef } from "react";
 
 const Cursor = () => {
@@ -8,8 +9,33 @@ const Cursor = () => {
   useEffect(() => {
     if (!dotRef.current || !outlineRef.current || !hoverRef.current) return;
 
+    const selector = [
+      "a",
+      "button",
+      "input",
+      "textarea",
+      "select",
+      "[role='button']",
+      "[data-cursor-hover]",
+    ].join(",");
+
+    const showDot = () => {
+      dotRef.current.style.opacity = "1";
+      outlineRef.current.style.opacity = "1";
+      hoverRef.current.style.opacity = "0";
+    };
+
+    const showHover = () => {
+      dotRef.current.style.opacity = "0";
+      outlineRef.current.style.opacity = "0";
+      hoverRef.current.style.opacity = "1";
+    };
+
     const handleMouseMove = (e) => {
-      const { clientX: x, clientY: y } = e;
+      const x = e.clientX;
+      const y = e.clientY;
+
+      // 1) Reposition
       dotRef.current.style.left = `${x}px`;
       dotRef.current.style.top = `${y}px`;
       outlineRef.current.animate(
@@ -18,51 +44,37 @@ const Cursor = () => {
       );
       hoverRef.current.style.left = `${x}px`;
       hoverRef.current.style.top = `${y}px`;
+
+      // 2) Check interactive
+      if (e.target.closest(selector)) {
+        showHover();
+      } else {
+        showDot();
+      }
     };
 
-    const handleEnter = () => {
-      dotRef.current.style.opacity = "0";
-      outlineRef.current.style.opacity = "0";
-      hoverRef.current.style.opacity = "1";
-    };
+    // Initialize to visible dot
+    showDot();
 
-    const handleLeave = () => {
-      dotRef.current.style.opacity = "1";
-      outlineRef.current.style.opacity = "1";
-      hoverRef.current.style.opacity = "0";
-    };
-
-    // 1) mousemove
     window.addEventListener("mousemove", handleMouseMove);
-
-    // 2) delegated hover in/out for any interactive selector
-    const selectors = "a, button, input, textarea, select, [data-cursor-hover]";
-    const handleOver = (e) => {
-      if (e.target.matches(selectors)) handleEnter();
-    };
-    const handleOut = (e) => {
-      if (e.target.matches(selectors)) handleLeave();
-    };
-    document.addEventListener("mouseover", handleOver);
-    document.addEventListener("mouseout", handleOut);
-
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseover", handleOver);
-      document.removeEventListener("mouseout", handleOut);
     };
   }, []);
 
   return (
     <>
-      <div ref={dotRef} className="cursor-dot fixed pointer-events-none" />
+      <div
+        ref={dotRef}
+        className="cursor-dot fixed w-2 h-2 bg-black rounded-full pointer-events-none transition-opacity"
+      />
       <div
         ref={outlineRef}
-        className="cursor-outline fixed pointer-events-none"
+        className="cursor-outline fixed w-8 h-8 border-2 border-black rounded-full pointer-events-none transition-opacity"
       />
       <div
         ref={hoverRef}
-        className="cursor-hover fixed pointer-events-none opacity-0"
+        className="cursor-hover fixed w-8 h-8 bg-black/20 rounded-full pointer-events-none transition-opacity opacity-0"
       />
     </>
   );
