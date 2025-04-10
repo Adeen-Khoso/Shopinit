@@ -1,68 +1,69 @@
 import React, { useEffect, useRef } from "react";
 
 const Cursor = () => {
-  const cursorDotRef = useRef(null);
-  const cursorOutlineRef = useRef(null);
-  const hoverCursorRef = useRef(null);
+  const dotRef = useRef(null);
+  const outlineRef = useRef(null);
+  const hoverRef = useRef(null);
 
   useEffect(() => {
+    if (!dotRef.current || !outlineRef.current || !hoverRef.current) return;
+
     const handleMouseMove = (e) => {
-      const posX = e.clientX;
-      const posY = e.clientY;
-
-      cursorDotRef.current.style.left = `${posX}px`;
-      cursorDotRef.current.style.top = `${posY}px`;
-
-      cursorOutlineRef.current.animate(
-        {
-          left: `${posX}px`,
-          top: `${posY}px`,
-        },
-        {
-          duration: 500,
-          fill: "forwards",
-          easing: "ease-out",
-        }
+      const { clientX: x, clientY: y } = e;
+      dotRef.current.style.left = `${x}px`;
+      dotRef.current.style.top = `${y}px`;
+      outlineRef.current.animate(
+        { left: `${x}px`, top: `${y}px` },
+        { duration: 500, fill: "forwards", easing: "ease-out" }
       );
-
-      hoverCursorRef.current.style.left = `${posX}px`;
-      hoverCursorRef.current.style.top = `${posY}px`;
+      hoverRef.current.style.left = `${x}px`;
+      hoverRef.current.style.top = `${y}px`;
     };
 
-    const handleMouseEnter = () => {
-      cursorDotRef.current.style.opacity = "0";
-      cursorOutlineRef.current.style.opacity = "0";
-      hoverCursorRef.current.style.opacity = "1";
+    const handleEnter = () => {
+      dotRef.current.style.opacity = "0";
+      outlineRef.current.style.opacity = "0";
+      hoverRef.current.style.opacity = "1";
     };
 
-    const handleMouseLeave = () => {
-      cursorDotRef.current.style.opacity = "1";
-      cursorOutlineRef.current.style.opacity = "1";
-      hoverCursorRef.current.style.opacity = "0";
+    const handleLeave = () => {
+      dotRef.current.style.opacity = "1";
+      outlineRef.current.style.opacity = "1";
+      hoverRef.current.style.opacity = "0";
     };
 
+    // 1) mousemove
     window.addEventListener("mousemove", handleMouseMove);
 
-    const interactiveElements = document.querySelectorAll("a, button");
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
-    });
+    // 2) delegated hover in/out for any interactive selector
+    const selectors = "a, button, input, textarea, select, [data-cursor-hover]";
+    const handleOver = (e) => {
+      if (e.target.matches(selectors)) handleEnter();
+    };
+    const handleOut = (e) => {
+      if (e.target.matches(selectors)) handleLeave();
+    };
+    document.addEventListener("mouseover", handleOver);
+    document.addEventListener("mouseout", handleOut);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      });
+      document.removeEventListener("mouseover", handleOver);
+      document.removeEventListener("mouseout", handleOut);
     };
   }, []);
 
   return (
     <>
-      <div className="cursor-dot" ref={cursorDotRef}></div>
-      <div className="cursor-outline" ref={cursorOutlineRef}></div>
-      <div className="cursor-hover" ref={hoverCursorRef}></div>
+      <div ref={dotRef} className="cursor-dot fixed pointer-events-none" />
+      <div
+        ref={outlineRef}
+        className="cursor-outline fixed pointer-events-none"
+      />
+      <div
+        ref={hoverRef}
+        className="cursor-hover fixed pointer-events-none opacity-0"
+      />
     </>
   );
 };
