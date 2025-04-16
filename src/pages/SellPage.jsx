@@ -3,6 +3,7 @@ import Step1 from "../utility/form_steps/Step1";
 import Step2 from "../utility/form_steps/Step2";
 import Step3 from "../utility/form_steps/Step3";
 import Step4 from "../utility/form_steps/Step4";
+import Stepper from "../utility/form_steps/Stepper";
 
 const SellPage = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ const SellPage = () => {
 
   return (
     <>
+      <Stepper currentStep={currentStep} />
       {currentStep === 1 && (
         <Step1
           nextStep={nextStep}

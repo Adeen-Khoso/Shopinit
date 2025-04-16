@@ -12,7 +12,7 @@ import logoImage from "../../assets/logo.png";
 import { CiSearch, CiUser } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { Link } from "react-router";
-import SearchBox from "./SearchBox"
+import SearchBox from "./SearchBox";
 
 type ImageProps = {
   url?: string;
@@ -34,7 +34,7 @@ type Props = {
 
 export type Navbar2Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
-  
+
 export const Navbar2 = (props: Navbar2Props) => {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [showNavbar, setShowNavbar] = useState(true);
@@ -44,42 +44,43 @@ export const Navbar2 = (props: Navbar2Props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
-  
-  const setSearchOpen = ()=>{
-    setIsSearchOpen(true)
-    setPosition(window.scrollY); 
-  }
 
-  useEffect(()=> {
-    if( isMobileMenuOpen ) {
-      document.body.style.position = 'fixed'; 
-    }else { 
-      document.body.style.position = ''; 
-    }
-  },[isMobileMenuOpen]);
+  const setSearchOpen = () => {
+    setIsSearchOpen(true);
+    setPosition(window.scrollY);
+  };
 
   useEffect(() => {
-    if(isSearchOpen){
-      document.body.style.position = 'fixed'; 
-      document.body.classList.add("search-open");
-      document.body.style.width = '100%'; 
-      document.body.style.overflow = 'hidden';
-      document.body.style.top = `-${position}px`;
-    }else{
-      document.body.style.position = ''; 
-      document.body.classList.remove("search-open");
-      // document.body.style.top = ``; 
-      document.body.style.width = '';
-      document.body.style.overflow = ''
+    if (isMobileMenuOpen) {
+      document.body.style.position = "fixed";
+    } else {
+      document.body.style.position = "";
+    }
+  }, [isMobileMenuOpen]);
 
-      const originalScrollBehavior = document.documentElement.style.scrollBehavior;
+  useEffect(() => {
+    if (isSearchOpen) {
+      document.body.style.position = "fixed";
+      document.body.classList.add("search-open");
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+      document.body.style.top = `-${position}px`;
+    } else {
+      document.body.style.position = "";
+      document.body.classList.remove("search-open");
+      // document.body.style.top = ``;
+      document.body.style.width = "";
+      document.body.style.overflow = "";
+
+      const originalScrollBehavior =
+        document.documentElement.style.scrollBehavior;
       document.documentElement.style.scrollBehavior = "auto";
       window.scrollTo(0, position);
       void document.documentElement.offsetWidth;
       document.documentElement.style.scrollBehavior = originalScrollBehavior;
     }
-  },[isSearchOpen]);
-  
+  }, [isSearchOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -104,7 +105,7 @@ export const Navbar2 = (props: Navbar2Props) => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, scrollDirection]);
 
@@ -115,12 +116,17 @@ export const Navbar2 = (props: Navbar2Props) => {
 
   return (
     <>
-      <SearchBox isSearchOpen={ isSearchOpen } setIsSearchOpen= {setIsSearchOpen }/>
-      
-      <nav  
-        id="nav"      
+      <SearchBox
+        isSearchOpen={isSearchOpen}
+        setIsSearchOpen={setIsSearchOpen}
+      />
+
+      <nav
+        id="nav"
         className={cn(
-          ` items-center fixed left-0 w-full z-10 transition-all duration-700 ease-in-out ${isSearchOpen?  "navbar-hidden"  : 'flex'}`,
+          ` items-center fixed left-0 w-full z-10 transition-all duration-700 ease-in-out ${
+            isSearchOpen ? "navbar-hidden" : "flex"
+          }`,
           showNavbar
             ? lastScrollY == 0
               ? "top-10"
@@ -129,7 +135,6 @@ export const Navbar2 = (props: Navbar2Props) => {
           "border-b border-border-primary bg-primary_bg lg:min-h-18 lg:px-[5%]"
         )}
       >
-
         <div className="  mx-auto size-full lg:grid lg:grid-cols-[0.375fr_1fr_0.375fr] lg:items-center lg:justify-between lg:gap-4">
           <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
             <a href={logo.url}>
@@ -137,13 +142,26 @@ export const Navbar2 = (props: Navbar2Props) => {
             </a>
             <div className="flex items-center gap-7 lg:hidden">
               <div className="flex gap-3">
-
-                <button onClick={() => setSearchOpen()} >
-                  <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+                <button onClick={() => setSearchOpen()}>
+                  <Link to={"#"}>
+                    <CiSearch
+                      className=" text-primary size-6  hover:text-hov_primary"
+                      strokeWidth={0.5}
+                    />
+                  </Link>
                 </button>
-                <Link to={"/profile"}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
-                <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
-
+                <Link to={"/profile"}>
+                  <CiUser
+                    className=" text-primary size-6 hover:text-hov_primary"
+                    strokeWidth={0.5}
+                  />
+                </Link>
+                <Link to={"/"}>
+                  <CiShoppingCart
+                    className=" text-primary size-6 hover:text-hov_primary"
+                    strokeWidth={0.5}
+                  />
+                </Link>
               </div>
               <button
                 className="-mr-2 flex size-12 flex-col items-center justify-center "
@@ -151,7 +169,9 @@ export const Navbar2 = (props: Navbar2Props) => {
               >
                 <motion.span
                   className="my-[3px] h-0.5 w-6 bg-jett_black"
-                  animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
+                  animate={
+                    isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"
+                  }
                   variants={topLineVariants}
                 />
                 <motion.span
@@ -161,7 +181,9 @@ export const Navbar2 = (props: Navbar2Props) => {
                 />
                 <motion.span
                   className="my-[3px] h-0.5 w-6 bg-jett_black"
-                  animate={isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"}
+                  animate={
+                    isMobileMenuOpen ? ["open", "rotatePhase"] : "closed"
+                  }
                   variants={bottomLineVariants}
                 />
               </button>
@@ -199,16 +221,29 @@ export const Navbar2 = (props: Navbar2Props) => {
             ))}
           </motion.div>
 
-
           <div className="hidden flex-row justify-self-end lg:flex lg:gap-5">
-            <button onClick={() => setSearchOpen()} >
-              <Link to={'#'}><CiSearch className=" text-primary size-6  hover:text-hov_primary" strokeWidth={0.5} /></Link>
+            <button onClick={() => setSearchOpen()}>
+              <Link to={"#"}>
+                <CiSearch
+                  className=" text-primary size-6  hover:text-hov_primary"
+                  strokeWidth={0.5}
+                />
+              </Link>
             </button>
 
-            <Link to={"/profile"}><CiUser className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
-            <Link to={'/'}><CiShoppingCart className=" text-primary size-6 hover:text-hov_primary" strokeWidth={0.5}/></Link>
+            <Link to={"/profile"}>
+              <CiUser
+                className=" text-primary size-6 hover:text-hov_primary"
+                strokeWidth={0.5}
+              />
+            </Link>
+            <Link to={"/"}>
+              <CiShoppingCart
+                className=" text-primary size-6 hover:text-hov_primary"
+                strokeWidth={0.5}
+              />
+            </Link>
           </div>
-
         </div>
       </nav>
     </>
@@ -241,7 +276,9 @@ const SubMenu = ({
             initial: { rotate: 0 },
           }}
           transition={{ duration: 0.3 }}
-        > sell
+        >
+          {" "}
+          sell
           <RxChevronDown />
         </motion.span>
       </button>
@@ -273,7 +310,7 @@ const SubMenu = ({
                 className="block py-3 text-center lg:px-4 lg:py-2 lg:text-left hover:text-neutral-dark"
               >
                 {subMenuLink.title}
-              </HashLink> 
+              </HashLink>
             ))}
           </motion.nav>
         </AnimatePresence>

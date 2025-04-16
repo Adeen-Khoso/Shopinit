@@ -17,6 +17,8 @@ export default {
       white: "#FFFFFF",
       grey: "#F2F2F2",
       dark_grey: "#b5b5b5",
+      lightPrimary: "#a8b4f0",
+      // lightPrimary: "#b9c2ed",
     },
     extend: {
       fontFamily: {
