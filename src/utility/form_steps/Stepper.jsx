@@ -52,9 +52,9 @@ const Stepper = ({ currentStep }) => {
         return (
           <React.Fragment key={step}>
             {/* Step */}
-            <div className="flex flex-col items-center gap-[5px] z-10">
+            <div className="flex flex-col items-center gap-[3px] md:gap-[5px] z-10">
               <div
-                className={`w-8 h-8 flex items-center justify-center rounded-full text-xs bg-lightPrimary text-white
+                className={`w-7 h-7 md:w-8 md:h-8 flex items-center justify-center rounded-full text-xs bg-lightPrimary text-white
                   ${isCompleted ? " text-white !bg-primary" : ""}
                   ${
                     isActive
@@ -67,7 +67,7 @@ const Stepper = ({ currentStep }) => {
               </div>
 
               <div
-                className={`text-sm ${
+                className={`text-xs md:text-sm ${
                   isActive ? "text-primary font-semibold" : "text-neutral-light"
                 } ${isCompleted ? "!text-primary " : ""}`}
               >
@@ -77,7 +77,7 @@ const Stepper = ({ currentStep }) => {
 
             {/* Connector Line — don't show after last step */}
             {index !== steps.length - 1 && (
-              <div className="w-40 mb-5 z-0 -mx-8 h-[2px] bg-primary "></div>
+              <div className="w-[100px] md:w-40 mb-5 z-0 -mx-8 h-[3px] bg-hov_primary "></div>
             )}
           </React.Fragment>
         );
