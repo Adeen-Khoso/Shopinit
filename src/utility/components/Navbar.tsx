@@ -124,7 +124,7 @@ export const Navbar2 = (props: Navbar2Props) => {
       <nav
         id="nav"
         className={cn(
-          ` items-center fixed left-0 w-full z-10 transition-all duration-700 ease-in-out ${
+          ` items-center fixed left-0 w-full z-[1000] transition-all duration-700 ease-in-out ${
             isSearchOpen ? "navbar-hidden" : "flex"
           }`,
           showNavbar
