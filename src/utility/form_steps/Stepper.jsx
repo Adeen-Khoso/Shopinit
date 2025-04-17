@@ -77,7 +77,7 @@ const Stepper = ({ currentStep }) => {
 
             {/* Connector Line — don't show after last step */}
             {index !== steps.length - 1 && (
-              <div className="w-[100px] md:w-40 mb-5 z-0 -mx-8 h-[3px] bg-hov_primary "></div>
+              <div className="w-[100px] md:w-40 mb-[25px] z-0 -mx-8 h-[3px] bg-hov_primary "></div>
             )}
           </React.Fragment>
         );
