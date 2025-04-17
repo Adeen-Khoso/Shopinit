@@ -78,12 +78,8 @@ const Step1 = ({ nextStep, formData, setFormData }) => {
               </div>
 
               <div className="flex justify-between items-center gap-24 ">
-                {/* <Button className="w-full bg-dark_grey hover:bg-neutral-light">
-                  Prev
-                </Button> */}
                 <Button
                   type="submit"
-                  // onClick={() => nextStep()}
                   className=" w-full bg-primary hover:bg-hov_primary"
                 >
                   Next
