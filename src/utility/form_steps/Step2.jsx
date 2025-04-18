@@ -10,7 +10,7 @@ const Step2 = ({ prevStep, nextStep, formData, setFormData }) => {
   return (
     <>
       <section id="relume" className="px-[5%]">
-        <div className="relative flex flex-col justify-center overflow-auto pt-3 pb-6 md:py-10  ">
+        <div className="relative flex flex-col justify-center overflow-auto pt-3 pb-6 md:py-4  ">
           <div className="bg-secondary_bg mx-auto w-full max-w-sm border border-border-primary px-6 py-8 sm:px-8 md:p-12">
             <div className="mb-6 text-center md:mb-8">
               <h1 className="mb-3 text-4xl font-bold leading-[1.2] md:mb-4 md:text-5xl lg:text-6xl">

@@ -3,7 +3,7 @@ import React from "react";
 
 const Stepper = ({ currentStep }) => {
   return (
-    <div className=" relative flex items-center justify-center h-[120px] w-full px[5%] pt-16 md:pt-[90px] pb-14">
+    <div className=" relative flex items-center justify-center h-[120px] w-full px[5%] pt-16 md:pt-[70px] pb-14">
       {steps.map((step, index) => {
         const stepNumber = index + 1;
         const isActive = currentStep === stepNumber;
