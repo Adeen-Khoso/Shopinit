@@ -24,6 +24,11 @@ const SellPage = () => {
     setCurrentStep((current) => current - 1);
   };
 
+  const addProduct = (e) => {
+    console.log(formData);
+    // this function would send data to the backend and add product to the database
+  };
+
   return (
     <>
       <Stepper currentStep={currentStep} />
@@ -52,6 +57,7 @@ const SellPage = () => {
       )}
       {currentStep === 4 && (
         <Step4
+          addProduct={addProduct}
           prevStep={prevStep}
           formData={formData}
           setFormData={setFormData}

@@ -5,6 +5,9 @@ import { FaChevronDown } from "react-icons/fa";
 const Step1 = ({ nextStep, formData, setFormData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.condition) {
+      formData.condition = "New";
+    }
     nextStep();
   };
   return (
@@ -44,7 +47,7 @@ const Step1 = ({ nextStep, formData, setFormData }) => {
                 </div>
                 <Textarea
                   type="text"
-                  className="rounded-none"
+                  className="rounded-none "
                   id="text"
                   placeholder="e.g. Minor scratches"
                   value={formData.description}
@@ -62,14 +65,15 @@ const Step1 = ({ nextStep, formData, setFormData }) => {
                 </div>
 
                 <select
+                  value={formData.condition}
                   required
                   className=" w-full border min-h-11 border-black bg-white text-sm px-3 py-2 appearance-none cursor-pointer focus:outline-none"
                   onChange={(e) =>
                     setFormData({ ...formData, condition: e.target.value })
                   }
                 >
-                  <option value="new">New</option>
-                  <option value="used">Used</option>
+                  <option value="New">New</option>
+                  <option value="Used">Used</option>
                 </select>
 
                 <div className="absolute inset-y-0 top-9 right-3 flex items-center pointer-events-none">

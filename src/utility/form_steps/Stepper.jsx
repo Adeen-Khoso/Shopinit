@@ -1,4 +1,4 @@
-const steps = ["Details", "Category", "Images", "Confirm"];
+const steps = ["Details", "Category", "Images", "Review"];
 import React from "react";
 
 const Stepper = ({ currentStep }) => {

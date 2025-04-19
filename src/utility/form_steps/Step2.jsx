@@ -5,6 +5,9 @@ import { FaChevronDown } from "react-icons/fa";
 const Step2 = ({ prevStep, nextStep, formData, setFormData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.category) {
+      formData.category = "Others";
+    }
     nextStep();
   };
   return (
@@ -47,17 +50,18 @@ const Step2 = ({ prevStep, nextStep, formData, setFormData }) => {
 
                 <select
                   required
+                  value={formData.category}
                   className=" w-full border min-h-11 border-black bg-white text-sm px-3 py-2 appearance-none cursor-pointer focus:outline-none"
                   onChange={(e) =>
-                    setFormData({ ...formData, condition: e.target.value })
+                    setFormData({ ...formData, category: e.target.value })
                   }
                 >
-                  <option value="others">Others</option>
-                  <option value="vehicles">Vehicles</option>
-                  <option value="phones">Phones</option>
-                  <option value="electronics">Electronics</option>
-                  <option value="fashion">Fashion</option>
-                  <option value="household">Household</option>
+                  <option value="Others">Others</option>
+                  <option value="Vehicles">Vehicles</option>
+                  <option value="Phones">Phones</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Fashion">Fashion</option>
+                  <option value="Household">Household</option>
                 </select>
 
                 <div className="absolute inset-y-0 top-9 right-3 flex items-center pointer-events-none">
