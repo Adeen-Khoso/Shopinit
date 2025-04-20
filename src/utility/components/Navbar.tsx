@@ -156,7 +156,7 @@ export const Navbar2 = (props: Navbar2Props) => {
                     strokeWidth={0.5}
                   />
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/cart"}>
                   <CiShoppingCart
                     className=" text-primary size-6 hover:text-hov_primary"
                     strokeWidth={0.5}
@@ -237,7 +237,7 @@ export const Navbar2 = (props: Navbar2Props) => {
                 strokeWidth={0.5}
               />
             </Link>
-            <Link to={"/"}>
+            <Link to={"/cart"}>
               <CiShoppingCart
                 className=" text-primary size-6 hover:text-hov_primary"
                 strokeWidth={0.5}
@@ -327,7 +327,7 @@ export const Navbar2Defaults: Props = {
   },
   navLinks: [
     { title: "Shop Now", url: "/products" },
-    { title: "Sell Now", url: "/sell" }, // hardcoded for now, later will be based on whether user is logged in or not and then be set to selling page accordingly
+    { title: "Sell Now", url: "/sell" },
     { title: "About Us", url: "/#explore" },
     {
       title: "Contact",
