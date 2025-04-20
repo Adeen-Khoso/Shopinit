@@ -2,7 +2,7 @@ import { Button, Input } from "@relume_io/relume-ui";
 import React, { useState } from "react";
 import { FiArrowLeft, FiPlusCircle } from "react-icons/fi";
 import { Link } from "react-router";
-const CartUI = () => {
+const CartUI = ({ products, user, removeProduct }) => {
   const [isPromoOpen, setIsPromoOpen] = useState(false);
   const openPromo = () => {
     setIsPromoOpen((prev) => !prev);
@@ -12,7 +12,7 @@ const CartUI = () => {
       <section className="  py-12 md:py-16  px-[5%]">
         <div className="container flex flex-col md:flex-row justify-between gap-16">
           {/* Main Cart div */}
-          <div className="flex flex-col w-full  ">
+          <div className="flex flex-col w-full gap-7 ">
             {/* heading */}
             <div className="flex flex-row items-center justify-between pb-3 border-b border-b-dark_grey">
               <h1 className="text-4xl md:text-5xl lg:text-6xl">Cart</h1>
@@ -25,10 +25,42 @@ const CartUI = () => {
             </div>
 
             {/* cart content */}
-            <div className="flex flex-col">
-              <div>product 1</div>
-              <div>product 1</div>
-              <div>product 1</div>
+            <div className="flex flex-col gap-3">
+              {products.map((product, index) => (
+                <div key={index} className="flex flex-row items-center gap-10 ">
+                  <img
+                    src={product.images[0]}
+                    alt={product.title}
+                    className="size-28 object-cover"
+                  />
+
+                  <div className="flex w-full justify-between">
+                    <div className=" flex flex-col gap-3 ">
+                      <div>
+                        <h4 className="text-md ">{product.title}</h4>
+                        <p className="text-xs -mt-[2px] text-jett_black text-opacity-40 ">
+                          By {user.name}
+                        </p>
+                      </div>
+                      <div className="flex flex-col gap-0">
+                        <p className="text-xs capitalize ">
+                          <span className=" text-xs font-semibold pr-1">
+                            Condition:
+                          </span>
+                          {product.condition}
+                        </p>
+                      </div>
+                      <div
+                        onClick={() => removeProduct()}
+                        className=" cursor-pointer text-xs text-primary underline"
+                      >
+                        Remove
+                      </div>
+                    </div>
+                    <p className="text-md font-semibold">{product.price}</p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* back button */}
