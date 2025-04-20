@@ -16,7 +16,7 @@ const Step4 = ({ prevStep, nextStep, formData, setFormData, addProduct }) => {
               <p className="md:text-md"> Review your Product info</p>
             </div>
 
-            <form className="grid gap-6" onSubmit={handleSubmit}>
+            <form className="grid gap-6">
               <div className="grid">
                 <Label htmlFor="name" className="mb-2">
                   Name
