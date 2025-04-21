@@ -23,7 +23,8 @@ type Props = {
   products: ProductCardProps[];
 };
 
-export type Product4Props = React.ComponentPropsWithoutRef<"section"> & Partial<Props>;
+export type Product4Props = React.ComponentPropsWithoutRef<"section"> &
+  Partial<Props>;
 
 export const Product4 = (props: Product4Props) => {
   const { tagline, heading, description, button, products } = {
@@ -36,7 +37,9 @@ export const Product4 = (props: Product4Props) => {
         <div className="mb-12 md:mb-18 lg:mb-20">
           <div className="mx-auto max-w-lg text-center flex flex-col items-center">
             <h4 className="font-semibold">{tagline}</h4>
-            <h1 className="mt-3 text-5xl font-bold md:mt-4 md:text-7xl lg:text-8xl">{heading}</h1>
+            <h1 className="mt-3 text-5xl font-bold md:mt-4 md:text-7xl lg:text-8xl">
+              {heading}
+            </h1>
             <p className="mt-5 text-base md:mt-6 md:text-md">{description}</p>
           </div>
         </div>
@@ -53,11 +56,22 @@ export const Product4 = (props: Product4Props) => {
   );
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ url, image, title, price, variant, button }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  url,
+  image,
+  title,
+  price,
+  variant,
+  button,
+}) => {
   return (
     <div>
       <a href={url} className="mb-3 block aspect-[5/6] md:mb-4">
-        <img src={image.src} alt={image.alt} className="size-full object-cover" />
+        <img
+          src={image.src}
+          alt={image.alt}
+          className="size-full object-cover"
+        />
       </a>
       <a href={url} className="flex flex-col text-center md:text-md">
         <div className="mb-2">
@@ -87,7 +101,7 @@ const productData = {
 
 export const Product4Defaults: Props = {
   tagline: "Tagline",
-  heading: "Products",
+  heading: "saadassssssssssssssssssssssss",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   button: {
     variant: "secondary",
