@@ -1,21 +1,17 @@
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { Button, cn } from "@relume_io/relume-ui";
 import { useState } from "react";
-import { BiFilter } from "react-icons/bi";
-import { FaFilter } from "react-icons/fa6";
-import { RxChevronDown } from "react-icons/rx";
+import { BiFilter, BiHeart, BiSolidHeart } from "react-icons/bi";
+import { Link } from "react-router";
 
-type ImageProps = {
-  src: string;
-  alt?: string;
-};
+type ImageProps = [string];
 
 type ProductCardProps = {
-  url: string;
+  id: string;
   image: ImageProps;
   title: string;
   price: string;
-  variant: string;
+  condition: string;
   button: ButtonProps;
 };
 
@@ -49,9 +45,9 @@ export const Product8 = (props: Product8Props) => {
   const [selectedCategory, setSelectedCategory] = useState("All products"); //this is going to be sent to parent comp: and will be sent to backend later for filtering
 
   return (
-    <section id="relume" className="px-[5%] py-12 md:py-18">
+    <section id="relume" className="px-[5%] py-12 md:py-14">
       <div className="container">
-        <div className="mb-12 grid grid-cols-1 items-end gap-8 md:mb-18 md:grid-cols-[1fr_max-content] lg:mb-20 lg:gap-20">
+        <div className="mb-8 grid grid-cols-1 items-end gap-8 md:mb-12 md:grid-cols-[1fr_max-content]  lg:gap-20">
           <div className="max-w-lg">
             <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
             <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl">
@@ -93,7 +89,7 @@ export const Product8 = (props: Product8Props) => {
             )}
           </div>
         </div>
-        <div className="grid grid-cols-2 justify-items-start gap-x-5 gap-y-12 md:grid-cols-2 md:gap-x-8 md:gap-y-16 lg:grid-cols-4 lg:gap-x-12">
+        <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
           {products.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
@@ -104,47 +100,57 @@ export const Product8 = (props: Product8Props) => {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  url,
+  id,
   image,
   title,
   price,
-  variant,
+  condition,
   button,
 }) => {
+  const [bookmark, setBookmark] = useState(false);
   return (
-    <div>
-      <a href={url} className="mb-3 block aspect-[5/6] md:mb-4">
+    <div className="flex flex-col gap-2 ">
+      <Link to={id} className=" block aspect-[5/6] ">
         <img
-          src={image.src}
-          alt={image.alt}
+          src={image[0]}
+          alt={title || "Product image"}
           className="size-full object-cover"
         />
-      </a>
-      <a href={url} className="flex justify-between md:text-md">
+      </Link>
+
+      <Link to={id} className="flex justify-between md:text-md">
         <div className="mr-4">
-          <h4 className="font-semibold">{title}</h4>
-          <div className="text-sm">{variant}</div>
+          <h4 className="text-sm font-semibold">{title}</h4>
+          <div className=" capitalize text-xs -mt-[2px]">{condition}</div>
         </div>
-        <div className="text-md font-semibold md:text-lg">{price}</div>
-      </a>
-      <Button {...button} className="mt-3 w-full md:mt-4">
-        {button.title}
-      </Button>
+      </Link>
+
+      <div className="flex justify-between items-center ">
+        <div className="text-sm font-semibold md:text-sm">{price}</div>
+        <button onClick={() => setBookmark((prev) => !prev)}>
+          {bookmark ? (
+            <BiSolidHeart className="text-primary" />
+          ) : (
+            <BiHeart className="text-primary" />
+          )}
+        </button>
+      </div>
     </div>
   );
 };
 
-const productData = {
-  url: "#",
-  image: {
-    src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-    alt: "Relume placeholder image",
-  },
-  title: "Product name",
-  price: "$55",
-  variant: "Variant",
-  button: { variant: "secondary", size: "sm", title: "Add to cart" },
-};
+// bluff data
+// const productData = {
+//   url: "#",
+//   image: {
+//     src: "https://d22po4pjz3o32e.cloudfront.net/placeholder",
+//     alt: "Relume placeholder image",
+//   },
+//   title: "Product name",
+//   price: "$55",
+//   variant: "Variant",
+//   button: { variant: "secondary", size: "sm", title: "Add to cart" },
+// };
 
 export const Product8Defaults: Props = {
   tagline: "",
@@ -155,12 +161,5 @@ export const Product8Defaults: Props = {
     size: "primary",
     title: "",
   },
-  products: [
-    productData,
-    productData,
-    productData,
-    productData,
-    productData,
-    productData,
-  ],
+  products: [],
 };
