@@ -2,6 +2,7 @@ import { Button, Input } from "@relume_io/relume-ui";
 import React, { useState } from "react";
 import { FiArrowLeft, FiPlusCircle } from "react-icons/fi";
 import { Link } from "react-router";
+import NoData from "../NoData";
 const CartUI = ({ products, user, removeProduct }) => {
   const [isPromoOpen, setIsPromoOpen] = useState(false);
   const openPromo = () => {
@@ -26,41 +27,48 @@ const CartUI = ({ products, user, removeProduct }) => {
 
             {/* cart content */}
             <div className="flex flex-col gap-3">
-              {products.map((product, index) => (
-                <div key={index} className="flex flex-row items-center gap-10 ">
-                  <img
-                    src={product.images[0]}
-                    alt={product.title}
-                    className="size-28 object-cover"
-                  />
+              {products.length === 0 ? (
+                <NoData title="Your cart is empty yet" />
+              ) : (
+                products.map((product, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-row items-center gap-10 "
+                  >
+                    <img
+                      src={product.images[0]}
+                      alt={product.title}
+                      className="size-28 object-cover"
+                    />
 
-                  <div className="flex w-full justify-between">
-                    <div className=" flex flex-col gap-3 ">
-                      <div>
-                        <h4 className="text-md ">{product.title}</h4>
-                        <p className="text-xs -mt-[2px] text-jett_black text-opacity-40 ">
-                          By {user.name}
-                        </p>
+                    <div className="flex w-full justify-between">
+                      <div className=" flex flex-col gap-3 ">
+                        <div>
+                          <h4 className="text-md ">{product.title}</h4>
+                          <p className="text-xs -mt-[2px] text-jett_black text-opacity-40 ">
+                            By {user.name}
+                          </p>
+                        </div>
+                        <div className="flex flex-col gap-0">
+                          <p className="text-xs capitalize ">
+                            <span className=" text-xs font-semibold pr-1">
+                              Condition:
+                            </span>
+                            {product.condition}
+                          </p>
+                        </div>
+                        <div
+                          onClick={() => removeProduct()}
+                          className=" cursor-pointer text-xs text-primary underline"
+                        >
+                          Remove
+                        </div>
                       </div>
-                      <div className="flex flex-col gap-0">
-                        <p className="text-xs capitalize ">
-                          <span className=" text-xs font-semibold pr-1">
-                            Condition:
-                          </span>
-                          {product.condition}
-                        </p>
-                      </div>
-                      <div
-                        onClick={() => removeProduct()}
-                        className=" cursor-pointer text-xs text-primary underline"
-                      >
-                        Remove
-                      </div>
+                      <p className="text-md font-semibold">{product.price}</p>
                     </div>
-                    <p className="text-md font-semibold">{product.price}</p>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
 
             {/* back button */}

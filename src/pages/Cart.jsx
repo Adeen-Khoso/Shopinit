@@ -8,22 +8,22 @@ const Cart = () => {
     console.log("remove product from cart");
   };
   const products = [
-    {
-      title: "iPhone 14 Pro Max",
-      price: "$999",
-      description: "98% battery health, no damage, almost like new phone.",
-      condition: "used",
-      category: "phones",
-      images: [iphone14, iphone14pro],
-    },
-    {
-      title: "iPhone 14 Pro Max",
-      price: "$999",
-      description: "98% battery health, no damage, almost like new phone.",
-      condition: "used",
-      category: "phones",
-      images: [iphone14, iphone14pro],
-    },
+    // {
+    //   title: "iPhone 14 Pro Max",
+    //   price: "$999",
+    //   description: "98% battery health, no damage, almost like new phone.",
+    //   condition: "used",
+    //   category: "phones",
+    //   images: [iphone14, iphone14pro],
+    // },
+    // {
+    //   title: "iPhone 14 Pro Max",
+    //   price: "$999",
+    //   description: "98% battery health, no damage, almost like new phone.",
+    //   condition: "used",
+    //   category: "phones",
+    //   images: [iphone14, iphone14pro],
+    // },
   ];
 
   const user = {
