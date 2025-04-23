@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Gradient from "../utility/Gradient";
 import UserDetails from "../utility/components/UserDetails";
 import { Product8 } from "../utility/components/Products";
@@ -7,7 +7,30 @@ import { AuthContext } from "../context/AuthContext";
 import NoData from "../utility/NoData";
 
 const UserProfile = () => {
-  const userProducts = [];
+  // const [profilepage, setIsProfilePage] = useState(true);
+  // const profilePage = true;
+  const userProducts = [
+    {
+      id: "1",
+      title: "iPhone 14 Pro Max",
+      price: "$999",
+      description: "98% battery health, no damage, almost like new phone.",
+      condition: "used",
+      category: "phones",
+      image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+      uid: "1234",
+    },
+    {
+      id: "1",
+      title: "iPhone 14 Pro Max",
+      price: "$999",
+      description: "98% battery health, no damage, almost like new phone.",
+      condition: "used",
+      category: "phones",
+      image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+      uid: "2234",
+    },
+  ];
 
   const productProps = {
     tagline: "Explore",
@@ -19,6 +42,7 @@ const UserProfile = () => {
       title: "",
     },
     products: userProducts,
+    profilePage: true,
   };
   return (
     <>

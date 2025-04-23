@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { Product8 } from "../utility/components/Products";
 import iphone14 from "../assets/iphone14.jpg";
 import iphone14pro from "../assets/iphone14_second.jpg";
@@ -15,6 +15,7 @@ const ProductPage = () => {
       condition: "used",
       category: "phones",
       image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+      uid: "1234",
     },
     {
       id: "1",
@@ -24,6 +25,7 @@ const ProductPage = () => {
       condition: "used",
       category: "phones",
       image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+      uid: "2234",
     },
   ];
   return (
