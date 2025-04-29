@@ -18,7 +18,7 @@ const ProductPage = () => {
       uid: "1234",
     },
     {
-      id: "1",
+      id: "2",
       title: "iPhone 14 Pro Max",
       price: "$999",
       description: "98% battery health, no damage, almost like new phone.",

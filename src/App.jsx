@@ -5,6 +5,7 @@ import MainLayout from "./layouts/MainLayout";
 import ProductPage from "./pages/ProductPage";
 import AuthLayout from "./layouts/AuthLayout";
 import Login from "./pages/Auth/Login";
+import ProductDetail from "./pages/ProductDetail";
 import SignUp from "./pages/Auth/SignUp";
 import UserProfile from "./pages/UserProfile";
 import SellPage from "./pages/SellPage";
@@ -53,6 +54,10 @@ function App() {
         {
           path: "/products",
           element: <ProductPage />,
+        },
+        {
+          path: "/products/:id",
+          element: <ProductDetail />,
         },
         {
           path: "/cart",
