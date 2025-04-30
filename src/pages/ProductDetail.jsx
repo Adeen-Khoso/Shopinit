@@ -1,10 +1,38 @@
 import React from "react";
 import { useParams } from "react-router";
-
+import { ProductHeader1 } from "../utility/components/ProductHeader1";
 const ProductDetail = () => {
   const { id } = useParams();
 
-  return <div>this is the product{id}</div>;
+  // this products array will be fetched from the server later.
+  const products = [
+    {
+      id: "1",
+      title: "iPhone 14 Pro Max",
+      price: "$999",
+      description: "98% battery health, no damage, almost like new phone.",
+      condition: "used",
+      category: "phones",
+      image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+      uid: "1234",
+    },
+    {
+      id: "2",
+      title: "iPhone 14 Pro Max",
+      price: "$999",
+      description: "98% battery health, no damage, almost like new phone.",
+      condition: "used",
+      category: "phones",
+      image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+      uid: "2234",
+    },
+  ];
+
+  return (
+    <>
+      <ProductHeader1 id={id} products={products} />
+    </>
+  );
 };
 
 export default ProductDetail;
