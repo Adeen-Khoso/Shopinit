@@ -103,7 +103,7 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
     });
   };
   return (
-    <header id="relume" className="px-[5%] py-12 ">
+    <header id="relume" className="px-[5%] py-8">
       <div className="container">
         <Breadcrumb className="mb-6 flex flex-wrap items-center text-sm">
           <BreadcrumbList>
@@ -119,19 +119,23 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
         </Breadcrumb>
         <div className="grid grid-cols-1 gap-y-8 md:gap-y-10 lg:grid-cols-[1.25fr_1fr] lg:gap-x-20">
           <Gallery images={images} />
-          <div>
-            <h1 className="mb-2 text-4xl font-bold leading-[1.2] md:text-5xl lg:text-6xl">
-              {heading}
-            </h1>
-            <p className="mb-5 text-xl font-bold md:mb-6 md:text-2xl">
-              {price}
-            </p>
-            <div className="mb-5 flex flex-wrap items-center gap-3 md:mb-6">
+          <div className="flex flex-col gap-3">
+            <div className="border-b border-neutral-lighter pb-2 ">
+              <h1 className="mb-2 text-4xl font-bold leading-[1.2] md:text-5xl lg:text-6xl">
+                {heading}
+              </h1>
+              <p className="text-xs md:text-sm -mt-1 text-neutral">
+                Seller name
+              </p>
+            </div>
+            <p className="mt-2 text-xl md:text-2xl">{price}</p>
+            {/* <div className="mb-5 flex flex-wrap items-center gap-3 md:mb-6">
               <Star rating={rating.starsNumber} />
               <p className="text-sm">{`(${rating.starsNumber} stars) • ${rating.review} reviews`}</p>
-            </div>
-            <p className="mb-5 md:mb-6">{description}</p>
-            <form onSubmit={handleSubmit} className="mb-8">
+            </div> */}
+            <p className="">{description}</p>
+
+            {/* <form onSubmit={handleSubmit} className="mb-8">
               <div className="grid grid-cols-1 gap-6">
                 <div className="flex flex-col">
                   <Label className="mb-2">Variant</Label>
@@ -193,7 +197,7 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
                 ))}
               </div>
               <p className="text-center text-xs">{freeShipping}</p>
-            </form>
+            </form> */}
             <Accordion type="multiple">
               {questions.map((question, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>

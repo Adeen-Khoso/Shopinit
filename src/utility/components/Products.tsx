@@ -56,7 +56,7 @@ export const Product8 = (props: Product8Props) => {
   const [selectedCategory, setSelectedCategory] = useState("All products"); //this is going to be sent to parent comp: and will be sent to backend later for filtering
 
   return (
-    <section id="relume" className="px-[5%] py-12 ">
+    <section id="relume" className="px-[5%] py-8 ">
       <div className="container">
         <div className="mb-8 grid grid-cols-1 items-end gap-8 md:mb-12 md:grid-cols-[1fr_max-content]  lg:gap-20">
           <div className="max-w-lg">
