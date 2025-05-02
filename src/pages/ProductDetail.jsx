@@ -9,7 +9,7 @@ const ProductDetail = () => {
     {
       id: "1",
       title: "iPhone 14 Pro Max",
-      price: "$999",
+      price: "120000",
       description: "98% battery health, no damage, almost like new phone.",
       condition: "used",
       category: "phones",
@@ -22,7 +22,7 @@ const ProductDetail = () => {
     {
       id: "2",
       title: "iPhone 14 Pro Max",
-      price: "$999",
+      price: "120000",
       description: "98% battery health, no damage, almost like new phone.",
       condition: "used",
       category: "phones",
@@ -31,9 +31,19 @@ const ProductDetail = () => {
     },
   ];
 
+  const product = products?.find((product) => product.id === id);
+
   return (
     <>
-      <ProductHeader1 id={id} products={products} />
+      <ProductHeader1
+        id={id}
+        products={products}
+        breadcrumbs={[
+          { url: "/products", title: "Shop all" },
+          { url: "/products", title: "Category" },
+          { url: `/products/${id}`, title: `${product?.title}` },
+        ]}
+      />
     </>
   );
 };

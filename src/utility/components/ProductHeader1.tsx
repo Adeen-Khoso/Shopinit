@@ -104,6 +104,9 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
 
   const { id, products } = props;
   const product = products?.find((product) => product.id === id);
+  const userId = product?.uid;
+  // we send this uid to baackend and get the user name from there.
+
   if (!product)
     return (
       <div className="px-[5%]  h-[40vh] flex flex-col justify-center items-center gap-5 text-center ">
@@ -146,22 +149,26 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
                 {product.title}
               </h1>
               <p className="text-xs md:text-sm -mt-1 text-neutral">
-                Seller name
+                {product.uid}
+                {/* for now only showing user id, later we'll bring in user name from backend using uid */}
               </p>
             </div>
 
             {/* Price */}
-            <p className="mt-2 text-xl md:text-2xl ">{price}</p>
+            <p className="mt-2 text-2xl text-primary font-bold md:text-2xl ">
+              <span className="text-sm mr-1">Rs.</span>
+              {product.price}
+            </p>
 
             {/* Description */}
-            <p className="">{description}</p>
+            <p className="">{product.description}</p>
 
             {/* Category */}
             <div className="flex flex-col gap-1 mt-1">
               <p>Category</p>
               <div>
                 <Button className=" px-4 py-2 text-sm bg-primary  ">
-                  Phones
+                  {product.category}
                 </Button>
               </div>
             </div>
@@ -170,12 +177,14 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
               <p>Condition</p>
               <div>
                 <Button className=" px-4 py-2 text-sm bg-white text-brand-black ">
-                  Used
+                  {product.condition}
                 </Button>
               </div>
             </div>
 
-            <Button className="bg-primary mt-2 md:mt-3">Add to cart</Button>
+            <Button className=" bg-primary mt-2 md:mt-3 hover:bg-hov_primary">
+              Add to cart
+            </Button>
 
             <p className="text-center text-xs">{freeShipping}</p>
 
@@ -294,9 +303,9 @@ const Gallery = ({ images }: GalleryProps) => {
 
 export const ProductHeader1Defaults: Props = {
   breadcrumbs: [
-    { url: "#", title: "Shop all" },
-    { url: "#", title: "Category" },
-    { url: "#", title: "Product name" },
+    { url: "/products", title: "Shop all" },
+    { url: "/products", title: "Category" },
+    { url: ``, title: "Product name" },
   ],
   heading: "Product name",
   price: "$55",
