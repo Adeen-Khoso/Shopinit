@@ -2,6 +2,7 @@ import type { ButtonProps } from "@relume_io/relume-ui";
 import { Button, cn } from "@relume_io/relume-ui";
 import { useState } from "react";
 import { BiFilter, BiHeart, BiSolidHeart, BiTrash } from "react-icons/bi";
+import { FaInbox } from "react-icons/fa6";
 import { PiCarProfileBold } from "react-icons/pi";
 import { Link } from "react-router";
 
@@ -18,6 +19,7 @@ type ProductCardProps = {
   title: string;
   price: string;
   condition: string;
+  category: string;
   button: ButtonProps;
   uid: string;
 };
@@ -29,23 +31,32 @@ type Props = {
   button: ButtonProps;
   products: ProductCardProps[];
   profilePage?: boolean;
+  selectedCategory?: string;
+  setSelectedCategory?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export type Product8Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const Product8 = (props: Product8Props) => {
-  const { tagline, heading, description, button, products, profilePage } = {
+  const {
+    tagline,
+    heading,
+    description,
+    button,
+    products,
+    profilePage,
+    selectedCategory,
+    setSelectedCategory,
+  } = {
     ...Product8Defaults,
     ...props,
   };
 
-  const userProducts = products.filter((p) => p.uid === user.id);
-
   const [showDropdown, setShowDropdown] = useState(false);
-  console.log(profilePage);
+
   const categories = [
-    "All products",
+    "All Products",
     "Electronics",
     "Fashion",
     "Household",
@@ -53,7 +64,15 @@ export const Product8 = (props: Product8Props) => {
     "Phones",
     "Others",
   ];
-  const [selectedCategory, setSelectedCategory] = useState("All products"); //this is going to be sent to parent comp: and will be sent to backend later for filtering
+
+  const filteredProducts =
+    selectedCategory && selectedCategory !== "All Products"
+      ? products.filter(
+          (product) => product.category == selectedCategory.toLowerCase()
+        )
+      : products;
+
+  const userProducts = products.filter((p) => p.uid === user.id);
 
   return (
     <section id="relume" className="px-[5%] py-8 ">
@@ -68,7 +87,7 @@ export const Product8 = (props: Product8Props) => {
             <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl">
               {profilePage && profilePage == true
                 ? "Your Products"
-                : selectedCategory === "All products"
+                : selectedCategory === "All Products"
                 ? "All Categories"
                 : selectedCategory}
             </h1>
@@ -92,7 +111,7 @@ export const Product8 = (props: Product8Props) => {
                     <div
                       key={index}
                       onClick={() => {
-                        setSelectedCategory(category);
+                        setSelectedCategory?.(category);
                         setShowDropdown(false);
                       }}
                       className={`px-4 py-2 cursor-pointer hover:bg-grey ${
@@ -109,15 +128,35 @@ export const Product8 = (props: Product8Props) => {
             </div>
           )}
         </div>
-        <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
-          {profilePage
-            ? userProducts.map((product, index) => (
-                <ProductCard key={index} {...product} />
-              ))
-            : products.map((product, index) => (
-                <ProductCard key={index} {...product} />
-              ))}
-        </div>
+        {profilePage ? (
+          <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
+            {userProducts.map((product, index) => (
+              <ProductCard key={index} {...product} />
+            ))}
+          </div>
+        ) : filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
+            {filteredProducts.map((product, index) => (
+              <ProductCard key={index} {...product} />
+            ))}
+          </div>
+        ) : (
+          <div className="px-[5%]  h-[40vh] flex flex-col justify-center items-center gap-5 text-center ">
+            <FaInbox className=" text-primary size-12 " />
+            <h1 className=" text-2xl md:text-3xl text-jett_black">
+              No products in this Category
+            </h1>
+            <p className="-mt-4">
+              Start adding products from
+              <Link
+                to={"/sell"}
+                className=" underline text-primary cursor-pointer ml-1"
+              >
+                here
+              </Link>
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

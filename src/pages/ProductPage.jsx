@@ -5,6 +5,8 @@ import iphone14pro from "../assets/iphone14_second.jpg";
 import NoData from "../utility/NoData";
 
 const ProductPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All Products");
+
   // this products array will be fetched from the server later.
   const products = [
     {
@@ -31,6 +33,7 @@ const ProductPage = () => {
       uid: "2234",
     },
   ];
+
   return (
     <>
       {products.length === 0 ? (
@@ -40,7 +43,11 @@ const ProductPage = () => {
           link="/sell"
         />
       ) : (
-        <Product8 products={products} />
+        <Product8
+          products={products}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
       )}
     </>
   );
