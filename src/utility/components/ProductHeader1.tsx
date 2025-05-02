@@ -133,7 +133,14 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
             {breadcrumbs.map((item, index) => (
               <React.Fragment key={index}>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href={item.url}>{item.title}</BreadcrumbLink>
+                  <BreadcrumbLink
+                    className={
+                      index === breadcrumbs.length - 1 ? "text-primary " : ""
+                    }
+                    href={item.url}
+                  >
+                    {item.title}
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
               </React.Fragment>
@@ -167,7 +174,7 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
             <div className="flex flex-col gap-1 mt-1">
               <p>Category</p>
               <div>
-                <Button className=" px-4 py-2 text-sm bg-primary  ">
+                <Button className=" px-4 py-2 text-sm bg-primary capitalize  ">
                   {product.category}
                 </Button>
               </div>
@@ -176,7 +183,7 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
             <div className="flex flex-col gap-1 mt-1">
               <p>Condition</p>
               <div>
-                <Button className=" px-4 py-2 text-sm bg-white text-brand-black ">
+                <Button className=" px-4 py-2 text-sm bg-white text-brand-black capitalize ">
                   {product.condition}
                 </Button>
               </div>
