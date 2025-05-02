@@ -14,7 +14,10 @@ const ProductPage = () => {
       description: "98% battery health, no damage, almost like new phone.",
       condition: "used",
       category: "phones",
-      image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+      image: [
+        "https://mobilesyrup.com/wp-content/uploads/2022/09/iphone-14-pro-header-1-scaled.jpg",
+        "https://spy.com/wp-content/uploads/2023/02/IMG_2114-rotated.jpg?w=1024",
+      ],
       uid: "1234",
     },
     {

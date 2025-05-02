@@ -14,17 +14,16 @@ import {
   CarouselApi,
   CarouselContent,
   CarouselItem,
-  Input,
-  Label,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
 } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
-import { BiSolidStar, BiSolidStarHalf, BiStar } from "react-icons/bi";
 import clsx from "clsx";
+import { FaInbox } from "react-icons/fa6";
+import { Link } from "react-router";
+
+// type ImageProps = {
+//   src: string;
+//   alt?: string;
+// };
 
 type ImageProps = {
   src: string;
@@ -36,8 +35,11 @@ type BreadcrumbProps = {
   title: string;
 };
 
+// type GalleryProps = {
+//   images: ImageProps[];
+// };
 type GalleryProps = {
-  images: ImageProps[];
+  images: string[] | ImageProps[];
 };
 
 type QuestionsProps = {
@@ -55,7 +57,20 @@ type SelectVariant = {
   label: string;
 };
 
+type ProductType = {
+  id: string;
+  title: string;
+  price: string;
+  description: string;
+  condition: string;
+  category: string;
+  image: string[];
+  uid: string;
+};
+
 type Props = {
+  id?: string;
+  products?: ProductType[];
   breadcrumbs: BreadcrumbProps[];
   heading: string;
   images: ImageProps[];
@@ -80,28 +95,33 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
     images,
     price,
     description,
-    rating,
-    buttons,
-    options,
-    quantityInputPlaceholder,
     freeShipping,
     questions,
-    selectVariants,
   } = {
     ...ProductHeader1Defaults,
     ...props,
   };
-  const [variantInput, setVariantInput] = useState("");
-  const [optionInput, setOptionInput] = useState("");
-  const [quantityInput, setQuantityInput] = useState("");
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log({
-      variantInput,
-      optionInput,
-      quantityInput,
-    });
-  };
+
+  const { id, products } = props;
+  const product = products?.find((product) => product.id === id);
+  if (!product)
+    return (
+      <div className="px-[5%]  h-[40vh] flex flex-col justify-center items-center gap-5 text-center ">
+        <FaInbox className=" text-primary size-12 " />
+        <h1 className=" text-2xl md:text-3xl text-jett_black">
+          Product Not Found
+        </h1>
+        <p className="-mt-4">
+          Get back to shopping from
+          <Link
+            to={"/products"}
+            className=" underline text-primary cursor-pointer ml-1"
+          >
+            here
+          </Link>
+        </p>
+      </div>
+    );
   return (
     <header id="relume" className="px-[5%] py-8">
       <div className="container">
@@ -118,86 +138,47 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
           </BreadcrumbList>
         </Breadcrumb>
         <div className="grid grid-cols-1 gap-y-8 md:gap-y-10 lg:grid-cols-[1.25fr_1fr] lg:gap-x-20">
-          <Gallery images={images} />
-          <div className="flex flex-col gap-3">
+          <Gallery images={product.image} />
+          <div className="flex flex-col gap-3 md:gap-4">
+            {/* Product name and seller */}
             <div className="border-b border-neutral-lighter pb-2 ">
               <h1 className="mb-2 text-4xl font-bold leading-[1.2] md:text-5xl lg:text-6xl">
-                {heading}
+                {product.title}
               </h1>
               <p className="text-xs md:text-sm -mt-1 text-neutral">
                 Seller name
               </p>
             </div>
-            <p className="mt-2 text-xl md:text-2xl">{price}</p>
-            {/* <div className="mb-5 flex flex-wrap items-center gap-3 md:mb-6">
-              <Star rating={rating.starsNumber} />
-              <p className="text-sm">{`(${rating.starsNumber} stars) • ${rating.review} reviews`}</p>
-            </div> */}
+
+            {/* Price */}
+            <p className="mt-2 text-xl md:text-2xl ">{price}</p>
+
+            {/* Description */}
             <p className="">{description}</p>
 
-            {/* <form onSubmit={handleSubmit} className="mb-8">
-              <div className="grid grid-cols-1 gap-6">
-                <div className="flex flex-col">
-                  <Label className="mb-2">Variant</Label>
-                  <Select onValueChange={setVariantInput}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {selectVariants.map((item, index) => (
-                        <SelectItem key={index} value={item.value}>
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex flex-col">
-                  <Label className="mb-2">Variant</Label>
-                  <div className="flex flex-wrap gap-4">
-                    {options.map((option, index) => (
-                      <Button
-                        key={index}
-                        className="px-4 py-2"
-                        asChild
-                        onClick={() => setOptionInput(option.title || "")}
-                        {...option}
-                      >
-                        <a
-                          href={option.url}
-                          className={clsx({
-                            "pointer-events-none opacity-25": option.disabled,
-                          })}
-                        >
-                          {option.title}
-                        </a>
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex flex-col">
-                  <Label htmlFor="quantity" className="mb-2">
-                    Quantity
-                  </Label>
-                  <Input
-                    type="number"
-                    id="quantity"
-                    placeholder={quantityInputPlaceholder}
-                    className="w-16"
-                    value={quantityInput}
-                    onChange={(e) => setQuantityInput(e.target.value)}
-                  />
-                </div>
+            {/* Category */}
+            <div className="flex flex-col gap-1 mt-1">
+              <p>Category</p>
+              <div>
+                <Button className=" px-4 py-2 text-sm bg-primary  ">
+                  Phones
+                </Button>
               </div>
-              <div className="mb-4 mt-8 flex flex-col gap-y-4">
-                {buttons.map((button, index) => (
-                  <Button key={index} {...button}>
-                    {button.title}
-                  </Button>
-                ))}
+            </div>
+            {/* condition */}
+            <div className="flex flex-col gap-1 mt-1">
+              <p>Condition</p>
+              <div>
+                <Button className=" px-4 py-2 text-sm bg-white text-brand-black ">
+                  Used
+                </Button>
               </div>
-              <p className="text-center text-xs">{freeShipping}</p>
-            </form> */}
+            </div>
+
+            <Button className="bg-primary mt-2 md:mt-3">Add to cart</Button>
+
+            <p className="text-center text-xs">{freeShipping}</p>
+
             <Accordion type="multiple">
               {questions.map((question, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
@@ -217,45 +198,31 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
   );
 };
 
-const Star = ({ rating }: { rating: number }) => {
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 !== 0;
-  return (
-    <div className="flex items-center gap-1">
-      {[...Array(5)].map((_, i) => {
-        const isFullStar = i < fullStars;
-        const isHalfStar = hasHalfStar && i === fullStars;
-
-        return (
-          <div key={i}>
-            {isFullStar ? (
-              <BiSolidStar />
-            ) : isHalfStar ? (
-              <BiSolidStarHalf />
-            ) : (
-              <BiStar />
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
 const Gallery = ({ images }: GalleryProps) => {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [thumbApi, setThumbApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+
+  // ✅ Normalize images here
+  const normalizedImages: ImageProps[] = Array.isArray(images)
+    ? typeof images[0] === "string"
+      ? (images as string[]).map((url) => ({
+          src: url,
+          alt: "Product image",
+        }))
+      : (images as ImageProps[])
+    : [];
+
   useEffect(() => {
-    if (!mainApi || !thumbApi) {
-      return;
-    }
+    if (!mainApi || !thumbApi) return;
+
     mainApi.on("select", () => {
       const index = mainApi.selectedScrollSnap();
       setCurrent(index);
       thumbApi.scrollTo(index);
     });
   }, [mainApi, thumbApi]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-[5rem_1fr] md:gap-x-4">
       <div className="relative hidden h-full md:block">
@@ -271,7 +238,7 @@ const Gallery = ({ images }: GalleryProps) => {
             className="m-0"
           >
             <CarouselContent className="m-0 gap-y-4">
-              {images.map((slide, index) => (
+              {normalizedImages.map((slide, index) => (
                 <CarouselItem key={index} className="p-0">
                   <button
                     onClick={() => mainApi?.scrollTo(index)}
@@ -279,7 +246,11 @@ const Gallery = ({ images }: GalleryProps) => {
                   >
                     <img
                       src={slide.src}
-                      alt={slide.alt}
+                      alt={slide.alt ?? "Product image"}
+                      onError={(e) => {
+                        e.currentTarget.src =
+                          "https://placehold.co/300x400?text=No+Image"; // Add this file to your `public` folder
+                      }}
                       className="aspect-[5/6] size-full object-cover"
                     />
                   </button>
@@ -299,12 +270,16 @@ const Gallery = ({ images }: GalleryProps) => {
           className="m-0"
         >
           <CarouselContent className="m-0">
-            {images.map((slide, index) => (
+            {normalizedImages.map((slide, index) => (
               <CarouselItem key={index} className="basis-full pl-0">
                 <button>
                   <img
                     src={slide.src}
-                    alt={slide.alt}
+                    alt={slide.alt ?? "Product image"}
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        "https://placehold.co/800x1000?text=No+Image"; // Add this file to your `public` folder
+                    }}
                     className="aspect-[5/6] size-full object-cover"
                   />
                 </button>
@@ -367,22 +342,22 @@ export const ProductHeader1Defaults: Props = {
     { title: "Option three", url: "#", variant: "secondary", disabled: true },
   ],
   quantityInputPlaceholder: "1",
-  freeShipping: "Free shipping over $50",
+  freeShipping: "Free shipping over Rs/1999",
   questions: [
     {
-      title: "Details",
+      title: "Process",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.",
+        "We’re just the bridge. You’re responsible for reviewing the product and seller. We don’t verify seller credibility or take responsibility for scams — order wisely. We’re here to help if you need us, though.",
     },
     {
       title: "Shipping",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.",
+        "Sellers are expected to ship within a few working days. If not shipped in time, your order will be canceled and you’ll be notified. We don’t handle delivery or logistics. We wont take responsibility for any issues with delivery.",
     },
     {
       title: "Returns",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.",
+        "All sales are final. Returns are not possible as most sellers stay anonymous post-delivery. Make sure to double-check everything before you place your order.",
     },
   ],
 };
