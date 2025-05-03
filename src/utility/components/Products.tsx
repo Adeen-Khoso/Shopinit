@@ -22,6 +22,7 @@ type ProductCardProps = {
   category: string;
   button: ButtonProps;
   uid: string;
+  profilePage?: boolean;
 };
 
 type Props = {
@@ -137,7 +138,7 @@ export const Product8 = (props: Product8Props) => {
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
             {filteredProducts.map((product, index) => (
-              <ProductCard key={index} {...product} />
+              <ProductCard key={index} profilePage={profilePage} {...product} />
             ))}
           </div>
         ) : (
@@ -170,6 +171,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   condition,
   button,
   uid,
+  profilePage,
 }) => {
   const removeProduct = () => {
     console.log("remove product");
@@ -178,7 +180,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const [bookmark, setBookmark] = useState(false);
   return (
     <div className="flex flex-col gap-2 ">
-      <Link to={id} className=" block aspect-[5/6] ">
+      <Link to={`/products/${id}`} className=" block aspect-[5/6] ">
         <img
           src={image[0]}
           alt={title || "Product image"}
@@ -195,7 +197,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       <div className="flex justify-between items-center ">
         <div className="text-sm font-semibold md:text-sm">{price}</div>
-        {uid === user.id ? (
+        {uid === user.id && profilePage ? (
           <button onClick={() => removeProduct()}>
             <BiTrash className="text-primary mr-[2px]" />
           </button>
