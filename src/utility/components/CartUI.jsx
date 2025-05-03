@@ -4,6 +4,13 @@ import { FiArrowLeft, FiPlusCircle } from "react-icons/fi";
 import { Link } from "react-router";
 import NoData from "../NoData";
 const CartUI = ({ products, user, removeProduct }) => {
+  const totalPrice = products.reduce((acc, product) => {
+    return acc + Number(product.price);
+  }, 0);
+
+  const shipping = 200;
+  const total = totalPrice + shipping;
+
   const [isPromoOpen, setIsPromoOpen] = useState(false);
   const openPromo = () => {
     setIsPromoOpen((prev) => !prev);
@@ -19,7 +26,7 @@ const CartUI = ({ products, user, removeProduct }) => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl">Cart</h1>
               <p className="text-md md:text-lg flex items-center gap-2 ">
                 <span className="text-primary text-xl md:text-2xl font-semibold">
-                  3
+                  {products.length}
                 </span>
                 Items
               </p>
@@ -36,7 +43,7 @@ const CartUI = ({ products, user, removeProduct }) => {
                     className="flex flex-row items-center gap-10 "
                   >
                     <img
-                      src={product.images[0]}
+                      src={product.image[0]}
                       alt={product.title}
                       className="size-28 object-cover"
                     />
@@ -92,15 +99,21 @@ const CartUI = ({ products, user, removeProduct }) => {
                 <div className="flex flex-col gap-[3px]">
                   <div className=" flex  justify-between text-white text-opacity-80 text-xs md:text-sm ">
                     <p>Items</p>
-                    <p>3</p>
+                    <p>{products.length}</p>
                   </div>
                   <div className=" flex  justify-between text-white text-opacity-80 text-xs md:text-sm ">
                     <p>Price</p>
-                    <p>$499</p>
+                    <p>
+                      <span className="mr-[2px] text-xs">Rs.</span>
+                      {totalPrice}
+                    </p>
                   </div>
                   <div className=" flex  justify-between text-white text-opacity-80 text-xs md:text-sm border-b border-b-neutral-light pb-2">
                     <p>Estimated shipping</p>
-                    <p>$20</p>
+                    <p>
+                      <span className="mr-[2px] text-xs">Rs.</span>
+                      {shipping}
+                    </p>
                   </div>
                   <div className=" flex  justify-between text-white text-opacity-80 text-xs md:text-sm ">
                     <p>
@@ -115,7 +128,10 @@ const CartUI = ({ products, user, removeProduct }) => {
 
                 <div className=" flex  justify-between text-grey text-xs md:text-sm ">
                   <p className="text-md">Total</p>
-                  <p className=" font-semibold">$519</p>
+                  <p className=" font-semibold">
+                    <span className=" text-xs mr-[2px]">Rs.</span>
+                    {total}
+                  </p>
                 </div>
 
                 <Button className="bg-white text-jett_black hover:bg-grey">
