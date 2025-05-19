@@ -10,6 +10,7 @@ const user = {
   id: "1234",
   name: "John Doe",
 };
+// will be fetched from backend later on.
 
 type ImageProps = [string];
 
@@ -197,7 +198,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       <div className="flex justify-between items-center ">
         <div className="text-sm font-semibold md:text-sm">{price}</div>
-        {uid === user.id && profilePage ? (
+        {uid == user.id ? (
           <button onClick={() => removeProduct()}>
             <BiTrash className="text-primary mr-[2px]" />
           </button>

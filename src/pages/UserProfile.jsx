@@ -12,28 +12,28 @@ const UserProfile = () => {
   };
   // const [profilepage, setIsProfilePage] = useState(true);
   // const profilePage = true;
-  const userProducts = [
-    {
-      id: "1",
-      title: "iPhone 14 Pro Max",
-      price: "$999",
-      description: "98% battery health, no damage, almost like new phone.",
-      condition: "used",
-      category: "phones",
-      image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
-      uid: "1234",
-    },
-    {
-      id: "1",
-      title: "iPhone 14 Pro Max",
-      price: "$999",
-      description: "98% battery health, no damage, almost like new phone.",
-      condition: "used",
-      category: "phones",
-      image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
-      uid: "2234",
-    },
-  ];
+  // const userProducts = [
+  //   {
+  //     id: "1",
+  //     title: "iPhone 14 Pro Max",
+  //     price: "$999",
+  //     description: "98% battery health, no damage, almost like new phone.",
+  //     condition: "used",
+  //     category: "phones",
+  //     image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+  //     uid: "1234",
+  //   },
+  //   {
+  //     id: "1",
+  //     title: "iPhone 14 Pro Max",
+  //     price: "$999",
+  //     description: "98% battery health, no damage, almost like new phone.",
+  //     condition: "used",
+  //     category: "phones",
+  //     image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
+  //     uid: "2234",
+  //   },
+  // ];
 
   const products = [
     {
@@ -70,14 +70,14 @@ const UserProfile = () => {
       size: "primary",
       title: "",
     },
-    products: userProducts,
+    products: products,
     profilePage: true,
   };
   return (
     <>
       <Gradient />
       <UserDetails />
-      {userProducts.length === 0 ? (
+      {products.length === 0 ? (
         <NoData
           title="Your Store is Empty"
           subTitle="Create store and begin selling now with us from "
