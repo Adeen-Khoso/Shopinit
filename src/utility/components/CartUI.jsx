@@ -40,19 +40,21 @@ const CartUI = ({ products, user, removeProduct }) => {
                 products.map((product, index) => (
                   <div
                     key={index}
-                    className="flex flex-row items-center gap-10 "
+                    className="flex flex-row items-center gap-4 md:gap-7"
                   >
                     <img
                       src={product.image[0]}
                       alt={product.title}
-                      className="size-28 object-cover"
+                      className=" size-[82px] md:size-28 object-cover"
                     />
 
                     <div className="flex w-full justify-between">
-                      <div className=" flex flex-col gap-3 ">
+                      <div className=" flex flex-col gap-2 md:gap-3 ">
                         <div>
-                          <h4 className="text-md ">{product.title}</h4>
-                          <p className="text-xs -mt-[2px] text-jett_black text-opacity-40 ">
+                          <h4 className="text-sm md:text-md ">
+                            {product.title}
+                          </h4>
+                          <p className="text-[10px] md:text-xs -mt-[2px] text-jett_black text-opacity-40 ">
                             By {user.name}
                           </p>
                         </div>
@@ -71,7 +73,9 @@ const CartUI = ({ products, user, removeProduct }) => {
                           Remove
                         </div>
                       </div>
-                      <p className="text-md font-semibold">{product.price}</p>
+                      <p className="text-sm md:text-md font-semibold">
+                        <span className="text-xs">Rs.</span> {product.price}
+                      </p>
                     </div>
                   </div>
                 ))
@@ -101,7 +105,7 @@ const CartUI = ({ products, user, removeProduct }) => {
                     <p>Items</p>
                     <p>{products.length}</p>
                   </div>
-                  <div className=" flex  justify-between text-white text-opacity-80 text-xs md:text-sm ">
+                  <div className=" flex justify-between text-white text-opacity-80 text-xs md:text-sm ">
                     <p>Price</p>
                     <p>
                       <span className="mr-[2px] text-xs">Rs.</span>
