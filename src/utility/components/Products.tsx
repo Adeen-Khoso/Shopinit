@@ -186,6 +186,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
           src={image[0]}
           alt={title || "Product image"}
           className="size-full object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.onerror = null; // prevent infinite loop if fallback also fails
+            target.src =
+              "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png?20210521171500";
+          }}
         />
       </Link>
 
