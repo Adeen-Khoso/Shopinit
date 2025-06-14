@@ -5,6 +5,8 @@ import Step3 from "../utility/form_steps/Step3";
 import Step4 from "../utility/form_steps/Step4";
 import Stepper from "../utility/form_steps/Stepper";
 import { supabase } from "../supabaseClient"; // step 1 file
+import Loader from "../utility/Loader";
+import toast from "react-hot-toast";
 
 // import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 // import { db } from "../firebase";
@@ -91,6 +93,7 @@ const SellPage = () => {
   });
   // …
   const [currentStep, setCurrentStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   const nextStep = () => {
     setCurrentStep((current) => current + 1);
@@ -102,6 +105,8 @@ const SellPage = () => {
   const addProduct = async (e) => {
     e.preventDefault();
     if (!user) return alert("Please log in first.");
+
+    setIsLoading(true);
 
     const uploadResults = await Promise.all(
       formData.images.map(async (file) => {
@@ -138,7 +143,21 @@ const SellPage = () => {
         uid: user.uid,
         createdAt: serverTimestamp(),
       });
-      alert("Product added successfully!");
+
+      toast.success("Product Added Successfully !", {
+        icon: "👏",
+        style: {
+          borderRadius: "0px",
+          background: "#FFF5F5",
+          color: "#2F3C7E",
+          border: "1px solid #2F3C7E",
+        },
+        iconTheme: {
+          primary: "#2F3C7E",
+          secondary: "#FFFAEE",
+        },
+      });
+      console.log("Product added successfully!");
 
       setFormData({
         title: "",
@@ -151,46 +170,51 @@ const SellPage = () => {
       setCurrentStep(1);
     } catch (err) {
       console.error("Add product failed:", err);
-      alert("Could not add product. Try again.");
+    } finally {
+      setIsLoading(false); // ← stop the loader
     }
   };
 
-  return (
-    <>
-      <Stepper currentStep={currentStep} />
-      {currentStep === 1 && (
-        <Step1
-          nextStep={nextStep}
-          formData={formData}
-          setFormData={setFormData}
-        />
-      )}
-      {currentStep === 2 && (
-        <Step2
-          nextStep={nextStep}
-          prevStep={prevStep}
-          formData={formData}
-          setFormData={setFormData}
-        />
-      )}
-      {currentStep === 3 && (
-        <Step3
-          nextStep={nextStep}
-          prevStep={prevStep}
-          formData={formData}
-          setFormData={setFormData}
-        />
-      )}
-      {currentStep === 4 && (
-        <Step4
-          prevStep={prevStep}
-          formData={formData}
-          setFormData={setFormData}
-          addProduct={addProduct}
-        />
-      )}
-    </>
-  );
+  if (isLoading) {
+    return <Loader />;
+  } else {
+    return (
+      <>
+        <Stepper currentStep={currentStep} />
+        {currentStep === 1 && (
+          <Step1
+            nextStep={nextStep}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        )}
+        {currentStep === 2 && (
+          <Step2
+            nextStep={nextStep}
+            prevStep={prevStep}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        )}
+        {currentStep === 3 && (
+          <Step3
+            nextStep={nextStep}
+            prevStep={prevStep}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        )}
+        {currentStep === 4 && (
+          <Step4
+            prevStep={prevStep}
+            formData={formData}
+            setFormData={setFormData}
+            addProduct={addProduct}
+          />
+        )}
+      </>
+    );
+  }
 };
 
 export default SellPage;
