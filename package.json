@@ -12,6 +12,7 @@
   "dependencies": {
     "@relume_io/relume-tailwind": "^1.0.0",
     "@relume_io/relume-ui": "^1.0.1",
+    "@supabase/supabase-js": "^2.50.0",
     "clsx": "^2.1.1",
     "firebase": "^11.3.1",
     "react": "^18.3.1",

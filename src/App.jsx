@@ -20,10 +20,19 @@ import Bookmarks from "./pages/Bookmarks";
 import Loader from "./utility/Loader";
 import Cursor from "./utility/Cursor";
 
+// somewhere temporary, e.g. in App.js
+import { supabase } from "./supabaseClient";
+
 function App() {
   const [user, setUser] = useState(null);
   const [isAuthLoading, setIsAuthLoading] = useState(true);
-
+  useEffect(() => {
+    supabase
+      .from("nonexistent") // a safe, read query
+      .select("*")
+      .then(console.log)
+      .catch(console.error);
+  }, []);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {

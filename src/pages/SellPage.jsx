@@ -4,8 +4,83 @@ import Step2 from "../utility/form_steps/Step2";
 import Step3 from "../utility/form_steps/Step3";
 import Step4 from "../utility/form_steps/Step4";
 import Stepper from "../utility/form_steps/Stepper";
+import { supabase } from "../supabaseClient"; // step 1 file
+
+// import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+// import { db } from "../firebase";
+// import { useAuth } from "../context/AuthContext"; // or however you get currentUse
+
+// const SellPage = () => {
+//   const [formData, setFormData] = useState({
+//     title: "",
+//     price: "",
+//     description: "",
+//     condition: "",
+//     category: "",
+//     images: [],
+//   });
+
+//   const [currentStep, setCurrentStep] = useState(1);
+
+//   const nextStep = () => {
+//     setCurrentStep((current) => current + 1);
+//   };
+//   const prevStep = () => {
+//     setCurrentStep((current) => current - 1);
+//   };
+
+//   const addProduct = (e) => {
+//     console.log(formData);
+//     // this function would send data to the backend and add product to the database
+//   };
+
+//   return (
+//     <>
+//       <Stepper currentStep={currentStep} />
+//       {currentStep === 1 && (
+//         <Step1
+//           nextStep={nextStep}
+//           formData={formData}
+//           setFormData={setFormData}
+//         />
+//       )}
+//       {currentStep === 2 && (
+//         <Step2
+//           nextStep={nextStep}
+//           prevStep={prevStep}
+//           formData={formData}
+//           setFormData={setFormData}
+//         />
+//       )}
+//       {currentStep === 3 && (
+//         <Step3
+//           nextStep={nextStep}
+//           prevStep={prevStep}
+//           formData={formData}
+//           setFormData={setFormData}
+//         />
+//       )}
+//       {currentStep === 4 && (
+//         <Step4
+//           addProduct={addProduct}
+//           prevStep={prevStep}
+//           formData={formData}
+//           setFormData={setFormData}
+//         />
+//       )}
+//     </>
+//   );
+// };
+
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db, storage } from "../firebase";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const SellPage = () => {
+  const { user } = useContext(AuthContext);
+
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -14,7 +89,7 @@ const SellPage = () => {
     category: "",
     images: [],
   });
-
+  // …
   const [currentStep, setCurrentStep] = useState(1);
 
   const nextStep = () => {
@@ -24,9 +99,60 @@ const SellPage = () => {
     setCurrentStep((current) => current - 1);
   };
 
-  const addProduct = (e) => {
-    console.log(formData);
-    // this function would send data to the backend and add product to the database
+  const addProduct = async (e) => {
+    e.preventDefault();
+    if (!user) return alert("Please log in first.");
+
+    const uploadResults = await Promise.all(
+      formData.images.map(async (file) => {
+        // choose a path under the 'products' bucket
+        const filePath = `${user.uid}/${Date.now()}_${file.name}`;
+        const { data, error } = await supabase.storage
+          .from("products")
+          .upload(filePath, file);
+
+        if (error) throw error;
+        // build the public URL
+        const { data: urlData, error: urlError } = supabase.storage
+          .from("products")
+          .getPublicUrl(data.path);
+
+        if (urlError) throw urlError;
+        return urlData.publicUrl;
+      })
+    );
+    // 1) Upload each File, get its download URL
+    // const uploadPromises = formData.images.map(async (file) => {
+    //   const fileRef = ref(storage, `products/${user.uid}/${file.name}`);
+    //   await uploadBytes(fileRef, file);
+    //   return getDownloadURL(fileRef);
+    // });
+    // const imageUrls = await Promise.all(uploadPromises);
+
+    // 2) Write Firestore document
+    try {
+      console.log("About to save product with:", {
+        ...formData,
+        images: uploadResults,
+        uid: user.uid,
+      });
+
+      await addDoc(collection(db, "products"), {
+        title: formData.title,
+        price: formData.price,
+        description: formData.description,
+        condition: formData.condition,
+        category: formData.category,
+        images: uploadResults, // array of strings
+        uid: user.uid,
+        createdAt: serverTimestamp(),
+      });
+      alert("Product added successfully!");
+      // you can reset formData and redirect here
+    } catch (err) {
+      console.error("Add product failed:", err);
+      alert("Could not add product. Try again.");
+    }
   };
 
   return (
@@ -57,11 +183,16 @@ const SellPage = () => {
       )}
       {currentStep === 4 && (
         <Step4
-          addProduct={addProduct}
           prevStep={prevStep}
           formData={formData}
           setFormData={setFormData}
-        />
+          addProduct={addProduct}
+        >
+          {/* Your final “Submit” button inside Step4 should call addProduct */}
+          <button onClick={addProduct} className=" size-10">
+            Publish Product
+          </button>
+        </Step4>
       )}
     </>
   );
