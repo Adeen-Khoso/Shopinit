@@ -105,7 +105,6 @@ const SellPage = () => {
 
     const uploadResults = await Promise.all(
       formData.images.map(async (file) => {
-        // choose a path under the 'products' bucket
         const filePath = `${user.uid}/${Date.now()}_${file.name}`;
         const { data, error } = await supabase.storage
           .from("products")
@@ -121,15 +120,7 @@ const SellPage = () => {
         return urlData.publicUrl;
       })
     );
-    // 1) Upload each File, get its download URL
-    // const uploadPromises = formData.images.map(async (file) => {
-    //   const fileRef = ref(storage, `products/${user.uid}/${file.name}`);
-    //   await uploadBytes(fileRef, file);
-    //   return getDownloadURL(fileRef);
-    // });
-    // const imageUrls = await Promise.all(uploadPromises);
 
-    // 2) Write Firestore document
     try {
       console.log("About to save product with:", {
         ...formData,
@@ -148,7 +139,16 @@ const SellPage = () => {
         createdAt: serverTimestamp(),
       });
       alert("Product added successfully!");
-      // you can reset formData and redirect here
+
+      setFormData({
+        title: "",
+        price: "",
+        description: "",
+        condition: "",
+        category: "",
+        images: [],
+      });
+      setCurrentStep(1);
     } catch (err) {
       console.error("Add product failed:", err);
       alert("Could not add product. Try again.");
@@ -187,12 +187,7 @@ const SellPage = () => {
           formData={formData}
           setFormData={setFormData}
           addProduct={addProduct}
-        >
-          {/* Your final “Submit” button inside Step4 should call addProduct */}
-          <button onClick={addProduct} className=" size-10">
-            Publish Product
-          </button>
-        </Step4>
+        />
       )}
     </>
   );
