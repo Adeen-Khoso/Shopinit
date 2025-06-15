@@ -7,11 +7,12 @@ import { AuthContext } from "../context/AuthContext";
 import NoData from "../utility/NoData";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase"; // your firebase.ts export
+import Loader from "../utility/Loader";
 
 const UserProfile = () => {
-  const user = {
-    id: "1234",
-  };
+  // to be replaced with actual user data from AuthContext
+  const { user } = useContext(AuthContext);
+  console.log(user.uid);
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -66,7 +67,8 @@ const UserProfile = () => {
 
     fetchProducts();
   }, []);
-  const userProducts = products.filter((p) => p.uid === user.id);
+  const userProducts = products.filter((p) => p.uid === user?.uid);
+  console.log("User Products:", userProducts);
 
   const productProps = {
     tagline: "Explore",
@@ -79,7 +81,11 @@ const UserProfile = () => {
     },
     products: products,
     profilePage: true,
+    userId: user?.uid,
   };
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <>
       <Gradient />

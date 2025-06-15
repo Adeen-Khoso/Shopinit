@@ -5,12 +5,7 @@ import { BiFilter, BiHeart, BiSolidHeart, BiTrash } from "react-icons/bi";
 import { FaInbox } from "react-icons/fa6";
 import { PiCarProfileBold } from "react-icons/pi";
 import { Link } from "react-router";
-
-const user = {
-  id: "1234",
-  name: "John Doe",
-};
-// will be fetched from backend later on.
+import { useContext } from "react";
 
 type ImageProps = [string];
 
@@ -24,6 +19,7 @@ type ProductCardProps = {
   button: ButtonProps;
   uid: string;
   profilePage?: boolean;
+  userId?: string;
 };
 
 type Props = {
@@ -35,6 +31,7 @@ type Props = {
   profilePage?: boolean;
   selectedCategory?: string;
   setSelectedCategory?: React.Dispatch<React.SetStateAction<string>>;
+  userId: string;
 };
 
 export type Product8Props = React.ComponentPropsWithoutRef<"section"> &
@@ -50,6 +47,7 @@ export const Product8 = (props: Product8Props) => {
     profilePage,
     selectedCategory,
     setSelectedCategory,
+    userId,
   } = {
     ...Product8Defaults,
     ...props,
@@ -74,7 +72,7 @@ export const Product8 = (props: Product8Props) => {
         )
       : products;
 
-  const userProducts = products.filter((p) => p.uid === user.id);
+  const userProducts = products.filter((p) => p.uid === userId);
 
   return (
     <section id="relume" className="px-[5%] py-8 ">
@@ -133,7 +131,7 @@ export const Product8 = (props: Product8Props) => {
         {profilePage ? (
           <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
             {userProducts.map((product, index) => (
-              <ProductCard key={index} {...product} />
+              <ProductCard key={index} {...product} userId={userId} />
             ))}
           </div>
         ) : filteredProducts.length > 0 ? (
@@ -173,6 +171,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   button,
   uid,
   profilePage,
+  userId,
 }) => {
   const removeProduct = () => {
     console.log("remove product");
@@ -209,7 +208,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="text-sm font-semibold md:text-sm ">
           <span className="text-[10px]">Rs.</span> {price}
         </div>
-        {uid == user.id ? (
+        {uid == userId ? (
           <button onClick={() => removeProduct()}>
             <BiTrash className="text-primary mr-[2px]" />
           </button>
@@ -251,4 +250,5 @@ export const Product8Defaults: Props = {
   },
   products: [],
   profilePage: false,
+  userId: "",
 };
