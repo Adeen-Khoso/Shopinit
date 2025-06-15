@@ -16,7 +16,7 @@ type ImageProps = [string];
 
 type ProductCardProps = {
   id: string;
-  image: ImageProps;
+  images: ImageProps;
   title: string;
   price: string;
   condition: string;
@@ -166,7 +166,7 @@ export const Product8 = (props: Product8Props) => {
 
 const ProductCard: React.FC<ProductCardProps> = ({
   id,
-  image,
+  images,
   title,
   price,
   condition,
@@ -181,14 +181,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const [bookmark, setBookmark] = useState(false);
   return (
     <div className="flex flex-col gap-2 ">
-      <Link to={`/products/${id}`} className=" block aspect-[5/6] ">
+      <Link
+        to={`/products/${id}`}
+        className=" block aspect-[5/6] w-full overflow-hidden bg-grey "
+      >
         <img
-          src={image[0]}
+          src={images[0]}
           alt={title || "Product image"}
           className="size-full object-cover"
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.onerror = null; // prevent infinite loop if fallback also fails
+            target.onerror = null;
             target.src =
               "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png?20210521171500";
           }}
@@ -203,7 +206,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       </Link>
 
       <div className="flex justify-between items-center ">
-        <div className="text-sm font-semibold md:text-sm">{price}</div>
+        <div className="text-sm font-semibold md:text-sm ">
+          <span className="text-[10px]">Rs.</span> {price}
+        </div>
         {uid == user.id ? (
           <button onClick={() => removeProduct()}>
             <BiTrash className="text-primary mr-[2px]" />
