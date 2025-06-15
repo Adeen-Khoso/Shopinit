@@ -67,9 +67,7 @@ export const Product8 = (props: Product8Props) => {
 
   const filteredProducts =
     selectedCategory && selectedCategory !== "All Products"
-      ? products.filter(
-          (product) => product.category == selectedCategory.toLowerCase()
-        )
+      ? products.filter((product) => product.category == selectedCategory)
       : products;
 
   const userProducts = products.filter((p) => p.uid === userId);

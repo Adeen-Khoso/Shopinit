@@ -10,9 +10,7 @@ import { db } from "../firebase"; // your firebase.ts export
 import Loader from "../utility/Loader";
 
 const UserProfile = () => {
-  // to be replaced with actual user data from AuthContext
   const { user } = useContext(AuthContext);
-  console.log(user.uid);
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
