@@ -197,7 +197,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       <Link to={id} className="flex justify-between md:text-md">
         <div className="mr-4">
-          <h4 className="text-sm font-semibold">{title}</h4>
+          <h4 className="text-sm font-semibold">
+            {title.length > 15 ? title.slice(0, 15) + "..." : title}
+          </h4>
           <div className=" capitalize text-xs -mt-[2px]">{condition}</div>
         </div>
       </Link>
