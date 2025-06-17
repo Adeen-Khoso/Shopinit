@@ -61,7 +61,6 @@ const ProductPage = () => {
 
     fetchProducts();
   }, []);
-  console.log(products);
 
   if (isLoading) {
     return <Loader />;
