@@ -58,6 +58,7 @@ type SelectVariant = {
 };
 
 type ProductType = {
+  images: ImageProps[] | string[];
   id: string;
   title: string;
   price: string;
@@ -105,7 +106,7 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
   const { id, products } = props;
   const product = products?.find((product) => product.id === id);
   const userId = product?.uid;
-  // we send this uid to baackend and get the user name from there.
+  // we send this uid to baackend and get the user name from there. Gallery
 
   if (!product)
     return (
@@ -148,7 +149,7 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
           </BreadcrumbList>
         </Breadcrumb>
         <div className="grid grid-cols-1 gap-y-8 md:gap-y-10 lg:grid-cols-[1.25fr_1fr] lg:gap-x-20">
-          <Gallery images={product.image} />
+          <Gallery images={product.images} />
           <div className="flex flex-col gap-3 md:gap-4">
             {/* Product name and seller */}
             <div className="border-b border-neutral-lighter pb-2 ">
@@ -255,7 +256,7 @@ const Gallery = ({ images }: GalleryProps) => {
           >
             <CarouselContent className="m-0 gap-y-4">
               {normalizedImages.map((slide, index) => (
-                <CarouselItem key={index} className="p-0">
+                <CarouselItem key={index} className="p-0 ">
                   <button
                     onClick={() => mainApi?.scrollTo(index)}
                     className={clsx("block", current === index && "opacity-60")}
@@ -288,7 +289,7 @@ const Gallery = ({ images }: GalleryProps) => {
           <CarouselContent className="m-0">
             {normalizedImages.map((slide, index) => (
               <CarouselItem key={index} className="basis-full pl-0">
-                <button>
+                <button className="w-full">
                   <img
                     src={slide.src}
                     alt={slide.alt ?? "Product image"}
