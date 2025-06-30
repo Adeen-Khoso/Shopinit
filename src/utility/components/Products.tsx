@@ -9,6 +9,8 @@ import { useContext } from "react";
 
 type ImageProps = [string];
 
+export type RemoveProductFn = (productId: string) => void;
+
 type ProductCardProps = {
   id: string;
   images: ImageProps;
@@ -20,6 +22,7 @@ type ProductCardProps = {
   uid: string;
   profilePage?: boolean;
   userId?: string;
+  removeProduct?: RemoveProductFn; // accept remove function
 };
 
 type Props = {
@@ -32,26 +35,41 @@ type Props = {
   selectedCategory?: string;
   setSelectedCategory?: React.Dispatch<React.SetStateAction<string>>;
   userId: string;
+  removeProduct?: RemoveProductFn; // accept remove function
 };
 
 export type Product8Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const Product8 = (props: Product8Props) => {
+  // const {
+  //   tagline,
+  //   heading,
+  //   description,
+  //   button,
+  //   products,
+  //   profilePage,
+  //   selectedCategory,
+  //   setSelectedCategory,
+  //   userId,
+  //   removeProduct,
+  // } = {
+  //   ...Product8Defaults,
+  //   ...props,
+  // };
+
   const {
-    tagline,
-    heading,
-    description,
-    button,
-    products,
-    profilePage,
-    selectedCategory,
-    setSelectedCategory,
-    userId,
-  } = {
-    ...Product8Defaults,
-    ...props,
-  };
+    tagline = Product8Defaults.tagline,
+    heading = Product8Defaults.heading,
+    description = Product8Defaults.description,
+    button = Product8Defaults.button,
+    products = Product8Defaults.products,
+    profilePage = Product8Defaults.profilePage,
+    selectedCategory = Product8Defaults.selectedCategory,
+    setSelectedCategory = Product8Defaults.setSelectedCategory,
+    userId = Product8Defaults.userId,
+    removeProduct, // do NOT default this — allow it to be undefined if not passed
+  } = props;
 
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -71,6 +89,12 @@ export const Product8 = (props: Product8Props) => {
       : products;
 
   const userProducts = products.filter((p) => p.uid === userId);
+  // console.log(
+  //   "is remove product in the room with us?",
+  //   removeProduct?.(products[0]?.id)
+  // );
+  console.log("these are products,", products);
+  console.log("these are user products,", userProducts);
 
   return (
     <section id="relume" className="px-[5%] py-8 ">
@@ -128,9 +152,19 @@ export const Product8 = (props: Product8Props) => {
         </div>
         {profilePage ? (
           <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
-            {userProducts.map((product, index) => (
-              <ProductCard key={index} {...product} userId={userId} />
-            ))}
+            {userProducts.map((product, index) => {
+              console.log("in the products parent ", removeProduct);
+              console.log("Mapped Product:", product);
+
+              return (
+                <ProductCard
+                  key={index}
+                  userId={userId}
+                  removeProduct={removeProduct}
+                  {...product}
+                />
+              );
+            })}
           </div>
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
@@ -170,17 +204,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   uid,
   profilePage,
   userId,
+  removeProduct,
 }) => {
-  const removeProduct = () => {
-    console.log("remove product");
-    // will remove product from backend later on
-  };
   const [bookmark, setBookmark] = useState(false);
   return (
     <div className="flex flex-col gap-2 ">
       <Link
         to={`/products/${id}`}
-        className=" block aspect-[5/6] w-full overflow-hidden bg-grey "
+        className=" block aspect-[5/6] w-full overflow-hidden "
       >
         <img
           src={images[0]}
@@ -208,8 +239,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="text-sm font-semibold md:text-sm ">
           <span className="text-[10px]">Rs.</span> {price}
         </div>
-        {uid == userId ? (
-          <button onClick={() => removeProduct()}>
+        {uid === userId ? (
+          <button onClick={() => removeProduct?.(id)}>
             <BiTrash className="text-primary mr-[2px]" />
           </button>
         ) : (
@@ -251,4 +282,5 @@ export const Product8Defaults: Props = {
   products: [],
   profilePage: false,
   userId: "",
+  removeProduct: undefined, // allow this to be undefined
 };

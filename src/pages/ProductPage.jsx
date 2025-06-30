@@ -1,41 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { Product8 } from "../utility/components/Products";
 import NoData from "../utility/NoData";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { db } from "../firebase"; // your firebase.ts export
 import Loader from "../utility/Loader";
+import { toast } from "react-hot-toast"; // or your toast library
 
 const ProductPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
-
   const [products, setProducts] = useState([]);
-  // // this products array will be fetched from the server later.
-  // const products = [
-  //   {
-  //     id: "1",
-  //     title: "iPhone 14 Pro Max",
-  //     price: "$999",
-  //     description: "98% battery health, no damage, almost like new phone.",
-  //     condition: "used",
-  //     category: "phones",
-  //     image: [
-  //       "https://mobilesyrup.com/wp-content/uploads/2022/09/iphone-14-pro-header-1-scaled.jpg",
-  //       "https://spy.com/wp-content/uploads/2023/02/IMG_2114-rotated.jpg?w=1024",
-  //     ],
-  //     uid: "1234",
-  //   },
-  //   {
-  //     id: "2",
-  //     title: "iPhone 14 Pro Max",
-  //     price: "$999",
-  //     description: "98% battery health, no damage, almost like new phone.",
-  //     condition: "used",
-  //     category: "phones",
-  //     image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
-  //     uid: "2234",
-  //   },
-  // ];
+
+  const removeProduct = async (productId) => {
+    setIsLoading(true);
+    try {
+      console.log("remove function was called with ID:", productId);
+      // 1) Delete the Firestore document
+      await deleteDoc(doc(db, "products", productId));
+
+      // 2) Update local state
+      setProducts((prev) => prev.filter((p) => p.id !== productId));
+
+      // 3) Optional: show success toast
+      toast.success("Product removed successfully!", {
+        icon: "🗑️",
+        style: {
+          borderRadius: "0px",
+          background: "#FFF5F5",
+          color: "#2F3C7E",
+          border: "1px solid #2F3C7E",
+        },
+      });
+    } catch (err) {
+      console.error("Failed to remove product:", err);
+      toast.error("Could not remove product. Try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -78,6 +87,7 @@ const ProductPage = () => {
           products={products}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          removeProduct={removeProduct}
         />
       )}
     </>

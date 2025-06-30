@@ -5,7 +5,15 @@ import { Product8 } from "../utility/components/Products";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import NoData from "../utility/NoData";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { toast } from "react-hot-toast"; // or your toast library
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { db } from "../firebase"; // your firebase.ts export
 import Loader from "../utility/Loader";
 
@@ -66,7 +74,34 @@ const UserProfile = () => {
     fetchProducts();
   }, []);
   const userProducts = products.filter((p) => p.uid === user?.uid);
-  console.log("User Products:", userProducts);
+
+  const removeProduct = async (productId) => {
+    setIsLoading(true);
+    try {
+      console.log("remove function was called with ID:", productId);
+      // 1) Delete the Firestore document
+      await deleteDoc(doc(db, "products", productId));
+
+      // 2) Update local state
+      setProducts((prev) => prev.filter((p) => p.id !== productId));
+
+      // 3) Optional: show success toast
+      toast.success("Product removed successfully!", {
+        icon: "🗑️",
+        style: {
+          borderRadius: "0px",
+          background: "#FFF5F5",
+          color: "#2F3C7E",
+          border: "1px solid #2F3C7E",
+        },
+      });
+    } catch (err) {
+      console.error("Failed to remove product:", err);
+      toast.error("Could not remove product. Try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const productProps = {
     tagline: "Explore",
@@ -80,6 +115,7 @@ const UserProfile = () => {
     products: products,
     profilePage: true,
     userId: user?.uid,
+    removeProduct,
   };
   if (isLoading) {
     return <Loader />;

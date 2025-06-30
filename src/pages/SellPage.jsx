@@ -170,6 +170,19 @@ const SellPage = () => {
       setCurrentStep(1);
     } catch (err) {
       console.error("Add product failed:", err);
+      setIsLoading(false); // ← stop the loader
+      toast.error("Could not add product. Try again.", {
+        style: {
+          borderRadius: "0px",
+          background: "#FFF5F5",
+          color: "#2F3C7E",
+          border: "1px solid #2F3C7E",
+        },
+        iconTheme: {
+          primary: "#2F3C7E",
+          secondary: "#FFFAEE",
+        },
+      });
     } finally {
       setIsLoading(false); // ← stop the loader
     }
