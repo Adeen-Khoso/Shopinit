@@ -16,12 +16,14 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase"; // your firebase.ts export
 import Loader from "../utility/Loader";
+import { addBookmark, removeBookmark } from "../utility/bookmarkService";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
 
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [profilePage, setProfilePage] = useState(true);
 
   // const products = [
   //   {
@@ -113,9 +115,11 @@ const UserProfile = () => {
       title: "",
     },
     products: products,
-    profilePage: true,
+    profilePage: profilePage,
     userId: user?.uid,
     removeProduct,
+    addBookmark,
+    removeBookmark,
   };
   if (isLoading) {
     return <Loader />;

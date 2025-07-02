@@ -12,11 +12,22 @@ import {
 import { db } from "../firebase"; // your firebase.ts export
 import Loader from "../utility/Loader";
 import { toast } from "react-hot-toast"; // or your toast library
+import {
+  addBookmark,
+  removeBookmark,
+  isProductBookmarked,
+} from "../utility/bookmarkService";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const ProductPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("All Products");
   const [products, setProducts] = useState([]);
+
+  const { user } = useContext(AuthContext);
+  const userId = user?.uid;
+  // console.log("this is product page", addBookmark, removeBookmark);
 
   const removeProduct = async (productId) => {
     setIsLoading(true);
@@ -88,6 +99,10 @@ const ProductPage = () => {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           removeProduct={removeProduct}
+          addBookmark={addBookmark}
+          removeBookmark={removeBookmark}
+          isProductBookmarked={isProductBookmarked}
+          userId={userId}
         />
       )}
     </>

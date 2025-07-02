@@ -1,6 +1,6 @@
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { Button, cn } from "@relume_io/relume-ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiFilter, BiHeart, BiSolidHeart, BiTrash } from "react-icons/bi";
 import { FaInbox } from "react-icons/fa6";
 import { PiCarProfileBold } from "react-icons/pi";
@@ -10,6 +10,13 @@ import { useContext } from "react";
 type ImageProps = [string];
 
 export type RemoveProductFn = (productId: string) => void;
+// export type AddBookmarkFn = (userId: string, product: ProductCardProps) => void;
+export type RemoveBookmarkFn = (userId: string, productId: string) => void;
+export type AddBookmarkFn = (userId: string, productId: string) => void;
+export type IsProductBookmarkedFn = (
+  userId: string,
+  productId: string
+) => Promise<boolean>;
 
 type ProductCardProps = {
   id: string;
@@ -22,7 +29,10 @@ type ProductCardProps = {
   uid: string;
   profilePage?: boolean;
   userId?: string;
-  removeProduct?: RemoveProductFn; // accept remove function
+  removeProduct?: RemoveProductFn;
+  addBookmark?: AddBookmarkFn;
+  removeBookmark?: RemoveBookmarkFn;
+  isProductBookmarked?: IsProductBookmarkedFn;
 };
 
 type Props = {
@@ -36,12 +46,31 @@ type Props = {
   setSelectedCategory?: React.Dispatch<React.SetStateAction<string>>;
   userId: string;
   removeProduct?: RemoveProductFn; // accept remove function
+  addBookmark?: AddBookmarkFn; // accept add bookmark function
+  removeBookmark?: RemoveBookmarkFn; // accept remove bookmark function
+  isProductBookmarked?: IsProductBookmarkedFn; // accept isProductBookmarked function
 };
 
 export type Product8Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const Product8 = (props: Product8Props) => {
+  const {
+    tagline = Product8Defaults.tagline,
+    heading = Product8Defaults.heading,
+    description = Product8Defaults.description,
+    button = Product8Defaults.button,
+    products = Product8Defaults.products,
+    profilePage = Product8Defaults.profilePage,
+    selectedCategory = Product8Defaults.selectedCategory,
+    setSelectedCategory = Product8Defaults.setSelectedCategory,
+    userId = Product8Defaults.userId,
+    removeProduct,
+    addBookmark,
+    removeBookmark,
+    isProductBookmarked,
+  } = props;
+
   // const {
   //   tagline,
   //   heading,
@@ -57,19 +86,6 @@ export const Product8 = (props: Product8Props) => {
   //   ...Product8Defaults,
   //   ...props,
   // };
-
-  const {
-    tagline = Product8Defaults.tagline,
-    heading = Product8Defaults.heading,
-    description = Product8Defaults.description,
-    button = Product8Defaults.button,
-    products = Product8Defaults.products,
-    profilePage = Product8Defaults.profilePage,
-    selectedCategory = Product8Defaults.selectedCategory,
-    setSelectedCategory = Product8Defaults.setSelectedCategory,
-    userId = Product8Defaults.userId,
-    removeProduct, // do NOT default this — allow it to be undefined if not passed
-  } = props;
 
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -89,12 +105,6 @@ export const Product8 = (props: Product8Props) => {
       : products;
 
   const userProducts = products.filter((p) => p.uid === userId);
-  // console.log(
-  //   "is remove product in the room with us?",
-  //   removeProduct?.(products[0]?.id)
-  // );
-  console.log("these are products,", products);
-  console.log("these are user products,", userProducts);
 
   return (
     <section id="relume" className="px-[5%] py-8 ">
@@ -169,7 +179,15 @@ export const Product8 = (props: Product8Props) => {
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
             {filteredProducts.map((product, index) => (
-              <ProductCard key={index} profilePage={profilePage} {...product} />
+              <ProductCard
+                key={index}
+                profilePage={profilePage}
+                {...product}
+                userId={userId}
+                addBookmark={addBookmark}
+                removeBookmark={removeBookmark}
+                isProductBookmarked={isProductBookmarked}
+              />
             ))}
           </div>
         ) : (
@@ -200,13 +218,72 @@ const ProductCard: React.FC<ProductCardProps> = ({
   title,
   price,
   condition,
+  category,
   button,
   uid,
   profilePage,
   userId,
   removeProduct,
+  addBookmark,
+  removeBookmark,
+  isProductBookmarked,
 }) => {
   const [bookmark, setBookmark] = useState(false);
+
+  // On mount, check bookmark state
+  useEffect(() => {
+    if (!userId) return;
+    isProductBookmarked?.(userId, id).then(setBookmark);
+  }, [userId, id]);
+
+  const handleBookmarkClick = async () => {
+    if (!userId) return;
+    if (bookmark) {
+      removeBookmark?.(userId, id);
+    } else {
+      addBookmark?.(userId, id);
+    }
+    setBookmark((b) => !b);
+  };
+
+  // function to check if bookmark exists being prop drilled from ProductPage
+  // useEffect(() => {
+  //   console.log("Checking bookmark for product:", id);
+
+  //   const checkBookmark = async () => {
+  //     if (!userId) return;
+  //     const exists = await isProductBookmarked?.(userId, id);
+  //     setBookmark(!!exists);
+  //   };
+  //   checkBookmark();
+  // }, [userId, id]);
+
+  // console.log(bookmark);
+
+  // function to handle bookmark click
+  // const handleBookmarkClick = () => {
+  //   console.log("handleBookmark clicked for product:", id);
+  //   if (!userId) return;
+
+  //   if (bookmark) {
+  //     removeBookmark?.(userId, id);
+  //   } else {
+  //     console.log("Adding bookmark for product:", id);
+  //     addBookmark?.(userId, {
+  //       id,
+  //       images,
+  //       title,
+  //       price,
+  //       condition,
+  //       category,
+  //       button: { variant: "secondary", size: "small", title: "" },
+  //       uid,
+  //     });
+  //   }
+
+  //   setBookmark((prev) => !prev);
+  // };
+
   return (
     <div className="flex flex-col gap-2 ">
       <Link
@@ -244,7 +321,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <BiTrash className="text-primary mr-[2px]" />
           </button>
         ) : (
-          <button onClick={() => setBookmark((prev) => !prev)}>
+          <button onClick={() => handleBookmarkClick()}>
             {bookmark ? (
               <BiSolidHeart className="text-primary" />
             ) : (
