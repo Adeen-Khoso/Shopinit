@@ -246,44 +246,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
     setBookmark((b) => !b);
   };
 
-  // function to check if bookmark exists being prop drilled from ProductPage
-  // useEffect(() => {
-  //   console.log("Checking bookmark for product:", id);
-
-  //   const checkBookmark = async () => {
-  //     if (!userId) return;
-  //     const exists = await isProductBookmarked?.(userId, id);
-  //     setBookmark(!!exists);
-  //   };
-  //   checkBookmark();
-  // }, [userId, id]);
-
-  // console.log(bookmark);
-
-  // function to handle bookmark click
-  // const handleBookmarkClick = () => {
-  //   console.log("handleBookmark clicked for product:", id);
-  //   if (!userId) return;
-
-  //   if (bookmark) {
-  //     removeBookmark?.(userId, id);
-  //   } else {
-  //     console.log("Adding bookmark for product:", id);
-  //     addBookmark?.(userId, {
-  //       id,
-  //       images,
-  //       title,
-  //       price,
-  //       condition,
-  //       category,
-  //       button: { variant: "secondary", size: "small", title: "" },
-  //       uid,
-  //     });
-  //   }
-
-  //   setBookmark((prev) => !prev);
-  // };
-
   return (
     <div className="flex flex-col gap-2 ">
       <Link
