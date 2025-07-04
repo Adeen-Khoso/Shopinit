@@ -1,17 +1,15 @@
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { Button } from "@relume_io/relume-ui";
+import { Link } from "react-router";
 
-type ImageProps = {
-  src: string;
-  alt?: string;
-};
+type ImageProps = [string];
 
 type ProductCardProps = {
-  url: string;
-  image: ImageProps;
+  id: string;
+  images: ImageProps;
   title: string;
   price: string;
-  variant: string;
+  condition: string;
   button: ButtonProps;
 };
 
@@ -43,13 +41,10 @@ export const Product4 = (props: Product4Props) => {
             <p className="mt-5 text-base md:mt-6 md:text-md">{description}</p>
           </div>
         </div>
-        <div className="grid grid-cols-2 justify-items-start gap-x-5 gap-y-12 md:gap-x-8 md:gap-y-16 lg:grid-cols-4">
+        <div className="grid grid-cols-2 justify-items-start gap-x-5 gap-y-12 md:grid-cols-4 md:gap-x-8 md:gap-y-16 lg:grid-cols-5">
           {products.map((product, index) => (
             <ProductCard key={index} {...product} />
           ))}
-        </div>
-        <div className="mt-10 flex justify-center md:mt-14 lg:mt-16">
-          <Button {...button}>{button.title}</Button>
         </div>
       </div>
     </section>
@@ -57,31 +52,46 @@ export const Product4 = (props: Product4Props) => {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  url,
-  image,
+  id,
+  images,
   title,
   price,
-  variant,
+  condition,
   button,
 }) => {
   return (
-    <div>
-      <a href={url} className="mb-3 block aspect-[5/6] md:mb-4">
+    // <div>
+    <div className="flex flex-col gap-2 ">
+      <Link
+        to={`/products/${id}`}
+        className=" block aspect-[5/6] w-full overflow-hidden "
+      >
         <img
-          src={image.src}
-          alt={image.alt}
+          src={images[0]}
+          alt={title || "Product image"}
           className="size-full object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.onerror = null;
+            target.src =
+              "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png?20210521171500";
+          }}
         />
-      </a>
-      <a href={url} className="flex flex-col text-center md:text-md">
+      </Link>
+      <Link to={id} className="flex flex-col text-center md:text-md">
         <div className="mb-2">
-          <h3 className="font-semibold">{title}</h3>
-          <div className="text-sm">{variant}</div>
+          <h4 className="text-sm md:text-md font-semibold">
+            {title.length > 15 ? title.slice(0, 15) + "..." : title}
+          </h4>
+          <div className="text-xs md:text-sm">{condition}</div>
         </div>
-        <div className="text-md font-semibold md:text-lg">{price}</div>
-      </a>
-      <Button {...button} className="mt-3 w-full md:mt-4">
-        {button.title}
+
+        <div className="text-md font-semibold md:text-lg ">
+          <span className="text-[12px]">Rs.</span> {price}
+        </div>
+      </Link>
+      <Button {...button} className="mt-2 w-full md:mt-3 bg-primary">
+        Add to cart
       </Button>
     </div>
   );
@@ -106,16 +116,16 @@ export const Product4Defaults: Props = {
   button: {
     variant: "secondary",
     size: "primary",
-    title: "View all",
+    title: "",
   },
   products: [
-    productData,
-    productData,
-    productData,
-    productData,
-    productData,
-    productData,
-    productData,
-    productData,
+    // productData,
+    // productData,
+    // productData,
+    // productData,
+    // productData,
+    // productData,
+    // productData,
+    // productData,
   ],
 };

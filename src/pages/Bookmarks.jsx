@@ -14,7 +14,7 @@ const Bookmarks = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const productsData = [];
+  // const productsData = [];
 
   useEffect(() => {
     const fetch = async () => {
@@ -32,7 +32,7 @@ const Bookmarks = () => {
     fetch();
   }, [user]);
 
-  console.log("Bookmarked products:", products);
+  console.log("Bookmarked products:", products[0]);
 
   // This should be replaced with actual data fetching logic
 
@@ -53,7 +53,7 @@ const Bookmarks = () => {
   if (loading) return <Loader />;
   return (
     <>
-      {productsData.length === 0 ? (
+      {products.length === 0 ? (
         <NoData
           title="No Bookmarks added yet"
           subTitle="Choose the favs and add products to Bookmarks from "
@@ -65,7 +65,7 @@ const Bookmarks = () => {
           heading="Bookmarks"
           description="Check out your favorite products"
           button={{ variant: "secondary", size: "primary", title: "View All" }}
-          products={productsData}
+          products={products}
           // later on, data will be provided using productsData to the children component
         />
       )}
