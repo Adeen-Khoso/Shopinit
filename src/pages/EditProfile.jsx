@@ -16,7 +16,6 @@ const EditProfile = () => {
   const onSave = async (event, name, bio, pronouns, pfp) => {
     setLoading(true);
     event.preventDefault();
-    console.log(pfp);
 
     let pfpUrl = null;
 

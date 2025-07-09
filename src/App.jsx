@@ -105,7 +105,7 @@ function App() {
         {
           path: "/signup",
           // element: <SignUp />,
-          element: user ? <Navigate to="/profileSetup" replace /> : <SignUp />,
+          element: user ? <Navigate to="/editProfile" replace /> : <SignUp />,
         },
       ],
     },
