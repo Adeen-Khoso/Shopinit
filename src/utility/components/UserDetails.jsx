@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import { FiUser } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
-import { db } from "../../firebase"; // adjust path
+import { db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 
 const UserDetails = () => {
@@ -38,9 +38,6 @@ const UserDetails = () => {
     fetchProfile();
   }, [user]);
 
-  // const name = user.name || "Unknown";
-  // const bio = user.bio || "No bio yet.";
-  // const pronouns = user.pronouns || "Unknown/Unknown";
   const img = user.img || null;
 
   return (

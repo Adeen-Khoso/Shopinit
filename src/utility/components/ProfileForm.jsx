@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import Cropper from "react-easy-crop";
 import { getCroppedImg } from "../../utility/cropImage";
 import Gradient from "../Gradient";
@@ -6,14 +6,16 @@ import { AuthContext } from "../../context/AuthContext";
 import { FiEdit, FiTrash, FiUploadCloud, FiUpload } from "react-icons/fi";
 import { Button, cn, Input, Label } from "@relume_io/relume-ui";
 import toast from "react-hot-toast";
+import { db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 const ProfileForm = ({ onSave }) => {
   const { user } = useContext(AuthContext);
 
   // text fields
-  const [name, setName] = useState(user.name || "");
-  const [bio, setBio] = useState(user.bio || "");
-  const [pronouns, setPronouns] = useState(user.pronouns || "");
+  // const [name, setName] = useState(user.name || "");
+  // const [bio, setBio] = useState(user.bio || "");
+  // const [pronouns, setPronouns] = useState(user.pronouns || "");
 
   // image & upload state
   const [selectedImage, setSelectedImage] = useState(user.img || null);
@@ -64,8 +66,39 @@ const ProfileForm = ({ onSave }) => {
   // form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(e, name, bio, pronouns, selectedImage);
+    onSave(
+      e,
+      profileData.name,
+      profileData.bio,
+      profileData.pronouns,
+      selectedImage
+    );
   };
+
+  // fetch profile data from Firestore to set initial values
+  const [profileData, setProfileData] = useState({
+    name: "",
+    bio: "",
+    pronouns: "",
+    pfp: "",
+  });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!user?.uid) return;
+
+      const profileRef = doc(db, "users", user.uid, "profile", "info");
+      const docSnap = await getDoc(profileRef);
+
+      if (docSnap.exists()) {
+        setProfileData(docSnap.data());
+      } else {
+        console.log("No profile data found");
+      }
+    };
+
+    fetchProfile();
+  }, [user]);
 
   return (
     <>
@@ -139,8 +172,10 @@ const ProfileForm = ({ onSave }) => {
               id="name"
               type="text"
               placeholder="Your Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={profileData.name || ""}
+              onChange={(e) =>
+                setProfileData({ ...profileData, name: e.target.value })
+              }
               required
               className="rounded-none"
             />
@@ -153,8 +188,10 @@ const ProfileForm = ({ onSave }) => {
               id="bio"
               type="text"
               placeholder="Your Bio"
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
+              value={profileData.bio || ""}
+              onChange={(e) =>
+                setProfileData({ ...profileData, bio: e.target.value })
+              }
               required
               className="rounded-none"
             />
@@ -167,8 +204,10 @@ const ProfileForm = ({ onSave }) => {
               id="pronouns"
               type="text"
               placeholder="He/Him"
-              value={pronouns}
-              onChange={(e) => setPronouns(e.target.value)}
+              value={profileData.pronouns || ""}
+              onChange={(e) =>
+                setProfileData({ ...profileData, pronouns: e.target.value })
+              }
               required
               className="rounded-none"
             />
