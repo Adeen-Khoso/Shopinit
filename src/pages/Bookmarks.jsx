@@ -32,24 +32,6 @@ const Bookmarks = () => {
     fetch();
   }, [user]);
 
-  console.log("Bookmarked products:", products[0]);
-
-  // This should be replaced with actual data fetching logic
-
-  // const productData = {
-  //   url: "#",
-  //   image: {
-  //     src: "https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg",
-  //     alt: "Relume placeholder image",
-  //   },
-  //   title: "Product name",
-  //   price: "$55",
-  //   variant: "Variant",
-  //   button: { variant: "secondary", size: "sm", title: "Add to cart" },
-  // };
-
-  // const productsData = [productData, productData, productData, productData];
-
   if (loading) return <Loader />;
   return (
     <>
@@ -66,7 +48,6 @@ const Bookmarks = () => {
           description="Check out your favorite products"
           button={{ variant: "secondary", size: "primary", title: "View All" }}
           products={products}
-          // later on, data will be provided using productsData to the children component
         />
       )}
     </>
