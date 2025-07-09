@@ -18,8 +18,6 @@ const ProfileForm = ({ onSave }) => {
   // const [pronouns, setPronouns] = useState(user.pronouns || "");
 
   // image & upload state
-  const [selectedImage, setSelectedImage] = useState(user.img || null);
-  const [uploaded, setUploaded] = useState(!!user.img);
 
   // cropping modal state
   const [showCropModal, setShowCropModal] = useState(false);
@@ -43,8 +41,8 @@ const ProfileForm = ({ onSave }) => {
   // 2️⃣ After cropping → apply and preview
   const applyCrop = async () => {
     try {
-      const croppedUrl = await getCroppedImg(imageToCrop, croppedAreaPixels);
-      setSelectedImage(croppedUrl);
+      const croppedBlob = await getCroppedImg(imageToCrop, croppedAreaPixels);
+      setSelectedImage(croppedBlob);
       setUploaded(true);
     } catch (err) {
       console.error(err);
@@ -83,6 +81,9 @@ const ProfileForm = ({ onSave }) => {
     pfp: "",
   });
 
+  const [selectedImage, setSelectedImage] = useState(profileData.pfp || null);
+  const [uploaded, setUploaded] = useState(!!profileData.pfp);
+
   useEffect(() => {
     const fetchProfile = async () => {
       if (!user?.uid) return;
@@ -113,7 +114,8 @@ const ProfileForm = ({ onSave }) => {
           {selectedImage ? (
             <>
               <img
-                src={selectedImage}
+                // src={selectedImage}
+                src={URL.createObjectURL(selectedImage)}
                 alt="User Profile"
                 className={cn(
                   "w-full h-full object-cover",

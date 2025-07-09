@@ -38,7 +38,8 @@ const UserDetails = () => {
     fetchProfile();
   }, [user]);
 
-  const img = user.img || null;
+  // const img = user.img || null;
+  const imgUrl = profileData.pfp;
 
   return (
     <section>
@@ -46,10 +47,10 @@ const UserDetails = () => {
         {/* user data */}
         <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-start md:items-center">
           <div className=" size-16 md:size-14 overflow-hidden rounded-full bg-primary hover:bg-hov_primary flex items-center justify-center relative">
-            {img ? (
+            {imgUrl ? (
               <img
                 className="w-full h-full object-cover"
-                src={img}
+                src={imgUrl}
                 alt="User Profile"
               />
             ) : (
