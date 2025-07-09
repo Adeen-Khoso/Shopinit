@@ -1,28 +1,46 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Button, cn } from "@relume_io/relume-ui";
 const buttonStyles = "bg-primary text-white hover:bg-hov_primary";
-import blonde from "../../assets/blonde.jpg";
 import { auth } from "../../App";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import { FiUser } from "react-icons/fi";
-import { FaStar } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa";
+import { db } from "../../firebase"; // adjust path
+import { doc, getDoc } from "firebase/firestore";
 
 const UserDetails = () => {
   const { user } = useContext(AuthContext);
-  // const user = {
-  //   img: blonde,
-  //   name: "John Doe",
-  //   bio: "I am a software developer",
-  //   pronouns: "He/Him",
-  // };
   const navigate = useNavigate();
 
-  const name = user.name || "Unknown";
-  const bio = user.bio || "No bio yet.";
-  const pronouns = user.pronouns || "Unknown/Unknown";
+  const [profileData, setProfileData] = useState({
+    name: "",
+    bio: "",
+    pronouns: "",
+    pfp: "",
+  });
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!user?.uid) return;
+
+      const profileRef = doc(db, "users", user.uid, "profile", "info");
+      const docSnap = await getDoc(profileRef);
+
+      if (docSnap.exists()) {
+        setProfileData(docSnap.data());
+      } else {
+        console.log("No profile data found");
+      }
+    };
+
+    fetchProfile();
+  }, [user]);
+
+  // const name = user.name || "Unknown";
+  // const bio = user.bio || "No bio yet.";
+  // const pronouns = user.pronouns || "Unknown/Unknown";
   const img = user.img || null;
 
   return (
@@ -43,12 +61,14 @@ const UserDetails = () => {
           </div>
           <div className="flex flex-col">
             <h4 className=" text-md md:text-xl flex items-center gap-3">
-              {name}
+              {profileData.name || "Unknown"}
               <span className="text-xs text-jett_black text-opacity-50 md:-mb-[2px]">
-                {pronouns}
+                {profileData.pronouns || "Unknown/Unknown"}
               </span>
             </h4>
-            <p className=" text-sm text-background-tertiary">{bio}</p>
+            <p className=" text-sm text-background-tertiary">
+              {profileData.bio || "No bio yet."}
+            </p>
           </div>
         </div>
 
