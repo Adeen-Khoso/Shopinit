@@ -85,6 +85,8 @@ type Props = {
   questions: QuestionsProps[];
   selectVariants: SelectVariant[];
   sellerName?: string;
+  addToCart?: (productId: string) => void;
+  inCart: boolean;
 };
 
 export type ProductHeader1Props = React.ComponentPropsWithoutRef<"section"> &
@@ -100,6 +102,8 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
     freeShipping,
     sellerName,
     questions,
+    addToCart,
+    inCart,
   } = {
     ...ProductHeader1Defaults,
     ...props,
@@ -108,7 +112,6 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
   const { id, products } = props;
   const product = products?.find((product) => product.id === id);
   const userId = product?.uid;
-  // we send this uid to baackend and get the user name from there. Gallery
 
   if (!product)
     return (
@@ -194,9 +197,28 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
               </div>
             </div>
 
-            <Button className=" bg-primary mt-2 md:mt-3 hover:bg-hov_primary">
+            {/* <Button
+              onClick={() => addToCart?.(product.id!)}
+              className=" bg-primary mt-2 md:mt-3 hover:bg-hov_primary"
+            >
               Add to cart
-            </Button>
+            </Button> */}
+
+            {inCart ? (
+              <button
+                className="mt-2 md:mt-3 bg-secondary_bg border first-line: border-jett_black text-text-primary py-2 px-4  cursor-default"
+                disabled
+              >
+                Added
+              </button>
+            ) : (
+              <button
+                className="mt-2 md:mt-3 bg-primary text-white py-2 px-4  hover:bg-hov_primary"
+                onClick={() => addToCart?.(product.id!)}
+              >
+                Add to cart
+              </button>
+            )}
 
             <p className="text-center text-xs">{freeShipping}</p>
 
@@ -381,4 +403,5 @@ export const ProductHeader1Defaults: Props = {
         "All sales are final. Returns are not possible as most sellers stay anonymous post-delivery. Make sure to double-check everything before you place your order.",
     },
   ],
+  inCart: false,
 };

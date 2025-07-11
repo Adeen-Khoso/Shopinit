@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { ProductHeader1 } from "../utility/components/ProductHeader1";
 import {
   query,
   collection,
   orderBy,
+  setDoc,
   getDocs,
   doc,
+  serverTimestamp,
   getDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 import Loader from "../utility/Loader";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 const ProductDetail = () => {
+  const { user } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+  const [inCart, setInCart] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -61,6 +69,38 @@ const ProductDetail = () => {
     fetchSellerName();
   }, [product?.uid]);
 
+  useEffect(() => {
+    if (!user?.uid || !product) return;
+    const checkCart = async () => {
+      const cartRef = doc(db, "users", user.uid, "cart", product.id);
+      const snap = await getDoc(cartRef);
+      setInCart(snap.exists());
+    };
+    checkCart();
+  }, [user, product]);
+
+  // for add to cart button
+  const addToCart = async (productId) => {
+    setIsLoading(true);
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
+    try {
+      const cartRef = doc(db, "users", user.uid, "cart", productId);
+      await setDoc(cartRef, {
+        quantity: 1,
+        addedAt: serverTimestamp(),
+      });
+      setIsLoading(false);
+      setInCart(true);
+    } catch (err) {
+      setIsLoading(false);
+      console.error("Error adding to cart:", err);
+    }
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -70,6 +110,8 @@ const ProductDetail = () => {
         id={id}
         products={products}
         sellerName={sellerName}
+        addToCart={addToCart}
+        inCart={inCart}
         breadcrumbs={[
           { url: "/products", title: "Shop all" },
           { url: "/products", title: "Category" },
