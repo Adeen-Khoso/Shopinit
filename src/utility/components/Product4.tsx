@@ -11,6 +11,8 @@ type ProductCardProps = {
   price: string;
   condition: string;
   button: ButtonProps;
+  addToCart?: (id: string) => void;
+  inCartIds?: string[];
 };
 
 type Props = {
@@ -19,13 +21,23 @@ type Props = {
   description: string;
   button: ButtonProps;
   products: ProductCardProps[];
+  addToCart?: (id: string) => void;
+  inCartIds?: string[];
 };
 
 export type Product4Props = React.ComponentPropsWithoutRef<"section"> &
   Partial<Props>;
 
 export const Product4 = (props: Product4Props) => {
-  const { tagline, heading, description, button, products } = {
+  const {
+    tagline,
+    heading,
+    description,
+    button,
+    products,
+    addToCart,
+    inCartIds = [],
+  } = {
     ...Product4Defaults,
     ...props,
   };
@@ -42,9 +54,16 @@ export const Product4 = (props: Product4Props) => {
           </div>
         </div>
         <div className="grid grid-cols-2 justify-items-start gap-x-5 gap-y-12 md:grid-cols-4 md:gap-x-8 md:gap-y-16 lg:grid-cols-5">
-          {products.map((product, index) => (
-            <ProductCard key={index} {...product} />
-          ))}
+          {products.map((product, index) => {
+            return (
+              <ProductCard
+                key={index}
+                {...product}
+                addToCart={addToCart}
+                inCartIds={inCartIds}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
@@ -58,7 +77,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
   condition,
   button,
+  addToCart,
+  inCartIds = [],
 }) => {
+  const already = inCartIds.includes(id);
   return (
     // <div>
     <div className="flex flex-col gap-2 ">
@@ -90,8 +112,20 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <span className="text-[12px]">Rs.</span> {price}
         </div>
       </Link>
-      <Button {...button} className="mt-2 w-full md:mt-3 bg-primary">
-        Add to cart
+      <Button
+        {...button}
+        onClick={() => !already && addToCart?.(id)}
+        // disabled={already}
+        className={` ${
+          already
+            ? "mt-2 md:mt-3 w-full bg-secondary_bg border text-text-primary  border-jett_black    cursor-default"
+            : "mt-2 w-full md:mt-3 bg-primary hover:bg-hov_primary"
+        }`}
+      >
+        {already ? "Added" : "Add to Cart"}
+        {/* //   className="mt-2 w-full md:mt-3 bg-primary" */}
+        {/* // > */}
+        {/* //   Add to cart */}
       </Button>
     </div>
   );

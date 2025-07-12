@@ -163,9 +163,7 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
                 {product.title}
               </h1>
               <p className="text-xs md:text-sm -mt-1 text-neutral">
-                {/* {product.uid} */}
                 {sellerName}
-                {/* for now only showing user id, later we'll bring in user name from backend using uid */}
               </p>
             </div>
 
