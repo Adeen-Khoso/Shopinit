@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { FiArrowLeft, FiPlusCircle } from "react-icons/fi";
 import { Link } from "react-router";
 import NoData from "../NoData";
-const CartUI = ({ products, user, removeProduct }) => {
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
+const CartUI = ({ products, removeProduct }) => {
   const totalPrice = products.reduce((acc, product) => {
     return acc + Number(product.price);
   }, 0);
@@ -15,6 +17,8 @@ const CartUI = ({ products, user, removeProduct }) => {
   const openPromo = () => {
     setIsPromoOpen((prev) => !prev);
   };
+  const { user } = useContext(AuthContext);
+
   return (
     <>
       <section className="  py-12 md:py-16  px-[5%]">
@@ -43,7 +47,7 @@ const CartUI = ({ products, user, removeProduct }) => {
                     className="flex flex-row items-center gap-4 md:gap-7"
                   >
                     <img
-                      src={product.image[0]}
+                      src={product.images[0]}
                       alt={product.title}
                       className=" size-[82px] md:size-28 object-cover"
                     />
@@ -55,7 +59,7 @@ const CartUI = ({ products, user, removeProduct }) => {
                             {product.title}
                           </h4>
                           <p className="text-[10px] md:text-xs -mt-[2px] text-jett_black text-opacity-40 ">
-                            By {user.name}
+                            By {product.sellerName}
                           </p>
                         </div>
                         <div className="flex flex-col gap-0">
@@ -67,7 +71,7 @@ const CartUI = ({ products, user, removeProduct }) => {
                           </p>
                         </div>
                         <div
-                          onClick={() => removeProduct()}
+                          onClick={() => removeProduct(product.id)}
                           className=" cursor-pointer text-xs text-primary underline"
                         >
                           Remove

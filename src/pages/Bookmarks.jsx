@@ -21,11 +21,9 @@ const Bookmarks = () => {
       if (!user?.uid) return;
       const ids = await getBookmarkedIds(user.uid);
 
-      // fetch all products once (or optimize to query only those IDs)
       const snap = await getDocs(collection(db, "products"));
       const all = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
 
-      // filter to only bookmarked
       setProducts(all.filter((p) => ids.includes(p.id)));
       setLoading(false);
     };

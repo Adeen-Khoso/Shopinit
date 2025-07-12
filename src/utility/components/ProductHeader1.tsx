@@ -197,13 +197,6 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
               </div>
             </div>
 
-            {/* <Button
-              onClick={() => addToCart?.(product.id!)}
-              className=" bg-primary mt-2 md:mt-3 hover:bg-hov_primary"
-            >
-              Add to cart
-            </Button> */}
-
             {inCart ? (
               <button
                 className="mt-2 md:mt-3 bg-secondary_bg border first-line: border-jett_black text-text-primary py-2 px-4  cursor-default"

@@ -1,63 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CartUI from "../utility/components/CartUI";
 import iphone14 from "../assets/iphone14.jpg";
 import iphone14pro from "../assets/iphone14_second.jpg";
+import { AuthContext } from "../context/AuthContext";
+import Loader from "../utility/Loader";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../firebase";
 
 const Cart = () => {
-  const removeProduct = () => {
-    console.log("remove product from cart");
-  };
-  // const products = [
-  //   {
-  //     title: "iPhone 14 Pro Max",
-  //     price: "$999",
-  //     description: "98% battery health, no damage, almost like new phone.",
-  //     condition: "used",
-  //     category: "phones",
-  //     images: [iphone14, iphone14pro],
-  //   },
-  //   {
-  //     title: "iPhone 14 Pro Max",
-  //     price: "$999",
-  //     description: "98% battery health, no damage, almost like new phone.",
-  //     condition: "used",
-  //     category: "phones",
-  //     images: [iphone14, iphone14pro],
-  //   },
-  // ];
+  const { user } = useContext(AuthContext);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const products = [
-    {
-      id: "1",
-      title: "iPhone 14 Pro Max",
-      price: "120000",
-      description: "98% battery health, no damage, almost like new phone.",
-      condition: "used",
-      category: "phones",
-      image: [
-        "https://mobilesyrup.com/wp-content/uploads/2022/09/iphone-14-pro-header-1-scaled.jpg",
-        "https://spy.com/wp-content/uploads/2023/02/IMG_2114-rotated.jpg?w=1024",
-      ],
-      // uid: "1234",
-    },
-    {
-      id: "2",
-      title: "iPhone 14 Pro Max",
-      price: "120000",
-      description: "98% battery health, no damage, almost like new phone.",
-      condition: "used",
-      category: "phones",
-      image: ["https://placehold.co/600x400", "../assets/iphone14_second.jpg"],
-      // uid: "2234",
-    },
-  ];
-
-  const user = {
-    name: "Mobile Store",
+  const getCartIds = async (userId) => {
+    const snap = await getDocs(collection(db, "users", userId, "cart"));
+    return snap.docs.map((doc) => doc.id);
   };
+
+  useEffect(() => {
+    const fetchCartProducts = async () => {
+      if (!user?.uid) return;
+
+      const ids = await getCartIds(user.uid);
+
+      const snap = await getDocs(collection(db, "products"));
+      const all = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+
+      const cartProducts = all.filter((p) => ids.includes(p.id));
+
+      const enriched = await Promise.all(
+        cartProducts.map(async (p) => {
+          const profSnap = await getDoc(
+            doc(db, "users", p.uid, "profile", "info")
+          );
+          return {
+            ...p,
+            sellerName: profSnap.exists() ? profSnap.data().name : "Unknown",
+          };
+        })
+      );
+
+      setProducts(enriched);
+      setLoading(false);
+    };
+
+    fetchCartProducts();
+  }, [user]);
+
+  const removeProduct = async (productId) => {
+    setLoading(true);
+    if (!user?.uid) return;
+    await deleteDoc(doc(db, "users", user.uid, "cart", productId));
+    setProducts((prev) => prev.filter((item) => item.id !== productId));
+    setLoading(false);
+  };
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <>
-      <CartUI products={products} user={user} removeProduct={removeProduct} />
+      <CartUI products={products} removeProduct={removeProduct} />
     </>
   );
 };
