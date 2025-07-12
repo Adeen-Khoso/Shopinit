@@ -83,7 +83,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const already = inCartIds.includes(id);
   return (
     // <div>
-    <div className="flex flex-col gap-2 ">
+    <div className="w-full flex flex-col gap-2 ">
       <Link
         to={`/products/${id}`}
         className=" block aspect-[5/6] w-full overflow-hidden "
@@ -103,7 +103,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <Link to={id} className="flex flex-col text-center md:text-md">
         <div className="mb-2">
           <h4 className="text-sm md:text-md font-semibold">
-            {title.length > 15 ? title.slice(0, 15) + "..." : title}
+            {title.length > 10 ? title.slice(0, 10) + "..." : title}
           </h4>
           <div className="text-xs md:text-sm">{condition}</div>
         </div>
@@ -115,7 +115,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <Button
         {...button}
         onClick={() => !already && addToCart?.(id)}
-        // disabled={already}
         className={` ${
           already
             ? "mt-2 md:mt-3 w-full bg-secondary_bg border text-text-primary  border-jett_black    cursor-default"
@@ -123,9 +122,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         }`}
       >
         {already ? "Added" : "Add to Cart"}
-        {/* //   className="mt-2 w-full md:mt-3 bg-primary" */}
-        {/* // > */}
-        {/* //   Add to cart */}
       </Button>
     </div>
   );
