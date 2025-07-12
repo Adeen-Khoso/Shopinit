@@ -71,22 +71,6 @@ export const Product8 = (props: Product8Props) => {
     isProductBookmarked,
   } = props;
 
-  // const {
-  //   tagline,
-  //   heading,
-  //   description,
-  //   button,
-  //   products,
-  //   profilePage,
-  //   selectedCategory,
-  //   setSelectedCategory,
-  //   userId,
-  //   removeProduct,
-  // } = {
-  //   ...Product8Defaults,
-  //   ...props,
-  // };
-
   const [showDropdown, setShowDropdown] = useState(false);
 
   const categories = [
@@ -177,7 +161,7 @@ export const Product8 = (props: Product8Props) => {
             })}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-6 md:gap-x-8 md:gap-y-16 ">
+          <div className="grid grid-cols-2 justify-items-start gap-x-6 gap-y-12 md:grid-cols-4 lg:grid-cols-5 md:gap-x-8 md:gap-y-16 ">
             {filteredProducts.map((product, index) => (
               <ProductCard
                 key={index}
@@ -247,7 +231,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 ">
+    <div className="w-full flex flex-col gap-2 ">
       <Link
         to={`/products/${id}`}
         className=" block aspect-[5/6] w-full overflow-hidden "

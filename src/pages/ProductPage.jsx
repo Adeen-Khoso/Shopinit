@@ -27,19 +27,15 @@ const ProductPage = () => {
 
   const { user } = useContext(AuthContext);
   const userId = user?.uid;
-  // console.log("this is product page", addBookmark, removeBookmark);
 
   const removeProduct = async (productId) => {
     setIsLoading(true);
     try {
       console.log("remove function was called with ID:", productId);
-      // 1) Delete the Firestore document
       await deleteDoc(doc(db, "products", productId));
 
-      // 2) Update local state
       setProducts((prev) => prev.filter((p) => p.id !== productId));
 
-      // 3) Optional: show success toast
       toast.success("Product removed successfully!", {
         icon: "🗑️",
         style: {
