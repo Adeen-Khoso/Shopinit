@@ -13,6 +13,7 @@ import { CiSearch, CiUser } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { Link } from "react-router";
 import SearchBox from "./SearchBox";
+import SearchBar from "../../pages/SearchBar";
 
 type ImageProps = {
   url?: string;
@@ -116,7 +117,7 @@ export const Navbar2 = (props: Navbar2Props) => {
 
   return (
     <>
-      <SearchBox
+      <SearchBar
         isSearchOpen={isSearchOpen}
         setIsSearchOpen={setIsSearchOpen}
       />

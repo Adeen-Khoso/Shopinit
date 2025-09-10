@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",          // Allows React JSX/TSX
-    "strict": true,              // Enables strict type checking
-    "module": "ESNext",          // Supports modern JavaScript modules
-    "moduleResolution": "Node", // Resolves modules like Node.js
-    "target": "ESNext",          // Target modern JS
-    "esModuleInterop": true,     // Simplifies module imports
-    "skipLibCheck": true,        // Skips type checking for node_modules
-    "forceConsistentCasingInFileNames": true
+    "jsx": "react-jsx",                 // Modern React JSX transform
+    "strict": true,                     // Keep strict mode for safer code
+    "module": "ESNext",                 // Use modern ES modules
+    "moduleResolution": "Node",         // Resolve like Node.js
+    "target": "ESNext",                 // Target latest JS
+    "esModuleInterop": true,            // Fixes import/export issues
+    "skipLibCheck": true,               // Faster builds, skip node_modules types
+    "forceConsistentCasingInFileNames": true,
+
+    "allowJs": true,                    // 👈 NEW: allow .js/.jsx files
+    "checkJs": false,
+    "noEmit": true                        // 👈 NEW: don’t type-check JS/JSX
   },
-  "include": ["src/**/*"],             // Scans the src folder for files
-  "exclude": ["./node_modules"]     // Ignores node_modules
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
