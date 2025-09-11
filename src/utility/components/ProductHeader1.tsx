@@ -163,7 +163,7 @@ export const ProductHeader1 = (props: ProductHeader1Props) => {
                 {product.title}
               </h1>
               <p className="text-xs md:text-sm -mt-1 text-neutral">
-                {sellerName}
+                By {sellerName}
               </p>
             </div>
 

@@ -108,7 +108,7 @@ export const Product8 = (props: Product8Props) => {
             ) : (
               ""
             )}
-            <h1 className="mb-3 text-4xl font-bold md:mb-4 md:text-7xl lg:text-7xl">
+            <h1 className="mb-3 text-4xl font-bold md:mb-4 md:text-6xl lg:text-6xl">
               {isSearch
                 ? ""
                 : profilePage && profilePage == true
