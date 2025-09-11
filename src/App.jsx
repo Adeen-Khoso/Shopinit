@@ -19,9 +19,9 @@ import EditProfile from "./pages/EditProfile";
 import Bookmarks from "./pages/Bookmarks";
 import Loader from "./utility/Loader";
 import Cursor from "./utility/Cursor";
-
 // somewhere temporary, e.g. in App.js
 import { supabase } from "./supabaseClient";
+import SearchResults from "./pages/SearchResults";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -71,6 +71,10 @@ function App() {
         {
           path: "/cart",
           element: <Cart />,
+        },
+        {
+          path: "/searchResults",
+          element: <SearchResults />,
         },
         {
           path: "/profile",

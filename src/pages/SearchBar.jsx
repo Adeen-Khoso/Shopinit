@@ -29,21 +29,33 @@ const SearchBar = ({ isSearchOpen, setIsSearchOpen }) => {
   const doSearch = (term) => {
     const q = term.trim().toLowerCase().replace(/\s+/g, "");
     console.log("this is term:", term);
-    console.log(allProducts[0].title);
     if (!q) {
       setResults([]);
       return;
     }
-    setResults(
-      allProducts.filter((p) => {
-        const title = p.title.toLowerCase().replace(/\s+/g, "");
-        const desc = p.description.toLowerCase().replace(/\s+/g, "");
-        const category = p.category.toLowerCase().replace(/\s+/g, "");
 
-        return title.includes(q) || desc.includes(q) || category.includes(q);
-      })
-    );
-    navigate("/products");
+    // setResults(
+    //   allProducts.filter((p) => {
+    //     const title = p.title.toLowerCase().replace(/\s+/g, "");
+    //     const desc = p.description.toLowerCase().replace(/\s+/g, "");
+    //     const category = p.category.toLowerCase().replace(/\s+/g, "");
+
+    //     return title.includes(q) || desc.includes(q) || category.includes(q);
+    //   })
+    // );
+    // navigate("/searchResults");
+
+    const filtered = allProducts.filter((p) => {
+      const title = p.title.toLowerCase().replace(/\s+/g, "");
+      const desc = p.description.toLowerCase().replace(/\s+/g, "");
+      const category = p.category.toLowerCase().replace(/\s+/g, "");
+      return title.includes(q) || desc.includes(q) || category.includes(q);
+    });
+
+    setResults(filtered);
+    navigate("/searchResults", {
+      state: { results: filtered, term: term },
+    });
     setIsSearchOpen(false);
   };
 

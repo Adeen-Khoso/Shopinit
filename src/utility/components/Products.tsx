@@ -6,6 +6,7 @@ import { FaInbox } from "react-icons/fa6";
 import { PiCarProfileBold } from "react-icons/pi";
 import { Link } from "react-router";
 import { useContext } from "react";
+import { FaSearch } from "react-icons/fa";
 
 type ImageProps = [string];
 
@@ -49,6 +50,8 @@ type Props = {
   addBookmark?: AddBookmarkFn; // accept add bookmark function
   removeBookmark?: RemoveBookmarkFn; // accept remove bookmark function
   isProductBookmarked?: IsProductBookmarkedFn; // accept isProductBookmarked function
+  isSearch?: boolean;
+  term?: string;
 };
 
 export type Product8Props = React.ComponentPropsWithoutRef<"section"> &
@@ -69,6 +72,8 @@ export const Product8 = (props: Product8Props) => {
     addBookmark,
     removeBookmark,
     isProductBookmarked,
+    isSearch,
+    term,
   } = props;
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -95,21 +100,28 @@ export const Product8 = (props: Product8Props) => {
       <div className="container">
         <div className="mb-8 grid grid-cols-1 items-end gap-8 md:mb-12 md:grid-cols-[1fr_max-content]  lg:gap-20">
           <div className="max-w-lg">
-            {!profilePage ? (
+            {isSearch ? (
+              // <p className="mb-3 font-semibold md:mb-4">Search Results</p>
+              ""
+            ) : !profilePage ? (
               <p className="mb-3 font-semibold md:mb-4">{tagline}</p>
             ) : (
               ""
             )}
-            <h1 className="mb-3 text-5xl font-bold md:mb-4 md:text-7xl lg:text-8xl">
-              {profilePage && profilePage == true
+            <h1 className="mb-3 text-4xl font-bold md:mb-4 md:text-7xl lg:text-7xl">
+              {isSearch
+                ? ""
+                : profilePage && profilePage == true
                 ? "Your Products"
                 : selectedCategory === "All Products"
                 ? "All Categories"
                 : selectedCategory}
             </h1>
-            <p className="md:text-md">{description}</p>
+            <p className="md:text-md">
+              {isSearch ? `Search results for "${term}"` : description}
+            </p>
           </div>
-          {profilePage ? (
+          {profilePage || isSearch ? (
             ""
           ) : (
             <div className="relative inline-block text-left">
