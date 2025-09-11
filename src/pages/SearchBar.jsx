@@ -3,8 +3,10 @@ import SearchBox from "../utility/components/SearchBox";
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import { useNavigate } from "react-router";
 
 const SearchBar = ({ isSearchOpen, setIsSearchOpen }) => {
+  const navigate = useNavigate();
   const [allProducts, setAllProducts] = useState([]);
   const [results, setResults] = useState([]);
 
@@ -41,6 +43,8 @@ const SearchBar = ({ isSearchOpen, setIsSearchOpen }) => {
         return title.includes(q) || desc.includes(q) || category.includes(q);
       })
     );
+    navigate("/products");
+    setIsSearchOpen(false);
   };
 
   return (

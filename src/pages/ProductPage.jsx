@@ -68,6 +68,7 @@ const ProductPage = () => {
           ...doc.data(),
         }));
         setProducts(items);
+        console.log("Fetched products:", items);
       } catch (err) {
         console.error("Failed to fetch products:", err);
       } finally {
