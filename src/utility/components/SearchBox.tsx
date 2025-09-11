@@ -69,20 +69,29 @@ const SearchBox: React.FC<SearchBoxProps> = ({
             Popular Searches
           </h4>
           <ul className="text-gray-600">
-            <li className="cursor-pointer hover:underline text-sm mb-2">
-              Nike Sneakers
+            <li
+              onClick={() => doSearch("iPhone")}
+              className="cursor-pointer hover:underline text-sm mb-2"
+            >
+              iPhone
             </li>
-            <li className="cursor-pointer hover:underline text-sm mb-2">
-              iPhone 15
+            <li
+              onClick={() => doSearch("Macbook")}
+              className="cursor-pointer hover:underline text-sm mb-2"
+            >
+              Macbook
             </li>
-            <li className="cursor-pointer hover:underline text-sm mb-2">
-              Gaming Laptops
+            <li
+              onClick={() => doSearch("Laptop")}
+              className="cursor-pointer hover:underline text-sm mb-2"
+            >
+              Laptop
             </li>
-            <li className="cursor-pointer hover:underline text-sm mb-2">
-              Wireless Earbuds
-            </li>
-            <li className="cursor-pointer hover:underline text-sm mb-2">
-              Samsung s25 Ultra
+            <li
+              onClick={() => doSearch("Electronics")}
+              className="cursor-pointer hover:underline text-sm mb-2"
+            >
+              Electronics
             </li>
           </ul>
         </div>

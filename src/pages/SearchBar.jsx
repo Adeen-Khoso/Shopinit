@@ -34,17 +34,6 @@ const SearchBar = ({ isSearchOpen, setIsSearchOpen }) => {
       return;
     }
 
-    // setResults(
-    //   allProducts.filter((p) => {
-    //     const title = p.title.toLowerCase().replace(/\s+/g, "");
-    //     const desc = p.description.toLowerCase().replace(/\s+/g, "");
-    //     const category = p.category.toLowerCase().replace(/\s+/g, "");
-
-    //     return title.includes(q) || desc.includes(q) || category.includes(q);
-    //   })
-    // );
-    // navigate("/searchResults");
-
     const filtered = allProducts.filter((p) => {
       const title = p.title.toLowerCase().replace(/\s+/g, "");
       const desc = p.description.toLowerCase().replace(/\s+/g, "");
