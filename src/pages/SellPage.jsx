@@ -4,76 +4,8 @@ import Step2 from "../utility/form_steps/Step2";
 import Step3 from "../utility/form_steps/Step3";
 import Step4 from "../utility/form_steps/Step4";
 import Stepper from "../utility/form_steps/Stepper";
-import { supabase } from "../supabaseClient"; // step 1 file
 import Loader from "../utility/Loader";
 import toast from "react-hot-toast";
-
-// import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-// import { db } from "../firebase";
-// import { useAuth } from "../context/AuthContext"; // or however you get currentUse
-
-// const SellPage = () => {
-//   const [formData, setFormData] = useState({
-//     title: "",
-//     price: "",
-//     description: "",
-//     condition: "",
-//     category: "",
-//     images: [],
-//   });
-
-//   const [currentStep, setCurrentStep] = useState(1);
-
-//   const nextStep = () => {
-//     setCurrentStep((current) => current + 1);
-//   };
-//   const prevStep = () => {
-//     setCurrentStep((current) => current - 1);
-//   };
-
-//   const addProduct = (e) => {
-//     console.log(formData);
-//     // this function would send data to the backend and add product to the database
-//   };
-
-//   return (
-//     <>
-//       <Stepper currentStep={currentStep} />
-//       {currentStep === 1 && (
-//         <Step1
-//           nextStep={nextStep}
-//           formData={formData}
-//           setFormData={setFormData}
-//         />
-//       )}
-//       {currentStep === 2 && (
-//         <Step2
-//           nextStep={nextStep}
-//           prevStep={prevStep}
-//           formData={formData}
-//           setFormData={setFormData}
-//         />
-//       )}
-//       {currentStep === 3 && (
-//         <Step3
-//           nextStep={nextStep}
-//           prevStep={prevStep}
-//           formData={formData}
-//           setFormData={setFormData}
-//         />
-//       )}
-//       {currentStep === 4 && (
-//         <Step4
-//           addProduct={addProduct}
-//           prevStep={prevStep}
-//           formData={formData}
-//           setFormData={setFormData}
-//         />
-//       )}
-//     </>
-//   );
-// };
-
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db, storage } from "../firebase";
@@ -108,21 +40,35 @@ const SellPage = () => {
 
     setIsLoading(true);
 
+    // this uploads images to supabase storage and will be changed to cloudinary
     const uploadResults = await Promise.all(
       formData.images.map(async (file) => {
-        const filePath = `${user.uid}/${Date.now()}_${file.name}`;
-        const { data, error } = await supabase.storage
-          .from("products")
-          .upload(filePath, file);
+        // 1. Create the form data package Cloudinary expects
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "shopinit"); // Put your preset name here
+        data.append("cloud_name", "dqjmgthgh"); // Put your cloud name here
 
-        if (error) throw error;
-        // build the public URL
-        const { data: urlData, error: urlError } = supabase.storage
-          .from("products")
-          .getPublicUrl(data.path);
+        // 2. Send the request to Cloudinary's API
+        const resp = await fetch(
+          `https://api.cloudinary.com/v1_1/dqjmgthgh/image/upload`,
+          {
+            method: "POST",
+            body: data,
+          }
+        );
 
-        if (urlError) throw urlError;
-        return urlData.publicUrl;
+        // 3. Parse the response
+        const fileData = await resp.json();
+
+        // Check for errors
+        if (!resp.ok) {
+          console.error("Cloudinary Error:", fileData.error);
+          throw new Error("Failed to upload to Cloudinary");
+        }
+
+        return fileData.secure_url;
+        // This is the final URL for Firestore
       })
     );
 
